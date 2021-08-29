@@ -17,13 +17,12 @@ const LoginScreen = ({ location, history }) => {
   const { loading, error, userInfo } = userLogin;
  
   useEffect(() => {
-   
     if (userInfo) {
-      if (userInfo.token["user_type"] === "DOC") {
+      if (userInfo.accType === "DOC") {
         history.push("/doctor/home");
-      } else if (userInfo.token["user_type"] === "MOH") {      
+      } else if (userInfo.accType === "MOH") {
         history.push("/moh/home");
-      } else {
+      } else if (userInfo.accType === "HA"){
         history.push("/hospitalAdmin/home");
       }      
     }

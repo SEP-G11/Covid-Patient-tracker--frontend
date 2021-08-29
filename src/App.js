@@ -6,6 +6,7 @@ import LoginScreen from "./screens/LoginScreen";
 import HospitalAdminHomeScreen from "./screens/HospitalAdmin_screens/HospitalAdminHomeScreen";
 import DoctorHomeScreen from "./screens/Doctor_screens/DoctorHomeScreen";
 import MOHScreen from "./screens/Moh_screens/MohHomeScreen";
+import CreateAccountScreen from "./screens/Moh_screens/CreateAccountScreen";
 
 const App = () => {
   return (
@@ -19,7 +20,7 @@ const App = () => {
           />
           <Route path="/doctor/home" component={DoctorHomeScreen} />
           <Route path="/moh/home" component={MOHScreen} />
-
+          <Route path="/moh/register" component={CreateAccountScreen} />
           <Route path="/" component={HomeScreen} exact />
         </Container>
       </main>

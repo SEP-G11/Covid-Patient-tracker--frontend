@@ -18,9 +18,9 @@ export const login = (email, password) => async (dispatch) => {
     }
 
     const { data } = await axios.post(
-      '/auth/login',
-      { email, password },
-      config
+        '/auth/login',
+        { email, password },
+        config
     )
 
     dispatch({
@@ -33,9 +33,9 @@ export const login = (email, password) => async (dispatch) => {
     dispatch({
       type: USER_LOGIN_FAIL,
       payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+          error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
     })
   }
 }
@@ -46,31 +46,34 @@ export const logout = () => (dispatch) => {
   document.location.href = '/'
 }
 
-export const register = (id, name, email, contact, password, accountType) => async (dispatch) => {
+export const register = (id, name, email, contact, password, accountType) => async (dispatch,getState) => {
   try {
     dispatch({
       type: USER_REGISTER_REQUEST
     });
 
+    const { userLogin: { userInfo } } = getState();
+
     const config = {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`
       }
     };
 
-    // const { data } = await axios.post(
-    //     '/api/users',
-    //     {name,email,password},
-    //     config
-    // );
-    const data = {
-        id: id,
-        name: name,
-        email: email,
-        contact: contact,
-        password: password,
-        accountType: accountType
-    }
+    const { data } = await axios.post(
+        '/moh/register',
+        {id,name,email,contact,password,accountType},
+        config
+    );
+    // const data = {
+    //     id: id,
+    //     name: name,
+    //     email: email,
+    //     contact: contact,
+    //     password: password,
+    //     accountType: accountType
+    // }
 
 
     dispatch({
@@ -83,7 +86,7 @@ export const register = (id, name, email, contact, password, accountType) => asy
     //   payload: data
     // });
 
-   // localStorage.setItem('userInfo', JSON.stringify(data));
+    // localStorage.setItem('userInfo', JSON.stringify(data));
   }
   catch (error) {
     dispatch({

@@ -7,6 +7,7 @@ import Loader from '../../components/Loader';
 import FormContainer from '../../components/FormContainer';
 import { register } from '../../actions/userActions';
 import {USER_REGISTER_RESET} from "../../constants/userConstants";
+import './CreateAccountScreen.css';
 
 const CreateAccountScreen = ({ location, history }) => {
     const [id, setId] = useState('');
@@ -50,7 +51,7 @@ const CreateAccountScreen = ({ location, history }) => {
             {message && <Message variant='danger'>{message}</Message>}
             {error && <Message variant='danger'>{error}</Message>}
             {loading && <Loader/>}
-            <Form onSubmit={submitHandler}>
+            <Form onSubmit={submitHandler} >
 
                         <Form.Group controlId='id'>
                             <Form.Label>ID</Form.Label>

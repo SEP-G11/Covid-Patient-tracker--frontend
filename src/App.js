@@ -6,13 +6,14 @@ import LoginScreen from "./screens/LoginScreen";
 import HospitalAdminHomeScreen from "./screens/HospitalAdmin_screens/HospitalAdminHomeScreen";
 import DoctorHomeScreen from "./screens/Doctor_screens/DoctorHomeScreen";
 import MOHScreen from "./screens/Moh_screens/MohHomeScreen";
+import PublicDashboardScreen from "./screens/PublicDashboardScreen";
 import CreateAccountScreen from "./screens/Moh_screens/CreateAccountScreen";
 
 const App = () => {
   return (
     <Router>
       <main className="py-3">
-        <Container>
+        <Container fluid>
           <Route path="/login" component={LoginScreen} />
           <Route
             path="/hospitalAdmin/home"
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/doctor/home" component={DoctorHomeScreen} />
           <Route path="/moh/home" component={MOHScreen} />
           <Route path="/moh/register" component={CreateAccountScreen} />
+          <Route path="/dashboard" component={PublicDashboardScreen} />
           <Route path="/" component={HomeScreen} exact />
         </Container>
       </main>

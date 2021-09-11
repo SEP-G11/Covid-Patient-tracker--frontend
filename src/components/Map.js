@@ -4,7 +4,7 @@ import {Map as LeafletMap, TileLayer} from 'react-leaflet';
 import {showDataOnMap} from '../utils';
 
 const Map = ({districts, casesType, center, zoom}) => {
-    console.log(districts);
+    //console.log(districts);
     return (
         <div className='map'>
             <LeafletMap center={center} zoom={zoom}>

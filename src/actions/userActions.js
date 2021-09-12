@@ -46,7 +46,7 @@ export const logout = () => (dispatch) => {
   document.location.href = '/'
 }
 
-export const register = (id, name, email, contact, password, accountType) => async (dispatch,getState) => {
+export const register = (id, name, email, contact, password, accountType, facilityId) => async (dispatch,getState) => {
   try {
     dispatch({
       type: USER_REGISTER_REQUEST
@@ -63,7 +63,7 @@ export const register = (id, name, email, contact, password, accountType) => asy
 
     const { data } = await axios.post(
         '/moh/register',
-        {id,name,email,contact,password,accountType},
+        {id,name,email,contact,password,accountType,facilityId},
         config
     );
     // const data = {

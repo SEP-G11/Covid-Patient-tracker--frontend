@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Container, Row, Col } from "react-bootstrap";
 import { login, logout } from "../../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
+
+import HospitalAdminSideNav from "./HospitalAdminSideNav";
 
 const HospitalAdminHomeScreen = ({ location, history }) => {
   const dispatch = useDispatch();
@@ -12,18 +14,17 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
 
   return (
     <div>
-      <Row>
-        <Col>
-          {" "}
-          <h1>Hospital Admin Home </h1>
-        </Col>
-        <Col>
-          <Button type="submit" variant="info" onClick={submitHandler}>
+      <HospitalAdminSideNav />
+      <Container className="py-3">
+        <Row>
+          <Col></Col>
+          <Col>
             {" "}
-            LOG OUT
-          </Button>
-        </Col>
-      </Row>
+            <h1>Hospital Admin Home </h1>
+          </Col>
+          
+        </Row>
+      </Container>
     </div>
   );
 };

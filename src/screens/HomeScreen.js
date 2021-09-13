@@ -18,7 +18,11 @@ export default class HomeScreen extends Component {
             <h1>Common home page</h1>
             <Link to={"/login"}>
               {" "}
-              <Button type="submit" variant="info" aline="center">
+              <Button type="submit" style={{
+                    color: "white",
+                    background: "#007c7a",
+                    marginBottom: "50px",
+                  }} aline="center">
                 {" "}
                 LOG IN
               </Button>{" "}

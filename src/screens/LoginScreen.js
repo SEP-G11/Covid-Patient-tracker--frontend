@@ -14,18 +14,20 @@ const LoginScreen = ({ location, history }) => {
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
+
   const { loading, error, userInfo } = userLogin;
- 
+
   useEffect(() => {
-   
     if (userInfo) {
-      if (userInfo.token["user_type"] === "DOC") {
+      console.log(userInfo["results"]["accType"]);
+
+      if (userInfo["results"]["accType"] === "DOC") {
         history.push("/doctor/home");
-      } else if (userInfo.token["user_type"] === "MOH") {      
+      } else if (userInfo["results"]["accType"] === "MOH") {
         history.push("/moh/home");
       } else {
         history.push("/hospitalAdmin/home");
-      }      
+      }
     }
   }, [history, userInfo]);
 
@@ -60,7 +62,14 @@ const LoginScreen = ({ location, history }) => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type="submit" variant="info">
+        <Button
+          type="submit"
+          style={{
+            color: "white",
+            background: "#007c7a",
+            marginBottom: "50px",
+          }}
+        >
           Sign In
         </Button>
       </Form>

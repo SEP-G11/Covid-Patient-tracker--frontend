@@ -33,7 +33,7 @@ const HospitalAdminEditPatientInfo = ({ match, history }) => {
     useEffect(() => {
         if (successUpdate) {
           dispatch({ type: PATIENT_UPDATE_RESET })
-          history.push('/hospitalAdmin/patientList')
+          history.push(`/hospitalAdmin/viewPatientInfo/${patientId}`)
         } else {
           if (!patient.name || patient.patient_id !== patientId) {
             dispatch(getPatientDetails(patientId))
@@ -53,29 +53,26 @@ const HospitalAdminEditPatientInfo = ({ match, history }) => {
     }
 
     return (
-        <>
-            <Link to='/doctor/patientList' className='btn btn-light my-3'>
-                Go Back
-            </Link>
+        <div>
+            <h1 align='center'>Update Patient</h1>
+            {loadingUpdate && <Loader />}
+            {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+            {loading ? (
+                <Loader />
+            ) : error ? (
+                <Message variant='danger'>{error}</Message>
+            ) : (
             <FormContainer>
-                <h1>Update Patient</h1>
-                {loadingUpdate && <Loader />}
-                {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
-                {loading ? (
-                    <Loader />
-                ) : error ? (
-                    <Message variant='danger'>{error}</Message>
-                ) : (
                 <Form onSubmit={submitHandler}>
-                    <ListGroup variant='flush'>
-                        <ListGroup.Item>
-                            <p>
+                    <ListGroup variant='flush' align='center'>
+                        <ListGroup.Item className='id'>
+                            <p class="text-dark">
                                 <strong>Patient Id: </strong> {patientId}
                             </p>
                         </ListGroup.Item>
                     </ListGroup>
                     <Form.Group controlId='name'>
-                    <Form.Label>Name</Form.Label>
+                    <Form.Label class="text-dark">Name</Form.Label>
                         <Form.Control
                             type='name'
                             placeholder='Enter name'
@@ -84,7 +81,7 @@ const HospitalAdminEditPatientInfo = ({ match, history }) => {
                         ></Form.Control>
                     </Form.Group>
                     <Form.Group controlId='age'>
-                    <Form.Label>Age</Form.Label>
+                    <Form.Label class="text-dark">Age</Form.Label>
                         <Form.Control
                             type='age'
                             placeholder='Enter age'
@@ -93,7 +90,7 @@ const HospitalAdminEditPatientInfo = ({ match, history }) => {
                         ></Form.Control>
                     </Form.Group>
                     <Form.Group controlId='blood_type'>
-                    <Form.Label>Blood Type</Form.Label>
+                    <Form.Label class="text-dark">Blood Type</Form.Label>
                         <Form.Control
                             type='text'
                             placeholder='Enter blood_type'
@@ -102,7 +99,7 @@ const HospitalAdminEditPatientInfo = ({ match, history }) => {
                         ></Form.Control>
                     </Form.Group>
                     <Form.Group controlId='address'>
-                    <Form.Label>Address</Form.Label>
+                    <Form.Label class="text-dark">Address</Form.Label>
                         <Form.Control
                             type='text'
                             placeholder='Enter address'
@@ -111,7 +108,7 @@ const HospitalAdminEditPatientInfo = ({ match, history }) => {
                         ></Form.Control>
                     </Form.Group>
                     <Form.Group controlId='contact_no'>
-                    <Form.Label>Name</Form.Label>
+                    <Form.Label class="text-dark">Contact No.</Form.Label>
                         <Form.Control
                             type='text'
                             placeholder='Enter contact_no'
@@ -119,13 +116,13 @@ const HospitalAdminEditPatientInfo = ({ match, history }) => {
                             onChange={(e) => setContactNo(e.target.value)}
                         ></Form.Control>
                     </Form.Group>
-                    <Button type='submit' variant='primary'>
+                    <Button type='submit' variant='primary' className='btn-sm btn-default'>
                         Save Changes
                     </Button>
                 </Form>
-                )}
             </FormContainer>
-        </>
+            )}
+        </div>
     )
 
 }

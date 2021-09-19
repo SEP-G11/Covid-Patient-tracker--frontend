@@ -19,10 +19,8 @@ const HospitalAdminViewPatientInfo = ({ match }) =>{
     },[dispatch, patientId])
 
     return (
-        <Row>
-            <Col md={12} align='center'>
-                <h2>Patient Information</h2>
-            </Col>
+        <div>
+            <h1 align='center'>Patient Information</h1>
             {loading ? (
                 <Loader />
             ) : error ? (
@@ -30,35 +28,44 @@ const HospitalAdminViewPatientInfo = ({ match }) =>{
             ) : (
             <Col md={12} align='center'>
                 <ListGroup variant='flush'>
-                    <ListGroup.Item>
-                        <p>
+                    <ListGroup.Item className='listGroup'>
+                        <p class="text-dark">
                             <strong>Id: </strong> {patient.patient_id}
                         </p>
-                        <p>
+                        <p class="text-dark">
                             <strong>Name: </strong> {patient.name}
                         </p>
-                        <p>
+                        <p class="text-dark">
                             <strong>Age: </strong> {patient.age}
                         </p>
-                        <p>
+                        <p class="text-dark">
                             <strong>Blood Type: </strong> {patient.blood_type}
                         </p>
-                        <p>
+                        <p class="text-dark">
                             <strong>Address: </strong> {patient.address}
                         </p>
-                        <p>
+                        <p class="text-dark">
                             <strong>Contact No: </strong> {patient.contact_no}
                         </p>
                     </ListGroup.Item>
                 </ListGroup>
-                <LinkContainer to={`/hospitalAdmin/editPatientInfo/${patient.patient_id}`}>
-                    <Button variant='dark' className='btn-sm'>
-                        Update
-                    </Button>
-                </LinkContainer>
+                <Col md={6} align='center'>
+                    <LinkContainer to={`/hospitalAdmin/editPatientInfo/${patient.patient_id}`}>
+                        <Button className='btn-sm btn-default-pages'>
+                            Update
+                        </Button>
+                    </LinkContainer>
+                </Col>
+                <Col md={6} align='center'>
+                    <LinkContainer to={"/hospitalAdmin/patientList"}>
+                        <Button className='btn-sm btn-default-pages'>
+                            Back to Patient List
+                        </Button>
+                    </LinkContainer>
+                </Col>
             </Col>
             )}
-        </Row>
+        </div>
     );
 }
 

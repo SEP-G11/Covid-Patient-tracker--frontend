@@ -33,7 +33,7 @@ const DoctorEditMedicalReport = ({ match, history }) => {
     useEffect(() => {
         if (successUpdate) {
           dispatch({ type: REPORT_UPDATE_RESET })
-          history.push('/doctor/patientList')
+          history.push(`/doctor/viewMedicalReport/${patientId}`)
         } else {
           if (report.patient_id !== patientId) {
             dispatch(getPatientReportDetails(patientId))
@@ -53,32 +53,29 @@ const DoctorEditMedicalReport = ({ match, history }) => {
     }
 
     return (
-        <>
-            <Link to='/doctor/patientList' className='btn btn-light my-3'>
-                Go Back
-            </Link>
+        <div>
+            <h1 align='center'>Update Medical Report</h1>
+            {loadingUpdate && <Loader />}
+            {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+            {loading ? (
+                <Loader />
+            ) : error ? (
+                <Message variant='danger'>{error}</Message>
+            ) : (  
             <FormContainer>
-                <h1>Update Medical Report</h1>
-                {loadingUpdate && <Loader />}
-                {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
-                {loading ? (
-                    <Loader />
-                ) : error ? (
-                    <Message variant='danger'>{error}</Message>
-                ) : (
                 <Form onSubmit={submitHandler}>
-                    <ListGroup variant='flush'>
-                        <ListGroup.Item>
-                            <p>
+                    <ListGroup variant='flush' align='center'>
+                        <ListGroup.Item className='id'>
+                            <p class="text-dark">
                                 <strong>Report Id: </strong> {report.report_id}
                             </p>
-                            <p>
+                            <p class="text-dark">
                                 <strong>Patient Id: </strong> {patientId}
                             </p>
                         </ListGroup.Item>
                     </ListGroup>
                     <Form.Group controlId='symptoms'>
-                    <Form.Label>Symptoms</Form.Label>
+                    <Form.Label class="text-dark">Symptoms</Form.Label>
                         <Form.Control
                             type='text'
                             placeholder='Enter symptoms'
@@ -87,7 +84,7 @@ const DoctorEditMedicalReport = ({ match, history }) => {
                         ></Form.Control>
                     </Form.Group>
                     <Form.Group controlId='admitted_at'>
-                    <Form.Label>Admitted At</Form.Label>
+                    <Form.Label class="text-dark">Admitted At</Form.Label>
                         <Form.Control
                             type='datetime'
                             placeholder='Enter admitted_at'
@@ -96,7 +93,7 @@ const DoctorEditMedicalReport = ({ match, history }) => {
                         ></Form.Control>
                     </Form.Group>
                     <Form.Group controlId='discharged_at'>
-                    <Form.Label>Discharged At</Form.Label>
+                    <Form.Label class="text-dark">Discharged At</Form.Label>
                         <Form.Control
                             type='datetime'
                             placeholder='Enter discharged-at'
@@ -105,7 +102,7 @@ const DoctorEditMedicalReport = ({ match, history }) => {
                         ></Form.Control>
                     </Form.Group>
                     <Form.Group controlId='description'>
-                    <Form.Label>Description</Form.Label>
+                    <Form.Label class="text-dark">Description</Form.Label>
                         <Form.Control
                             type='text'
                             placeholder='Enter description'
@@ -114,21 +111,25 @@ const DoctorEditMedicalReport = ({ match, history }) => {
                         ></Form.Control>
                     </Form.Group>
                     <Form.Group controlId='status'>
-                    <Form.Label>Status</Form.Label>
+                    <Form.Label class="text-dark">Status</Form.Label>
                         <Form.Control
-                            type='text'
-                            placeholder='Enter status'
+                            as='select'
                             value={status}
                             onChange={(e) => setStatus(e.target.value)}
-                        ></Form.Control>
+                        >
+                            <option value='' disabled selected hidden>Select Status</option>
+                            <option value='Active'>Active</option>
+                            <option value='Recovered'>Recovered</option>
+                            <option value='Dead'>Dead</option>
+                        </Form.Control>
                     </Form.Group>
-                    <Button type='submit' variant='primary'>
+                    <Button type='submit' variant='primary' className='btn-sm btn-default'>
                         Save Changes
                     </Button>
                 </Form>
-                )}
             </FormContainer>
-        </>
+            )}
+        </div>
     )
 
 }

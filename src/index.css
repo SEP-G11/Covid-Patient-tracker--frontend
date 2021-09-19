@@ -51,3 +51,54 @@ h2 {
     font-size: 2.5vw;
   }
 }
+
+.btn-default {
+  background-color: #009387;
+  color: #000;
+  border-color: #000;
+  font-size: 12px;
+}
+
+.btn-default-pages {
+  background-color: #009387;
+  color: #000;
+  border-color: #000;
+  font-size: 12px;
+  margin: 15px;
+}
+
+.text-center {
+  font-size: 15px;
+}
+
+.table-head {
+  font-size: 14px;
+}
+
+.listGroup {
+  padding: 50px;
+}
+
+.text-dark {
+  font-size: 15px;
+}
+
+.id {
+  padding: 0%;
+}
+
+#myInput {
+  width: 50%;
+  font-size: 16px;
+  padding: 6px 20px 6px 20px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+
+.dropdown {
+  top: 0;
+  right: 0;
+  height: 40px;
+  width: 65px;
+}

@@ -19,10 +19,8 @@ const DoctorViewMedicalReport = ({ match }) => {
     },[dispatch, patientId])
 
     return (
-        <Row>
-            <Col md={12} align='center'>
-                <h2>Medical Report</h2>
-            </Col>
+        <div>
+            <h1 align='center'>Medical Report</h1>
             {loading ? (
                 <Loader />
             ) : error ? (
@@ -30,38 +28,47 @@ const DoctorViewMedicalReport = ({ match }) => {
             ) : (
             <Col md={12} align='center'>
                 <ListGroup variant='flush'>
-                    <ListGroup.Item>
-                        <p>
+                    <ListGroup.Item className='listGroup'>
+                        <p class="text-dark">
                             <strong>Report Id: </strong> {report.report_id}
                         </p>
-                        <p>
+                        <p class="text-dark">
                             <strong>Patient Id: </strong> {report.patient_id}
                         </p>
-                        <p>
+                        <p class="text-dark">
                             <strong>Symptoms: </strong> {report.symptoms}
                         </p>
-                        <p>
+                        <p class="text-dark">
                             <strong>Admitted At: </strong> {report.admitted_at}
                         </p>
-                        <p>
+                        <p class="text-dark">
                             <strong>Discharged At: </strong> {report.discharged_at}
                         </p>
-                        <p>
+                        <p class="text-dark">
                             <strong>Description: </strong> {report.description}
                         </p>
-                        <p>
+                        <p class="text-dark">
                             <strong>Status: </strong> {report.status}
                         </p>
                     </ListGroup.Item>
                 </ListGroup>
-                <LinkContainer to={`/doctor/editMedicalReport/${report.patient_id}`}>
-                    <Button variant='dark' className='btn-sm'>
-                        Update
-                    </Button>
-                </LinkContainer>
+                <Col md={6} align='center'>
+                    <LinkContainer to={`/doctor/editMedicalReport/${report.patient_id}`}>
+                        <Button className='btn-sm btn-default-pages'>
+                            Update
+                        </Button>
+                    </LinkContainer>
+                </Col>
+                <Col md={6} align='center'>
+                    <LinkContainer to={"/doctor/patientList"}>
+                        <Button className='btn-sm btn-default-pages'>
+                            Back to Patient List
+                        </Button>
+                    </LinkContainer>
+                </Col>
             </Col>
             )}
-        </Row>
+        </div>
     );
 }
 

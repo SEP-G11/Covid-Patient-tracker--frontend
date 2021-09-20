@@ -7,7 +7,7 @@ import {
 } from './reducers/userReducers'
 
 import {
-  patientListReducer, patientDetailsReducer, patientReportDetailsReducer, patientUpdateReducer, patientReportUpdateReducer
+  patientListReducer, patientDetailsReducer, patientReportDetailsReducer, patientTestDetailsReducer, patientUpdateReducer, patientReportUpdateReducer
 } from './reducers/patientReducers'
 
 
@@ -18,6 +18,7 @@ const reducer = combineReducers({
   patientList: patientListReducer,
   patientDetails: patientDetailsReducer,
   patientReportDetails: patientReportDetailsReducer,
+  patientTestDetails: patientTestDetailsReducer,
   patientUpdate: patientUpdateReducer,
   patientReportUpdate: patientReportUpdateReducer,
 })

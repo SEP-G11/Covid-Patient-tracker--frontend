@@ -12,6 +12,9 @@ import {
     PATIENT_REPORT_REQUEST,
     PATIENT_REPORT_SUCCESS,
     PATIENT_REPORT_FAIL,
+    TEST_DETAILS_REQUEST,
+    TEST_DETAILS_SUCCESS,
+    TEST_DETAILS_FAIL,
     REPORT_UPDATE_REQUEST,
     REPORT_UPDATE_SUCCESS,
     REPORT_UPDATE_FAIL,
@@ -52,6 +55,27 @@ export const patientDetailsReducer = (state = { patient: {} }, action) => {
       }
     case PATIENT_DETAILS_FAIL:
       return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+export const patientTestDetailsReducer = (state = { tests: [] }, action) => {
+  switch (action.type) {
+    case TEST_DETAILS_REQUEST:
+      return {
+        loading: true,
+      }
+    case TEST_DETAILS_SUCCESS:
+      return {
+        loading: false,
+        tests: action.payload,
+      }
+    case TEST_DETAILS_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      }
     default:
       return state
   }

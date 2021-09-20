@@ -86,7 +86,7 @@ const DoctorEditMedicalReport = ({ match, history }) => {
                     <Form.Group controlId='admitted_at'>
                     <Form.Label class="text-dark">Admitted At</Form.Label>
                         <Form.Control
-                            type='datetime'
+                            type='date'
                             placeholder='Enter admitted_at'
                             value={admitted_at}
                             onChange={(e) => setAdmittedAt(e.target.value)}
@@ -95,7 +95,7 @@ const DoctorEditMedicalReport = ({ match, history }) => {
                     <Form.Group controlId='discharged_at'>
                     <Form.Label class="text-dark">Discharged At</Form.Label>
                         <Form.Control
-                            type='datetime'
+                            type='date'
                             placeholder='Enter discharged-at'
                             value={discharged_at}
                             onChange={(e) => setDischargedAt(e.target.value)}

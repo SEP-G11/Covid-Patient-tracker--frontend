@@ -1,5 +1,8 @@
 
 import { Container, Row, Col, Table, Card, ListGroup } from "react-bootstrap";
+import { logout } from "../../actions/userActions";
+import { Chart } from "react-google-charts";
+
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/SEP logo.png";
@@ -7,7 +10,7 @@ import { FaRegHospital } from "react-icons/fa";
 import { FiPhoneCall } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import DoctorSideNav from "./DoctorSideNav";
-import { Dropdown } from 'react-bootstrap';
+
 
 const DoctorHomeScreen = ({ location, history }) => {
 
@@ -28,27 +31,32 @@ const DoctorHomeScreen = ({ location, history }) => {
   }
 
   function handleSubmit2(e) {
-    e.preventDefault();    
+    e.preventDefault();
     setShow2(!show2);
   }
 
 
   return (
     <div>
- <>  { bedInfo ? (
-      <><Row>
+      <>  {bedInfo ? (
+        <><Row>
           <Col sm={3}><DoctorSideNav /></Col>
+
 
 
           <Col sm={8}>
             <Row>
               {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
-              <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px" }}>DOCTOR  Dashboard</h1> </Col>
-              <span class="icon" style={{ paddingLeft: "160px", color: "#007c7a" }}><FaRegHospital size={25} /> </span>
-              <span style={{ paddingInline: "10px", fontSize: "18px" }}>  {bedInfo["results"]["FacilityName"]}</span>
-              <span class="icon" style={{ paddingLeft: "100px", color: "#007c7a" }}><FiPhoneCall size={25} /> </span>
-              <span style={{ paddingInline: "10px", fontSize: "18px" }}>{bedInfo["results"]["Contactnumber"]}</span>
-            </Row>
+              <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px" }}>Doctor Dashboard</h1> </Col>
+              </Row> <Row>   <Col sm={1}></Col>
+                <Col sm={7}> <span class="icon" style={{ color: "#007c7a" }}><FaRegHospital size={25} /> </span>
+                  <span style={{ fontSize: "18px" }}>  {bedInfo["results"]["FacilityName"]}</span>
+                </Col>
+                <Col sm={4}> <span class="icon" style={{ color: "#007c7a" }}><FiPhoneCall size={25} /> </span>
+                  <span style={{  fontSize: "18px" }}>{bedInfo["results"]["Contactnumber"]}</span>
+                </Col>
+              </Row>
+          
             <hr
               style={{
                 color: "white",
@@ -59,10 +67,10 @@ const DoctorHomeScreen = ({ location, history }) => {
               <Col>
                 <br />   <br />
                 <h2 style={{ textAlign: "center", color: "#007c7a", fontSize: "40px" }}>WELCOME</h2>
-                <h4 st style={{ fontFamily: "Lato", textAlign: "center", padding: "10px", textTransform: "revert", letterSpacing: "1.5px" }}>Your are a doctor of {bedInfo["results"]["FacilityName"]}.Try to work with  your best.</h4>
+                <h4 st style={{ fontFamily: "Lato", textAlign: "center", padding: "10px", textTransform: "revert", letterSpacing: "1.5px" }}>Your are a Doctor of {bedInfo["results"]["FacilityName"]}.Try to work with  your best.</h4>
                 <div style={{ paddingLeft: "100px" }}>
                   <br />
-                  <Link to={"/doctor/admit"}>
+                  <Link to={"/hospitalAdmin/admit"}>
                     <button class="button button3" type="submit">GET START </button> </Link> </div>
               </Col>
               <Col> <img src={logo} width="550" height="275"></img></Col>
@@ -71,7 +79,9 @@ const DoctorHomeScreen = ({ location, history }) => {
           <Col sm={3}> </Col>
 
         </Row>
-        <Row>
+
+
+          <Row>
 
             <Col sm={3}></Col>
             <Col sm={8}><br />
@@ -83,18 +93,117 @@ const DoctorHomeScreen = ({ location, history }) => {
                 }} />
               <br /> <br /></Col>
             <Col sm={3}></Col>
-        </Row>
-        
-        <Row>
+          </Row>
+
+
+          <Row>
+            <Col sm={3}>
+            </Col>
+            <Col sm={2}>  <Chart
+              width={'300px'}
+              height={'300px'}
+
+              chartType="PieChart"
+              loader={<div style={{ color: "#008A77", fontWeight: "bold" }}>Loading Chart</div>}
+              data={[
+                ['Beds Type', ' No:beds'],
+                ['Free', bedInfo["results"]["CovidBedFree"]],
+                ['Used(Occupied)', bedInfo["results"]["CovidBedUsed"]],
+
+
+              ]}
+              options={{
+                title: 'Covid Ward Beds',
+                titleTextStyle: { color: '#008A77', textAlign: "center", fontWeight: "bold" },
+
+                pieHole: 0.4,
+              }}
+
+            /></Col>
+            <Col sm={1}><hr
+              style={{
+                color: "white",
+                backgroundColor: "#007c7a",
+                height: 200,
+                width: 4
+              }} /></Col>
+
+
+            <Col sm={2}>  <Chart
+              width={'300px'}
+              height={'300px'}
+              chartType="PieChart"
+              loader={<div style={{ color: "#008A77", fontWeight: "bold" }}>Loading Chart</div>}
+              data={[
+                ['Beds Type', ' No:beds'],
+                ['Free', bedInfo["results"]["NormalBedFree"]],
+                ['Used(Occupied)', bedInfo["results"]["NormalBedUsed"]],
+
+
+              ]}
+              options={{
+                title: 'Normal Ward Beds',
+                titleTextStyle: { color: '#008A77', textAlign: "center", fontWeight: "bold" },
+                pieHole: 0.4,
+              }}
+              rootProps={{ 'data-testid': '3' }}
+            /></Col><Col sm={1}><hr
+              style={{
+                color: "white",
+                backgroundColor: "#007c7a",
+                height: 200,
+                width: 4
+              }} /></Col>
+            <Col sm={2}>  <Chart
+              width={'300px'}
+              height={'300px'}
+              chartType="PieChart"
+              loader={<div style={{ color: "#008A77", fontWeight: "bold" }}>Loading Chart</div>}
+              data={[
+                ['Beds Type', ' No:beds'],
+                ['Free', bedInfo["results"]["NormalBedFree"] + bedInfo["results"]["CovidBedFree"]],
+                ['Used(Occupied)', bedInfo["results"]["NormalBedUsed"] + bedInfo["results"]["CovidBedUsed"]],
+
+
+              ]}
+              options={{
+                title: 'Total ward Beds',
+                titleTextStyle: { color: '#008A77', textAlign: "center", fontWeight: "bold" },
+                pieHole: 0.4,
+              }}
+
+            /></Col>
+
+
+          </Row>
+          <Row>
 
             <Col sm={3}></Col>
-            <Col sm={4}>
-              
-              <div style={{ paddingLeft: "20px" }}>
+            <Col sm={8}>
+              <hr
+                style={{
+                  color: "white",
+                  backgroundColor: "#007c7a",
+                  height: 2,
+                }} />
+              <br /> <br /></Col>
+            <Col sm={3}></Col>
+          </Row>
+          <Row>
+
+            <Col sm={3}></Col>
+            <Col sm={3}>
+
+
+              <div >
                 <Card style={{ width: '15rem', borderColor: "#007c7a", borderRadius: "20px", borderWidth: "2px" }}>
                   <Card.Header style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold", color: "#007c7a", fontSize: "18px" }}>Covid Ward</Card.Header>
                   <Card.Body>
-                    <Card.Title style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Bed capatity {bedInfo["results"]["CovidWardCapacity"]}</Card.Title>
+
+                    <Card.Title style={{ color: "black", textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Total Beds : {bedInfo["results"]["CovidWardCapacity"]}</Card.Title>
+                    <Card.Title style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Used  :{bedInfo["results"]["CovidBedUsed"]} Free : {bedInfo["results"]["CovidBedFree"]}</Card.Title>
+
+
                     <div style={{ paddingLeft: "44px" }}>
                       <form onSubmit={handleSubmit1}>
                         <button class="button button4" type="submit">More</button>
@@ -115,15 +224,17 @@ const DoctorHomeScreen = ({ location, history }) => {
 
                     ) : (null)}</>
                   </Card.Body>
-                </Card></div> <br /> <br /></Col>
-            <Col sm={4}>
-              <div style={{ paddingTop: "5px" }}>
-               
-                
+                </Card></div> </Col>
+            <Col sm={3}>
+              <div >
+
+
                 <Card style={{ width: '15rem', borderColor: "#007c7a", borderRadius: "20px", borderWidth: "2px" }}>
                   <Card.Header style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold", color: "#007c7a", fontSize: "18px" }}>Normal Ward</Card.Header>
                   <Card.Body>
-                    <Card.Title style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Bed capatity {bedInfo["results"]["NormalWardCapacity"]}</Card.Title>
+                    <Card.Title style={{ color: "black", textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Total Beds : {bedInfo["results"]["NormalWardCapacity"]}</Card.Title>
+                    <Card.Title style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Used  :{bedInfo["results"]["NormalBedUsed"]} Free : {bedInfo["results"]["NormalBedFree"]}</Card.Title>
+
                     <div style={{ paddingLeft: "44px" }}>
                       <form onSubmit={handleSubmit2}>
                         <button class="button button4" type="submit">More</button>
@@ -151,8 +262,10 @@ const DoctorHomeScreen = ({ location, history }) => {
             </Col>
             <br /> <Col sm={1}> </Col>
           </Row></>
-    ):(null)}</>
-    
+      ) : (null)}</>
+
+
+      <br /><br />
     </div>
   );
 };

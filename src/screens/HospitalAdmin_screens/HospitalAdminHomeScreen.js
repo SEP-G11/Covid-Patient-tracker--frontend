@@ -1,6 +1,8 @@
 
 import { Container, Row, Col, Table, Card, ListGroup } from "react-bootstrap";
 import { logout } from "../../actions/userActions";
+import { Chart } from "react-google-charts";
+
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/SEP logo.png";
@@ -43,13 +45,16 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
 
 
           <Col sm={8}>
-            <Row>
+          <Row>
               {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
-              <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px" }}>HOSPITAL ADMIN Dashboard</h1> </Col>
-              <span class="icon" style={{ paddingLeft: "160px", color: "#007c7a" }}><FaRegHospital size={25} /> </span>
-              <span style={{ paddingInline: "10px", fontSize: "18px" }}>  {bedInfo["results"]["FacilityName"]}</span>
-              <span class="icon" style={{ paddingLeft: "100px", color: "#007c7a" }}><FiPhoneCall size={25} /> </span>
-              <span style={{ paddingInline: "10px", fontSize: "18px" }}>{bedInfo["results"]["Contactnumber"]}</span>
+              <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px" }}>Hospital Admin Dashboard</h1> </Col>
+            </Row> <Row>   <Col sm={1}></Col>
+              <Col sm={7}> <span class="icon" style={{ color: "#007c7a" }}><FaRegHospital size={25} /> </span>
+                <span style={{ fontSize: "18px" }}>  {bedInfo["results"]["FacilityName"]}</span>
+              </Col>
+              <Col sm={4}> <span class="icon" style={{ color: "#007c7a" }}><FiPhoneCall size={25} /> </span>
+                <span style={{ fontSize: "18px" }}>{bedInfo["results"]["Contactnumber"]}</span>
+              </Col>
             </Row>
             <hr
               style={{
@@ -73,6 +78,8 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
           <Col sm={3}> </Col>
 
         </Row>
+
+      
         <Row>
 
 <Col sm={3}></Col>
@@ -87,18 +94,115 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
 <Col sm={3}></Col>
 </Row>
 
-        
+
+<Row>
+  <Col sm={3}>
+  </Col>
+  <Col sm={2}>  <Chart
+  width={'300px'}
+  height={'300px'}
+  
+  chartType="PieChart"
+  loader={<div style={{ color: "#008A77", fontWeight: "bold" }}>Loading Chart</div>}
+  data={[
+    ['Beds Type', ' No:beds'],
+    ['Free', bedInfo["results"]["CovidBedFree"]],
+    ['Used(Occupied)',bedInfo["results"]["CovidBedUsed"]],
+    
+  
+  ]}
+  options={{
+     title: 'Covid Ward Beds', 
+     titleTextStyle: { color: '#008A77',textAlign:"center" ,fontWeight: "bold"  } ,
+      
+    pieHole: 0.4,
+  }}
+  
+/></Col>
+<Col sm={1}><hr
+              style={{
+                color: "white",
+                backgroundColor: "#007c7a",
+                height: 200,
+                width:4
+              }} /></Col>
+
+
+  <Col sm={2}>  <Chart
+  width={'300px'}
+  height={'300px'}
+  chartType="PieChart"
+  loader={<div style={{ color: "#008A77", fontWeight: "bold" }}>Loading Chart</div>}
+  data={[
+    ['Beds Type', ' No:beds'],
+    ['Free', bedInfo["results"]["NormalBedFree"]],
+    ['Used(Occupied)',bedInfo["results"]["NormalBedUsed"]],
+ 
+  
+  ]}
+  options={{
+    title: 'Normal Ward Beds', 
+     titleTextStyle: { color: '#008A77',textAlign:"center" ,fontWeight: "bold"  } ,
+    pieHole: 0.4,
+  }}
+  rootProps={{ 'data-testid': '3' }}
+/></Col><Col sm={1}><hr
+              style={{
+                color: "white",
+                backgroundColor: "#007c7a",
+                height: 200,
+                width:4
+              }} /></Col>
+  <Col sm={2}>  <Chart
+  width={'300px'}
+  height={'300px'}
+  chartType="PieChart"
+  loader={<div style={{ color: "#008A77", fontWeight: "bold" }}>Loading Chart</div>}
+  data={[
+    ['Beds Type', ' No:beds'],
+    ['Free', bedInfo["results"]["NormalBedFree"]+bedInfo["results"]["CovidBedFree"]],
+    ['Used(Occupied)',bedInfo["results"]["NormalBedUsed"]+bedInfo["results"]["CovidBedUsed"]],
+   
+  
+  ]}
+  options={{
+    title: 'Total ward Beds', 
+    titleTextStyle: { color: '#008A77',textAlign:"center" ,fontWeight: "bold"  } ,    
+    pieHole: 0.4,
+  }}
+ 
+/></Col>
+
+
+</Row>
+<Row>
+
+<Col sm={3}></Col>
+<Col sm={8}>
+  <hr
+    style={{
+      color: "white",
+      backgroundColor: "#007c7a",
+      height: 2,
+    }} />
+  <br /> <br /></Col>
+<Col sm={3}></Col>
+</Row>
         <Row>
 
             <Col sm={3}></Col>
-            <Col sm={4}>
+            <Col sm={3}>
             
             
-              <div style={{ paddingLeft: "20px" }}>
+              <div >
                 <Card style={{ width: '15rem', borderColor: "#007c7a", borderRadius: "20px", borderWidth: "2px" }}>
                   <Card.Header style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold", color: "#007c7a", fontSize: "18px" }}>Covid Ward</Card.Header>
                   <Card.Body>
-                    <Card.Title style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Bed capatity {bedInfo["results"]["CovidWardCapacity"]}</Card.Title>
+
+                    <Card.Title style={{color:"black", textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Total Beds : {bedInfo["results"]["CovidWardCapacity"]}</Card.Title>
+                    <Card.Title style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Used  :{ bedInfo["results"]["CovidBedUsed"]} Free : { bedInfo["results"]["CovidBedFree"]}</Card.Title>
+        
+               
                     <div style={{ paddingLeft: "44px" }}>
                       <form onSubmit={handleSubmit1}>
                         <button class="button button4" type="submit">More</button>
@@ -120,14 +224,16 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
                     ) : (null)}</>
                   </Card.Body>
                 </Card></div> </Col>
-            <Col sm={4}>
-              <div style={{ paddingTop: "3px" }}>
+            <Col sm={3}>
+              <div >
                
 
                 <Card style={{ width: '15rem', borderColor: "#007c7a", borderRadius: "20px", borderWidth: "2px" }}>
                   <Card.Header style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold", color: "#007c7a", fontSize: "18px" }}>Normal Ward</Card.Header>
                   <Card.Body>
-                    <Card.Title style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Bed capatity {bedInfo["results"]["NormalWardCapacity"]}</Card.Title>
+                  <Card.Title style={{color:"black", textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Total Beds : {bedInfo["results"]["NormalWardCapacity"]}</Card.Title>
+                    <Card.Title style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Used  :{ bedInfo["results"]["NormalBedUsed"]} Free : { bedInfo["results"]["NormalBedFree"]}</Card.Title>
+        
                     <div style={{ paddingLeft: "44px" }}>
                       <form onSubmit={handleSubmit2}>
                         <button class="button button4" type="submit">More</button>
@@ -156,6 +262,8 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
             <br /> <Col sm={1}> </Col>
           </Row></>
     ):(null)}</>
+
+    
     <br /><br />
     </div>
   );

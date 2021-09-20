@@ -9,12 +9,16 @@ import HAAdmitPatientScreen from "./screens/HospitalAdmin_screens/HAAdmitPatient
 import HADischargePatientScreen from "./screens/HospitalAdmin_screens/HADischargePatientScreen";
 import HATransferPatientScreen from "./screens/HospitalAdmin_screens/HATransferPatientScreen";
 import HASearchBedsScreen from "./screens/HospitalAdmin_screens/HASearchBedsScreen";
+import HAEnterResultScreen from "./screens/HospitalAdmin_screens/HAEnterResultScreen";
+
 
 import DoctorHomeScreen from "./screens/Doctor_screens/DoctorHomeScreen";
 import DoctorAdmitPatientScreen from "./screens/Doctor_screens/DoctorAdmitPatientScreen";
 import DoctorTransferPatientScreen from "./screens/Doctor_screens/DoctorTransferPatientScreen";
 import DoctorDischargePatientScreen from "./screens/Doctor_screens/DoctorDischargePatientScreen";
 import DoctorSearchBedsScreen from "./screens/Doctor_screens/DoctorSearchBedsScreen";
+import DoctorEnterResultScreen from "./screens/Doctor_screens/DoctorEnterResultScreen";
+import DoctorCreateReportScreen from "./screens/Doctor_screens/DoctorCreateReportScreen";
 
 
 import MOHScreen from "./screens/Moh_screens/MohHomeScreen";
@@ -30,12 +34,15 @@ const App = () => {
         <Route path="/hospitalAdmin/discharge" component={HADischargePatientScreen} />
         <Route path="/hospitalAdmin/transfer" component={HATransferPatientScreen} />
         <Route path="/hospitalAdmin/search" component={HASearchBedsScreen} />
+        <Route path="/hospitalAdmin/enter" component={HAEnterResultScreen} />
         
         <Route path="/doctor/home" component={DoctorHomeScreen} />
         <Route path="/doctor/admit" component={DoctorAdmitPatientScreen} />
         <Route path="/doctor/discharge" component={DoctorDischargePatientScreen} />
         <Route path="/doctor/transfer" component={DoctorTransferPatientScreen} />
         <Route path="/doctor/search" component={DoctorSearchBedsScreen} />
+        <Route path="/doctor/enter" component={DoctorEnterResultScreen} />
+        <Route path="/doctor/createReport" component={DoctorCreateReportScreen} />
         
         <Route path="/moh/home" component={MOHScreen} />
       </main>

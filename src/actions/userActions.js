@@ -30,6 +30,7 @@ export const login = (email, password) => async (dispatch) => {
     });
 
     localStorage.setItem("userInfo", JSON.stringify(data));
+
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -42,7 +43,9 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
+
   localStorage.removeItem("userInfo");
+  localStorage.removeItem("bedInfo");
   dispatch({ type: USER_LOGOUT });
   document.location.href = "/";
 };

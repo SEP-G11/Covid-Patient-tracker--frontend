@@ -7,7 +7,12 @@ import {
   patientDischargeReducer,
   patientTransferReducer,
 } from "./reducers/patientReducers";
-import { bedSearchReducer } from "./reducers/bedReducers";
+import { bedSearchReducer ,bedLoadReducer } from "./reducers/bedReducers";
+import { testEnterReducer } from "./reducers/testReducers";
+import { reportCreateReducer } from "./reducers/reportReducers";
+
+
+
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -15,22 +20,32 @@ const reducer = combineReducers({
   patientDischarge: patientDischargeReducer,
   patientTransfer: patientTransferReducer,
   bedSearch: bedSearchReducer,
+  bedLoad : bedLoadReducer,
+  testEnter:testEnterReducer,
+ reportCreate :reportCreateReducer
 });
+
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 
-const initialState = {
+  const bedInfoFromStorage = localStorage.getItem("bedInfo")
+  ? JSON.parse(localStorage.getItem("bedInfo"))
+  : null;
+
+const initialState = {  
   userLogin: { userInfo: userInfoFromStorage },
+  bedLoad: { bedInfo: bedInfoFromStorage },
 };
+
 
 const middleware = [thunk];
 
 const store = createStore(
   reducer,
   initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
+  applyMiddleware(...middleware)
 );
 
 export default store;

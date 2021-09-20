@@ -1,6 +1,5 @@
 import React , { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Button } from "react-bootstrap";
 import { logout } from "../../actions/userActions";
 import { BsFillHouseDoorFill } from "react-icons/bs";
 import { BsList } from "react-icons/bs";
@@ -10,6 +9,9 @@ import { BsPower } from "react-icons/bs";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { BiTransfer } from "react-icons/bi";
 import { HiUserAdd ,HiUserRemove } from "react-icons/hi";
+import { CgEnter } from "react-icons/cg";
+import { TiDocumentAdd } from "react-icons/ti";
+
 
 import { ProSidebar } from "react-pro-sidebar";
 import '../../components/sidenavstyle.css';
@@ -45,11 +47,11 @@ const DoctorSideNav = () => {
 
     return (
         <ProSidebar collapsed={menuCollapse}>
-            <div class="toggle" onClick={toggleIconClick}>
+            <div class="toggle" onClick={toggleIconClick} style={{width:"50px",height:"30px"}}>
                 {menuCollapse ? (
-                <BsList color="#fff" size={30}/>
+                <BsList color="#fff" size={25}/>
                 ) : (
-                <BsX color="#fff" size={30}/>
+                <BsX color="#fff" size={25}/>
                 )}
             </div>
             <ul>
@@ -80,6 +82,14 @@ const DoctorSideNav = () => {
                 <li class="list">
                     <b></b>
                     <b></b>
+                    <NavLink to="/doctor/createReport" className='a' onClick={collapseHandler}>
+                        <span class="icon"><TiDocumentAdd size={18}/></span>
+                        <span class="title">Create Medical Report</span>
+                    </NavLink>
+                </li>
+                <li class="list">
+                    <b></b>
+                    <b></b>
                     <NavLink to="/doctor/discharge" className='a' onClick={collapseHandler}>
                         <span class="icon"><HiUserRemove size={18}/></span>
                         <span class="title">Discharge</span>
@@ -101,6 +111,15 @@ const DoctorSideNav = () => {
                         <span class="title">Search Beds</span>
                     </NavLink>
                 </li>
+                <li class="list">
+                    <b></b>
+                    <b></b>
+                    <NavLink to="/doctor/enter" className='a' onClick={collapseHandler}>
+                        <span class="icon"><CgEnter size={18}/></span>
+                        <span class="title">Enter Test Results</span>
+                    </NavLink>
+                </li>
+
                 <li>
                     <NavLink to="#" className="a" onClick={submitHandler}>
                     <span class="icon"><BsPower size={18}/></span>

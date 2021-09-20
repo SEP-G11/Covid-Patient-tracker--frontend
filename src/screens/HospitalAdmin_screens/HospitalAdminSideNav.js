@@ -1,6 +1,5 @@
 import React , { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Button } from "react-bootstrap";
 import { logout } from "../../actions/userActions";
 import { BsFillHouseDoorFill } from "react-icons/bs";
 import { BsList } from "react-icons/bs";
@@ -10,9 +9,10 @@ import { BsPower } from "react-icons/bs";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { BiTransfer } from "react-icons/bi";
 import { HiUserAdd ,HiUserRemove } from "react-icons/hi";
-
+import { CgEnter } from "react-icons/cg";
 import { ProSidebar } from "react-pro-sidebar";
 import '../../components/sidenavstyle.css';
+
 import { NavLink } from 'react-router-dom';
 
 const HospitalAdminSideNav = () => {
@@ -44,14 +44,18 @@ const HospitalAdminSideNav = () => {
             }
 
     return (
+        <div>
+
+       
         <ProSidebar collapsed={menuCollapse}>
-            <div class="toggle" onClick={toggleIconClick}>
+            <div class="toggle" onClick={toggleIconClick} style={{width:"50px",height:"30px"}}>
                 {menuCollapse ? (
-                <BsList color="#fff" size={30}/>
+                <BsList color="#fff" size={25}/>
                 ) : (
-                <BsX color="#fff" size={30}/>
+                <BsX color="#fff" size={25}/>
                 )}
             </div>
+          
             <ul>
                 <li class="list active">
                     <b></b>
@@ -101,14 +105,25 @@ const HospitalAdminSideNav = () => {
                         <span class="title">Search Beds</span>
                     </NavLink>
                 </li>
+                <li class="list">
+                    <b></b>
+                    <b></b>
+                    <NavLink to="/hospitalAdmin/enter" className='a' onClick={collapseHandler}>
+                        <span class="icon"><CgEnter size={18}/></span>
+                        <span class="title">Enter Test Results</span>
+                    </NavLink>
+                </li>
                 <li>
                     <NavLink to="#" className="a" onClick={submitHandler}>
                     <span class="icon"><BsPower size={18}/></span>
                     <span class="title">Log Out</span>
                     </NavLink>
                 </li>
+      
             </ul>
-        </ProSidebar>
+
+          
+        </ProSidebar> </div>
     )
 }
 

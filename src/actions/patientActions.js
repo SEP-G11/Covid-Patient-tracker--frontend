@@ -10,6 +10,7 @@ import {
   PATIENT_TRANSFER_SUCCESS,
   PATIENT_TRANSFER_FAIL,
 } from "../constants/patientConstants";
+import store from "../store";
 import { logout } from "./userActions";
 
 export const admit = (
@@ -28,21 +29,22 @@ export const admit = (
         reportId,
         bedId,
         allocationId,
-        admitDateTime
+        admitDateTime,
+        bday,
 ) => async (dispatch, getState) => {
   try {
     dispatch({
       type: PATIENT_ADMIT_REQUEST,
     });
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
+     const {
+   userLogin: { userInfo },
+  } = getState();
 
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${userInfo["results"]["token"]}`,
       },
     };
 
@@ -64,17 +66,18 @@ export const admit = (
         reportId,
         bedId,
         allocationId,
-        admitDateTime
+        admitDateTime,
+        bday,
       },
       config
     );
    
 
-
-    dispatch({
+   dispatch({
       type: PATIENT_ADMIT_SUCCESS,
       payload: data,
     });
+  
   
   } catch (error) {
     const message =
@@ -106,7 +109,7 @@ export const discharge = (
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${userInfo["results"]["token"]}`,
       },
     };
 
@@ -159,7 +162,7 @@ export const transfer = (
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${userInfo["results"]["token"]}`,
       },
     };
 

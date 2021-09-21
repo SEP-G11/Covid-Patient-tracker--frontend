@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form,  Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
@@ -122,7 +122,7 @@ const HAEnterResultScreen = ({ location, history }) => {
                                 </Col>
                                 <Col>
                                 <Form.Group controlId="RATresult">
-                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>RAT Result</Form.Label>
+                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Test Result</Form.Label>
                     <br />
                     <select className="form-control" value={RATresult} name="RATresult" style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setRATresult(e.target.value)}>
                       <option >SELECT</option>

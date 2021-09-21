@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form,  Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
 import { admit } from "../../actions/patientActions";
 import HospitalAdminSideNav from "./HospitalAdminSideNav";
-import logo from "../../assets/SEP logo.png";
+
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import '../../components/buttonstyle.css';
+
 
 const HAAdmitPatientScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -48,8 +49,7 @@ const HAAdmitPatientScreen = ({ history }) => {
 
   
   useEffect(() => {
-   
-    console.log(userInfo["results"])
+  
     if (!userInfo) {
       history.push("/login");
     } else if (response) {
@@ -95,7 +95,7 @@ const HAAdmitPatientScreen = ({ history }) => {
       )
     );
   };
-  console.log(RATresult);
+ 
 
 
   return (

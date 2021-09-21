@@ -7,7 +7,7 @@ import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
 import { login } from "../actions/userActions";
 import { loadbeds } from "../actions/bedActions";
-
+import { getFacility } from "../actions/facilityActions";
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,20 +15,26 @@ const LoginScreen = ({ location, history }) => {
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
-
   const { loading, error, userInfo } = userLogin;
+
+  const facilityLoad = useSelector((state) => state.facilityLoad);
+  const { facilityInfo } = facilityLoad;
+
 
   useEffect(() => {
     if (userInfo) {
    
       if (userInfo["results"]["accType"] === "DOC") {
         dispatch(loadbeds("*"));
+        dispatch(getFacility());
         history.push("/doctor/home");
       } else if (userInfo["results"]["accType"] === "MOH") {
         dispatch(loadbeds("*"));
+        dispatch(getFacility());
         history.push("/moh/home");
       } else {
         dispatch(loadbeds("*"));
+        dispatch(getFacility());
         history.push("/hospitalAdmin/home");
       }
     }

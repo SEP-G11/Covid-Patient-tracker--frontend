@@ -46,6 +46,7 @@ export const logout = () => (dispatch) => {
 
   localStorage.removeItem("userInfo");
   localStorage.removeItem("bedInfo");
+  localStorage.removeItem("facilityInfo");
   dispatch({ type: USER_LOGOUT });
   document.location.href = "/";
 };

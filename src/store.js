@@ -10,6 +10,7 @@ import {
 import { bedSearchReducer ,bedLoadReducer } from "./reducers/bedReducers";
 import { testEnterReducer } from "./reducers/testReducers";
 import { reportCreateReducer } from "./reducers/reportReducers";
+import { getFacilityReducer } from "./reducers/facilityReducers";
 
 
 
@@ -22,7 +23,8 @@ const reducer = combineReducers({
   bedSearch: bedSearchReducer,
   bedLoad : bedLoadReducer,
   testEnter:testEnterReducer,
- reportCreate :reportCreateReducer
+ reportCreate :reportCreateReducer,
+ facilityLoad: getFacilityReducer
 });
 
 
@@ -34,9 +36,16 @@ const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("bedInfo"))
   : null;
 
+  
+  const facilityInfoFromStorage = localStorage.getItem("facilityInfo")
+  ? JSON.parse(localStorage.getItem("facilityInfo"))
+  : null;
+
+
 const initialState = {  
   userLogin: { userInfo: userInfoFromStorage },
   bedLoad: { bedInfo: bedInfoFromStorage },
+  facilityLoad: { facilityInfo: facilityInfoFromStorage },
 };
 
 

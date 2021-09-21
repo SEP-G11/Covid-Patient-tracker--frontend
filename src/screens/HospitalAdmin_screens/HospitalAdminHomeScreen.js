@@ -2,9 +2,11 @@
 import { Container, Row, Col, Table, Card, ListGroup } from "react-bootstrap";
 import { logout } from "../../actions/userActions";
 import { Chart } from "react-google-charts";
-
+import Warning from "../../components/Warning";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { loadbeds } from "../../actions/bedActions";
+import { useSpring, animated } from 'react-spring';
 import logo from "../../assets/SEP logo.png";
 import { FaRegHospital } from "react-icons/fa";
 import { FiPhoneCall } from "react-icons/fi";
@@ -15,14 +17,38 @@ import { Dropdown } from 'react-bootstrap';
 const HospitalAdminHomeScreen = ({ location, history }) => {
 
 
+    const styles = useSpring({
+    loop: true,
+    to: [
+    
+      { opacity: 3, color: 'red' },           
+      { opacity: 0, color: 'red' },       
+     
+    ],
+    from: { opacity: 0, color: 'red' },
+  });
+
   const [show1, setShow1] = useState(false);
   const [show2, setShow2] = useState(false);
 
   const bedLoad = useSelector((state) => state.bedLoad);
   const { bedInfo } = bedLoad;
-
+  
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+  
+  const dispatch = useDispatch();
 
   console.log(bedInfo);
+
+  useEffect(() => {
+    dispatch(loadbeds("*"));
+    if (!userInfo) {
+      history.push("/login");
+    }
+  }, [history, ]);
+
+
 
   function handleSubmit1(e) {
     e.preventDefault();
@@ -42,8 +68,7 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
       <><Row>
           <Col sm={3}><HospitalAdminSideNav /></Col>
 
-
-
+          
           <Col sm={8}>
           <Row>
               {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
@@ -62,6 +87,9 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
                 backgroundColor: "#007c7a",
                 height: 2,
               }} />
+
+{(bedInfo["results"]["NormalBedUsed"]+bedInfo["results"]["CovidBedUsed"])/(bedInfo["results"]["NormalBedFree"]+bedInfo["results"]["CovidBedFree"]+bedInfo["results"]["NormalBedUsed"]+bedInfo["results"]["CovidBedUsed"])>0.75 && <animated.div style={{fontsize:"20px", fontWeight:"10px" ,...styles}}>
+  <Warning variant="danger">The hospital beds capacity is about to <strong>full.</strong> (More than 75% beds are used) </Warning></animated.div> }
             <Row>
               <Col>
                 <br />   <br />
@@ -189,8 +217,8 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
 <Col sm={3}></Col>
 </Row>
         <Row>
-
-            <Col sm={3}></Col>
+        <Col sm={3}></Col>
+           
             <Col sm={3}>
             
             
@@ -224,6 +252,7 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
                     ) : (null)}</>
                   </Card.Body>
                 </Card></div> </Col>
+                <Col sm={3} style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold", color: "#007c7a", fontSize: "40px" }}>Ward capacity</Col>
             <Col sm={3}>
               <div >
                

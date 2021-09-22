@@ -8,6 +8,7 @@ import FormContainer from '../../components/FormContainer';
 import { register } from '../../actions/userActions';
 import { listFacilities } from '../../actions/facilityActions';
 import {USER_REGISTER_RESET} from "../../constants/userConstants";
+import MOHSideNav from './MOHSideNav';
 import './CreateAccountScreen.css';
 
 const CreateAccountScreen = ({ location, history }) => {
@@ -28,6 +29,9 @@ const CreateAccountScreen = ({ location, history }) => {
 
     const facilityList = useSelector(state => state.facilityList);
     const {loading:loadingFacilityList, error:errorFacilityList, facilitiesList} = facilityList;
+
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
     //
     //const redirect = location.search ? location.search.split('=')[1] : '/';
     //
@@ -35,14 +39,20 @@ const CreateAccountScreen = ({ location, history }) => {
 
 
     useEffect(() => {
-        dispatch(listFacilities());
+        if (userInfo && userInfo.accType === 'MOH'){
+            dispatch(listFacilities());
 
-        if (user){
-            console.log(user)
-            dispatch({type: USER_REGISTER_RESET});
-            history.push('/moh/home')
+            if (user){
+                console.log(user)
+                dispatch({type: USER_REGISTER_RESET});
+                history.push('/moh/home')
+            }
         }
-    }, [ user,dispatch,history]);
+        else {
+            history.push('/login');
+        }
+
+    }, [ user,dispatch,history,userInfo]);
     //
     const submitHandler = (e) => {
         e.preventDefault();
@@ -85,117 +95,122 @@ const CreateAccountScreen = ({ location, history }) => {
     };
 //console.log(facilitiesList)
     return (
-        <FormContainer>
-            <h1>Create User</h1>
-            {message && <Message variant='danger'>{message}</Message>}
-            {error && <Message variant='danger'>{error}</Message>}
-            {loading && <Loader/>}
-            <Form onSubmit={submitHandler} >
+        <React.Fragment>
+            <Row>
+                <Col sm={3}> <MOHSideNav from='cas'/> </Col>
+            </Row>
+            <FormContainer>
+                <h1>Create User</h1>
+                {message && <Message variant='danger'>{message}</Message>}
+                {error && <Message variant='danger'>{error}</Message>}
+                {loading && <Loader/>}
+                <Form onSubmit={submitHandler} >
 
-                <Form.Group controlId='id'>
-                    <Form.Label>ID</Form.Label>
-                    <Form.Control
-                        type='text'
-                        placeholder='Enter ID'
-                        value={id}
-                        onChange={(e) => setId(e.target.value)}
-                    >
-                    </Form.Control>
-                </Form.Group>
-
-
-                <Form.Group controlId='name'>
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
-                        type='text'
-                        placeholder='Enter name'
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    >
-                    </Form.Control>
-                </Form.Group>
+                    <Form.Group controlId='id'>
+                        <Form.Label>ID</Form.Label>
+                        <Form.Control
+                            type='text'
+                            placeholder='Enter ID'
+                            value={id}
+                            onChange={(e) => setId(e.target.value)}
+                        >
+                        </Form.Control>
+                    </Form.Group>
 
 
-                <Form.Group controlId='email'>
-                    <Form.Label>Email Address</Form.Label>
-                    <Form.Control
-                        type='email'
-                        placeholder='Enter email'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}>
-                    </Form.Control>
-                </Form.Group>
-
-                <Form.Group controlId='contact'>
-                    <Form.Label>Contact Number</Form.Label>
-                    <Form.Control
-                        type='text'
-                        placeholder='Enter contact number'
-                        value={contact}
-                        onChange={(e) => setContact(e.target.value)}>
-                    </Form.Control>
-                </Form.Group>
-
-                <Row>
-                    <Col>
-                        <Form.Group controlId='password'>
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control
-                                type='password'
-                                placeholder='Enter password'
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}>
-                            </Form.Control>
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                        <Form.Group controlId='confirmPassword'>
-                            <Form.Label>Confirm Password</Form.Label>
-                            <Form.Control
-                                type='password'
-                                placeholder='Confirm password'
-                                value={confirmPassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}>
-                            </Form.Control>
-                        </Form.Group>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Form.Group controlId='role'>
-                            <Form.Label>Account Type</Form.Label>
-                            <Form.Control
-                                as='select'
-                                value={accountType}
-                                onChange={(e) => setAccountType(e.target.value)}
-                            >
-                                <option value='' disabled selected hidden>Select Account Type</option>
-                                <option value='DOC'>Doctor</option>
-                                <option value='HA'>Hospital Admin</option>
-                                <option value='MOH'>MOH Admin</option>
-                            </Form.Control>
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                        {(accountType==='DOC'||accountType==='HA') && hospitalDropdown()}
-                    </Col>
-                </Row>
+                    <Form.Group controlId='name'>
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                            type='text'
+                            placeholder='Enter name'
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        >
+                        </Form.Control>
+                    </Form.Group>
 
 
-                <Button type='submit' variant='primary'>
-                    Create Account
-                </Button>
-            </Form>
+                    <Form.Group controlId='email'>
+                        <Form.Label>Email Address</Form.Label>
+                        <Form.Control
+                            type='email'
+                            placeholder='Enter email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}>
+                        </Form.Control>
+                    </Form.Group>
 
-            {/*<Row className='py-3'>*/}
-            {/*    <Col>*/}
-            {/*        Have an Account?{' '}*/}
-            {/*        <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>*/}
-            {/*            Login*/}
-            {/*        </Link>*/}
-            {/*    </Col>*/}
-            {/*</Row>*/}
-        </FormContainer>
+                    <Form.Group controlId='contact'>
+                        <Form.Label>Contact Number</Form.Label>
+                        <Form.Control
+                            type='text'
+                            placeholder='Enter contact number'
+                            value={contact}
+                            onChange={(e) => setContact(e.target.value)}>
+                        </Form.Control>
+                    </Form.Group>
+
+                    <Row>
+                        <Col>
+                            <Form.Group controlId='password'>
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control
+                                    type='password'
+                                    placeholder='Enter password'
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}>
+                                </Form.Control>
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            <Form.Group controlId='confirmPassword'>
+                                <Form.Label>Confirm Password</Form.Label>
+                                <Form.Control
+                                    type='password'
+                                    placeholder='Confirm password'
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}>
+                                </Form.Control>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Group controlId='role'>
+                                <Form.Label>Account Type</Form.Label>
+                                <Form.Control
+                                    as='select'
+                                    value={accountType}
+                                    onChange={(e) => setAccountType(e.target.value)}
+                                >
+                                    <option value='' disabled selected hidden>Select Account Type</option>
+                                    <option value='DOC'>Doctor</option>
+                                    <option value='HA'>Hospital Admin</option>
+                                    <option value='MOH'>MOH Admin</option>
+                                </Form.Control>
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            {(accountType==='DOC'||accountType==='HA') && hospitalDropdown()}
+                        </Col>
+                    </Row>
+
+
+                    <Button type='submit' variant='primary'>
+                        Create Account
+                    </Button>
+                </Form>
+
+                {/*<Row className='py-3'>*/}
+                {/*    <Col>*/}
+                {/*        Have an Account?{' '}*/}
+                {/*        <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>*/}
+                {/*            Login*/}
+                {/*        </Link>*/}
+                {/*    </Col>*/}
+                {/*</Row>*/}
+            </FormContainer>
+        </React.Fragment>
     );
 };
 

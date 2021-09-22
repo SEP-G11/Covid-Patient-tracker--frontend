@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import {Form, Card} from 'react-bootstrap';
+import {Form, Card,Image} from 'react-bootstrap';
 import InfoBox from '../components/InfoBox';
 import Map from '../components/Map';
 import Table from '../components/Table';
@@ -86,7 +86,18 @@ const PublicDashboard = () => {
             <div className='pd'>
                 <div className='pd__left'>
                     <div className='pd__header'>
+                        <Image className='float-right' src='/national_emblem.png' />
                         <h1>COVID-19 DASHBOARD</h1>
+                        {/*<Card>*/}
+                        {/*    <Card.Body>*/}
+                        {/*    <Row>*/}
+                        {/*        <Col>*/}
+                        {/*            <h1>COVID-19 DASHBOARD</h1>*/}
+                        {/*        </Col>*/}
+                        {/*    </Row>*/}
+                        {/*    </Card.Body>*/}
+
+                        {/*</Card>*/}
                         <Form onChange={onDistrictChange}>
                             <Form.Group>
                                 <Form.Control size="sm" as="select" defaultValue={district} className='custom-select'>
@@ -109,6 +120,7 @@ const PublicDashboard = () => {
                             title='Coronavirus Cases'
                             cases={prettyPrintStat(districtInfo.todayCases)}
                             total={prettyPrintStat(districtInfo.cases)}
+                            img='/cases.gif'
                         />
                         <InfoBox
                             active={casesType === 'recovered'}
@@ -116,6 +128,7 @@ const PublicDashboard = () => {
                             title='Recovered'
                             cases={prettyPrintStat(districtInfo.todayRecovered)}
                             total={prettyPrintStat(districtInfo.recovered)}
+                            img='/recovered.gif'
                         />
                         <InfoBox
                             isRed
@@ -124,6 +137,7 @@ const PublicDashboard = () => {
                             title='Deaths'
                             cases={prettyPrintStat(districtInfo.todayDeaths)}
                             total={prettyPrintStat(districtInfo.deaths)}
+                            img='/deaths.gif'
                         />
                     </div>
                     <Map casesType={casesType} districts={mapDistricts} center={mapCenter} zoom={mapZoom}/>

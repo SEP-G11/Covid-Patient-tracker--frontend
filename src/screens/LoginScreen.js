@@ -63,6 +63,13 @@ const LoginScreen = ({ location, history }) => {
           Sign In
         </Button>
       </Form>
+      <Row className='py-3'>
+        <Col>
+          <Link to="/forgot-password">
+            Forgotten Password?
+          </Link>
+        </Col>
+      </Row>
     </FormContainer>
   );
 };

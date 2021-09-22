@@ -8,6 +8,8 @@ import DoctorHomeScreen from "./screens/Doctor_screens/DoctorHomeScreen";
 import MOHScreen from "./screens/Moh_screens/MohHomeScreen";
 import PublicDashboardScreen from "./screens/PublicDashboardScreen";
 import CreateAccountScreen from "./screens/Moh_screens/CreateAccountScreen";
+import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
+import ResetPasswordScreen from './screens/ResetPasswordScreen';
 
 const App = () => {
   return (
@@ -22,7 +24,9 @@ const App = () => {
           <Route path="/doctor/home" component={DoctorHomeScreen} />
           <Route path="/moh/home" component={MOHScreen} />
           <Route path="/moh/register" component={CreateAccountScreen} />
-          <Route path="/dashboard" component={PublicDashboardScreen} />
+          <Route path="/dashboard" component={PublicDashboardScreen} exact />
+          <Route path="/forgot-password" component={ForgotPasswordScreen} exact/>
+          <Route path="/reset-password/:token" component={ResetPasswordScreen}/>
           <Route path="/" component={HomeScreen} exact />
         </Container>
       </main>

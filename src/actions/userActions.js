@@ -2,6 +2,8 @@ import axios from 'axios'
 import {
   USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT,
   USER_REGISTER_REQUEST,USER_REGISTER_SUCCESS,USER_REGISTER_FAIL,
+  USER_FORGOT_PW_REQUEST,USER_FORGOT_PW_SUCCESS,USER_FORGOT_PW_FAIL,
+  USER_RESET_PW_REQUEST,USER_RESET_PW_SUCCESS,USER_RESET_PW_FAIL
 } from '../constants/userConstants'
 
 
@@ -97,6 +99,76 @@ export const register = (id, name, email, contact, password, accountType, facili
     });
   }
 };
+
+export const forgotPassword = (email) => async (dispatch) => {
+  try {
+    dispatch({
+      type: USER_FORGOT_PW_REQUEST,
+    });
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const { data } = await axios.post(
+        '/auth/forgot-password',
+        { email },
+        config
+    );
+
+    dispatch({
+      type: USER_FORGOT_PW_SUCCESS,
+      payload: data.message,
+    });
+
+  } catch (error) {
+    dispatch({
+      type: USER_FORGOT_PW_FAIL,
+      payload:
+          error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
+    })
+  }
+};
+
+export const resetPassword = (password,token) => async (dispatch) => {
+  try {
+    dispatch({
+      type: USER_RESET_PW_REQUEST,
+    });
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const { data } = await axios.put(
+        '/auth/reset-password',
+        { password, token },
+        config
+    );
+
+    dispatch({
+      type: USER_RESET_PW_SUCCESS,
+      payload: data.message,
+    });
+
+  } catch (error) {
+    dispatch({
+      type: USER_RESET_PW_FAIL,
+      payload:
+          error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
+    })
+  }
+};
+
+
 
 // export const register = () => async (dispatch, getState) => {
 //     try {

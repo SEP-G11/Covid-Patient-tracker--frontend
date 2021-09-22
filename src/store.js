@@ -3,16 +3,22 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import {
-  userLoginReducer, userRegisterReducer
+  userLoginReducer, userRegisterReducer,userForgotPasswordReducer,userResetPasswordReducer
 } from './reducers/userReducers'
 import {
-  facilityListReducer
+  facilityListReducer,facilitiesActiveReducer,facilitiesRecoveredReducer,facilitiesDeathsReducer,facilitiesBedsReducer
 } from './reducers/facilityReducers'
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
-  facilityList: facilityListReducer
+  facilityList: facilityListReducer,
+  facilitiesActive:facilitiesActiveReducer,
+  facilitiesRecovered:facilitiesRecoveredReducer,
+  facilitiesDeaths:facilitiesDeathsReducer,
+  facilitiesBeds:facilitiesBedsReducer,
+  userForgotPassword:userForgotPasswordReducer,
+  userResetPassword:userResetPasswordReducer
 });
 
 

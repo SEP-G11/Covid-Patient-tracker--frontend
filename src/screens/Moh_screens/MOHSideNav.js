@@ -1,12 +1,11 @@
 import React , { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Button } from "react-bootstrap";
 import { logout } from "../../actions/userActions";
 import { BsFillHouseDoorFill } from "react-icons/bs";
 import { BsList } from "react-icons/bs";
 import { BsX } from "react-icons/bs";
 import { BsPower } from "react-icons/bs";
-import { HiUserAdd ,HiUserRemove } from "react-icons/hi";
+import { HiUserAdd } from "react-icons/hi";
 
 import { ProSidebar } from "react-pro-sidebar";
 import '../../components/sidenavstyle.css';

@@ -38,3 +38,9 @@
     font-size: 0.8rem !important;
     margin-top: 15px !important;
 }
+
+.infoBox__col_image{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}

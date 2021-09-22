@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import { Line } from 'react-chartjs-2';
+import { useSelector } from 'react-redux';
 import numeral from 'numeral';
 
 const options = {
@@ -63,11 +64,31 @@ const buildChartData = (data) => {
 const LineGraph = ({casesType='cases', ...props}) => {
     const [data,setData] = useState({});
 
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
 
+    let url = `http://localhost:8000/moh/`;
+    if (props.facilities){
+        url+=`facilities/historical?lastdays=30&type=${casesType}`
+    }
+    else {
+        url += `historical/${casesType}?lastdays=30`;
+    }
+    if (props.facilityId){
+        url += `&facility=${props.facilityId}`
+    }
+
+    let config={};
+    if (props.protected){
+        config['headers'] = {
+                Authorization: `Bearer ${userInfo.token}`
+        }
+    }
+    console.log(config);
 
     useEffect(() => {
         const fetchData = async () => {
-            fetch(`http://localhost:8000/moh/historical/${casesType}?lastdays=30`)
+            fetch(url,config)
                 .then(response => response.json())
                 .then(data => {
                     //console.log(data);
@@ -77,7 +98,7 @@ const LineGraph = ({casesType='cases', ...props}) => {
                 });
         };
         fetchData();
-    },[casesType]);
+    },[casesType,props.facilityId,url]);
 
 
     return (

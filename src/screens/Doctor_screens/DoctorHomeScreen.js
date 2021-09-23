@@ -1,6 +1,5 @@
 
-import { Container, Row, Col, Table, Card, ListGroup } from "react-bootstrap";
-import { logout } from "../../actions/userActions";
+import {  Row, Col,  Card, ListGroup } from "react-bootstrap";
 import { Chart } from "react-google-charts";
 import { useSpring, animated } from 'react-spring';
 import Warning from "../../components/Warning";
@@ -10,8 +9,8 @@ import logo from "../../assets/SEP logo.png";
 import { FaRegHospital } from "react-icons/fa";
 import { FiPhoneCall } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import DoctorSideNav from "./DoctorSideNav";
 import { loadbeds } from "../../actions/bedActions";
+import DoctorSideNav from "./DoctorSideNav";
 
 const DoctorHomeScreen = ({ location, history }) => {
 
@@ -35,7 +34,6 @@ const DoctorHomeScreen = ({ location, history }) => {
 
   const dispatch = useDispatch();
 
-  console.log(bedInfo);
   
 
 
@@ -44,7 +42,7 @@ const DoctorHomeScreen = ({ location, history }) => {
     if (!userInfo) {
       history.push("/login");
     }
-  }, [history,]);
+  }, [dispatch, history, userInfo]);
 
   function handleSubmit1(e) {
     e.preventDefault();
@@ -57,12 +55,11 @@ const DoctorHomeScreen = ({ location, history }) => {
     setShow2(!show2);
   }
 
-
   return (
     <div>
       <>  {bedInfo ? (
         <><Row>
-          <Col sm={3}><DoctorSideNav /></Col>
+          <Col sm={3}><DoctorSideNav from='home' /></Col>
 
 
 

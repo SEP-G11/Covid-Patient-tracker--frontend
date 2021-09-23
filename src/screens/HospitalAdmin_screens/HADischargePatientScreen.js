@@ -31,7 +31,7 @@ const HADischargePatientScreen = ({ location, history }) => {
       setStatus("");
       setDischargeDateTime("");
     }
-  }, [history, response]);
+  }, [history, response, userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -46,7 +46,7 @@ const HADischargePatientScreen = ({ location, history }) => {
     <div>
 
       <Row >
-        <Col sm={3}>    <HospitalAdminSideNav /></Col>
+        <Col sm={3}>    <HospitalAdminSideNav from='discharge'/></Col>
         <Col sm={8} >
           <Row>
             {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}

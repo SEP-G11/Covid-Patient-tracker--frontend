@@ -1,6 +1,5 @@
 
-import { Container, Row, Col, Table, Card, ListGroup } from "react-bootstrap";
-import { logout } from "../../actions/userActions";
+import {  Row, Col,  Card, ListGroup } from "react-bootstrap";
 import { Chart } from "react-google-charts";
 import Warning from "../../components/Warning";
 import React, { useState, useEffect } from "react";
@@ -12,7 +11,7 @@ import { FaRegHospital } from "react-icons/fa";
 import { FiPhoneCall } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import HospitalAdminSideNav from "./HospitalAdminSideNav";
-import { Dropdown } from 'react-bootstrap';
+
 
 const HospitalAdminHomeScreen = ({ location, history }) => {
 
@@ -31,6 +30,8 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
   const [show1, setShow1] = useState(false);
   const [show2, setShow2] = useState(false);
 
+ 
+
   const bedLoad = useSelector((state) => state.bedLoad);
   const { bedInfo } = bedLoad;
   
@@ -46,7 +47,7 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
     if (!userInfo) {
       history.push("/login");
     }
-  }, [history, ]);
+  }, [dispatch, history, userInfo]);
 
 
 
@@ -66,7 +67,7 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
     <div>
  <>  { bedInfo ? (
       <><Row>
-          <Col sm={3}><HospitalAdminSideNav /></Col>
+          <Col sm={3}><HospitalAdminSideNav from='home'/></Col>
 
           
           <Col sm={8}>

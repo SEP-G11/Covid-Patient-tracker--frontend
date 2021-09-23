@@ -31,7 +31,7 @@ const DoctorSearchBedsScreen = ({ location, history }) => {
     if (!userInfo  || !facilityInfo ) {
       history.push("/login");
     }
-  }, [history, response]);
+  }, [facilityInfo, history, response, userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -52,7 +52,7 @@ const DoctorSearchBedsScreen = ({ location, history }) => {
 
 
       <Row >
-        <Col sm={3}><DoctorSideNav /></Col>
+        <Col sm={3}><DoctorSideNav from='search' /></Col>
         <Col sm={8} >
 
           
@@ -165,7 +165,7 @@ const DoctorSearchBedsScreen = ({ location, history }) => {
                       {Array.from({ length: response["results"]["CovidBed"].length }).map(
                         (_, i) => (
 
-                          <>  {response["results"]["CovidBed"][`${i}`]["IsOccupied"] == 1 ? (<ListGroup.Item style={{ color: "red", textAlign: "center" }}>{response["results"]["CovidBed"][`${i}`]["BedID"]}    {response["results"]["CovidBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>) : (<ListGroup.Item style={{ color: "green", textAlign: "center" }}>{response["results"]["CovidBed"][`${i}`]["BedID"]} {response["results"]["CovidBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>)} </>
+                          <>  {response["results"]["CovidBed"][`${i}`]["IsOccupied"] === 1 ? (<ListGroup.Item style={{ color: "red", textAlign: "center" }}>{response["results"]["CovidBed"][`${i}`]["BedID"]}    {response["results"]["CovidBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>) : (<ListGroup.Item style={{ color: "green", textAlign: "center" }}>{response["results"]["CovidBed"][`${i}`]["BedID"]} {response["results"]["CovidBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>)} </>
 
                         )
                       )}
@@ -199,7 +199,7 @@ const DoctorSearchBedsScreen = ({ location, history }) => {
                         (_, i) => (
 
 
-                          <>  {response["results"]["NormalBed"][`${i}`]["IsOccupied"] == 1 ? (<ListGroup.Item style={{ color: "red", textAlign: "center" }}>{response["results"]["NormalBed"][`${i}`]["BedID"]}    {response["results"]["NormalBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>) : (<ListGroup.Item style={{ color: "green", textAlign: "center" }}>{response["results"]["NormalBed"][`${i}`]["BedID"]} {response["results"]["NormalBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>)} </>
+                          <>  {response["results"]["NormalBed"][`${i}`]["IsOccupied"] === 1 ? (<ListGroup.Item style={{ color: "red", textAlign: "center" }}>{response["results"]["NormalBed"][`${i}`]["BedID"]}    {response["results"]["NormalBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>) : (<ListGroup.Item style={{ color: "green", textAlign: "center" }}>{response["results"]["NormalBed"][`${i}`]["BedID"]} {response["results"]["NormalBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>)} </>
 
                         )
                       )}

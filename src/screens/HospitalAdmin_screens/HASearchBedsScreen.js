@@ -32,7 +32,7 @@ const HASearchBedsScreen = ({ location, history }) => {
     if (!userInfo  || !facilityInfo ) {
       history.push("/login");
     }
-  }, [history, response]);
+  }, [facilityInfo, history, response, userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -53,7 +53,7 @@ const HASearchBedsScreen = ({ location, history }) => {
 
 
       <Row >
-        <Col sm={3}><HospitalAdminSideNav /></Col>
+        <Col sm={3}><HospitalAdminSideNav from='search'/></Col>
         <Col sm={8} >
 
           

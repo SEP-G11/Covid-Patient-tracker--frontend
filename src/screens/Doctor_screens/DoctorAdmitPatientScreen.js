@@ -13,8 +13,7 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
 
   const [name, setName] = useState("");
   const [bday, setBday] = useState("");
-  const [age, setAge] = useState("");
-  const gender ="";
+   const gender ="";
   const address ="";
   const [contactnumber, setContactnumber] = useState("");
   const bloodtype ="";
@@ -26,6 +25,18 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
   const [admitDateTime, setAdmitDateTime] = useState("");
   const [medicalHistory, setMedicalHistory] = useState("");
 
+
+  const getAge = bday => {
+    if(Math.floor((new Date() - new Date(bday).getTime()) / 3.15576e+10)){
+      return (Math.floor((new Date() - new Date(bday).getTime()) / 3.15576e+10));
+    }
+    else{
+      return Math.round(((new Date() - new Date(bday).getTime()) / 3.15576e+10 + Number.EPSILON) * 1000) / 1000; 
+    }       
+   };
+
+  
+   const age =getAge(bday)
   const id = contactnumber.toString() + Date.parse(bday);
   const allocationId = id + Date.parse(admitDateTime) + "A";
   const reportId = id + Date.parse(admitDateTime) + "R";
@@ -54,7 +65,7 @@ useEffect(() => {
       setBday(""); 
       setRATresult("");
       setContactnumber("");     
-      setAge("");
+      
       setMedicalHistory("");
      
       setBedId("");
@@ -95,7 +106,7 @@ useEffect(() => {
   return (
     <div>
       <Row >
-        <Col sm={3}><DoctorSideNav /></Col>
+        <Col sm={3}><DoctorSideNav from='admit'/></Col>
         <Col sm={8} >
           <Row>
             {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
@@ -138,16 +149,7 @@ useEffect(() => {
 
                     ></Form.Control> </Form.Group>
                 </Col>        <Col>
-                <Form.Group controlId="age">
-                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Age</Form.Label>
-                    <Form.Control
-                      type="number"
-                      placeholder="Enter Age"
-                      value={age}
-                      style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-                      onChange={(e) => setAge(e.target.value)}
-                    ></Form.Control>
-                  </Form.Group> </Col>
+                 </Col>
               </Row>
 
 

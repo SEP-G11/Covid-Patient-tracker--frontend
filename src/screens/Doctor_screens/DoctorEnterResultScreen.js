@@ -38,7 +38,7 @@ const DoctorEnterResultScreen = ({ location, history }) => {
             setDate("");          
             setTestType("");
         }
-    }, [history, response]);
+    }, [history, response, userInfo]);
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -57,7 +57,7 @@ const DoctorEnterResultScreen = ({ location, history }) => {
         <div>
 
             <Row >
-                <Col sm={3}>    <DoctorSideNav /></Col>
+                <Col sm={3}>    <DoctorSideNav from='enter'/></Col>
                 <Col sm={8} >
                     <Row>
                         {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}

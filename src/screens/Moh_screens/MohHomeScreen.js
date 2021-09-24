@@ -268,7 +268,7 @@ const MohHomeScreen = ({ location, history }) => {
                 ):(
                     <Row className='moh-home__margintop moh-home__sidemargins'>
                         <Col>
-                            <h1>Select a Facility</h1>
+                            <h1>Select/Search for a Facility from above to get detailed statistics</h1>
                         </Col>
                     </Row>
                 )}

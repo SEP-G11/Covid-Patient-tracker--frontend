@@ -216,7 +216,7 @@ const CreateAccountScreen = ({ location, history }) => {
 
                             <Row>
                                 <Col className='d-flex justify-content-center'>
-                                    <button type='submit' className='button casButton'>
+                                    <button type='submit' className='cas__button casButton'>
                                         CREATE ACCOUNT
                                     </button>
                                 </Col>

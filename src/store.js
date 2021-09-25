@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import {
-  userLoginReducer, userRegisterReducer,userForgotPasswordReducer,userResetPasswordReducer
+  userLoginReducer, userRegisterReducer,userForgotPasswordReducer,userResetPasswordReducer,userDetailsReducer
 } from './reducers/userReducers'
 import {
   facilityListReducer,facilitiesActiveReducer,facilitiesRecoveredReducer,facilitiesDeathsReducer,facilitiesBedsReducer
@@ -18,7 +18,8 @@ const reducer = combineReducers({
   facilitiesDeaths:facilitiesDeathsReducer,
   facilitiesBeds:facilitiesBedsReducer,
   userForgotPassword:userForgotPasswordReducer,
-  userResetPassword:userResetPasswordReducer
+  userResetPassword:userResetPasswordReducer,
+  userDetails:userDetailsReducer
 });
 
 

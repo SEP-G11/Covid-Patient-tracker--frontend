@@ -1,0 +1,43 @@
+   
+*{
+    margin: 0;
+}
+
+body{
+    background-color: #f5f6fa;
+}
+
+.moh-home {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+.moh-home__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+
+.moh-home__right{
+    display: flex;
+    flex-direction: column;
+}
+
+.moh-home__left {
+    flex: 0.9;
+}
+
+.moh-home__margintop {
+    margin-top: 15px;
+}
+
+.moh-home__text > h3,h2{
+    padding: initial;
+}
+
+.moh-home__sidemargins{
+    margin-left: 100px;
+    margin-right: -100px;
+}

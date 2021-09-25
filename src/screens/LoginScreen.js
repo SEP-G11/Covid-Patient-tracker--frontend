@@ -93,13 +93,13 @@ const LoginScreen = ({ location, history }) => {
           ></Form.Control>
         </Form.Group>
 
-        <Link to={"/"} style={{ color: "gray",fontSize:"12px", fontWeight: "bold" }} >Forgot Your Password ?</Link>
+        <Link to={"/forgot-password"} style={{ color: "gray",fontSize:"12px", fontWeight: "bold" }} >Forgot Your Password ?</Link>
 
         <br />  <br />
               <Row>
                 <Col sm={3}></Col>
                 <Col>
-                <button class="button button1" type="submit" >SIGIN</button>
+                <button class="button button1" type="submit" >SIGN IN</button>
                 </Col>
               </Row>
         

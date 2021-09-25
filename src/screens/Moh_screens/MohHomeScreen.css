@@ -2,6 +2,10 @@
     margin: 0;
 }
 
+.moh-home__header_card{
+    margin-top: 1rem;
+}
+
 body{
     background-color: #f5f6fa;
 }

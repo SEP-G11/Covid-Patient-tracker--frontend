@@ -6,8 +6,9 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
 import { resetPassword } from "../actions/userActions";
+import './ResetPasswordScreen.css';
 
-const LoginScreen = ({ match, history }) => {
+const ResetPasswordScreen = ({ match, history }) => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [message, setMessage] = useState(null);
@@ -47,40 +48,61 @@ const LoginScreen = ({ match, history }) => {
         }
     };
     return (
-        <FormContainer>
-            <h1>Reset Password</h1>
-            {error && <Message variant="danger">{error}</Message>}
-            {message && <Message variant='danger'>{message}</Message>}
-            {resetPasswordMessage && <Message variant='success'>{resetPasswordMessage}</Message>}
-            {loading && <Loader />}
-            <Form onSubmit={submitHandler}>
+        <React.Fragment>
+            <Row>
+                <Col sm={{ span: 8, offset: 2 }}>
+                    <Row>
+                        <Col sm={12}><h1 className='rps__title'>Reset Password</h1> </Col>
+                    </Row>
+                    <hr className='cas__hr'/>
+                    <br/>
+                    <FormContainer className='rps__formContainer'>
+                        {error && <Message variant="danger">{error}</Message>}
+                        {message && <Message variant='danger'>{message}</Message>}
+                        {resetPasswordMessage && <Message variant='success'>{resetPasswordMessage}</Message>}
+                        {loading && <Loader />}
+                        <Form onSubmit={submitHandler}>
+                            <Form.Group controlId="password">
+                                <Form.Label className='rps__formLabel'>New Password</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    placeholder="Enter new password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    className='rps__formControl'
+                                >
+                                </Form.Control>
+                            </Form.Group>
 
-                <Form.Group controlId="password">
-                    <Form.Label>New Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        placeholder="Enter new password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}>
-                    </Form.Control>
-                </Form.Group>
+                            <Form.Group controlId='confirmPassword'>
+                                <Form.Label className='rps__formLabel'>Confirm New Password</Form.Label>
+                                <Form.Control
+                                    type='password'
+                                    placeholder='Confirm new password'
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    className='rps__formControl'
+                                >
+                                </Form.Control>
+                            </Form.Group>
+                            <br/>
+                            <Row>
+                                <Col className='d-flex justify-content-center'>
+                                    <button type='submit' className='rps__button rpsButton'>
+                                        RESET PASSWORD
+                                    </button>
+                                </Col>
+                            </Row>
 
-                <Form.Group controlId='confirmPassword'>
-                    <Form.Label>Confirm New Password</Form.Label>
-                    <Form.Control
-                        type='password'
-                        placeholder='Confirm new password'
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}>
-                    </Form.Control>
-                </Form.Group>
-
-                <Button type="submit" variant="info">
-                    Reset Password
-                </Button>
-            </Form>
-        </FormContainer>
+                            {/*<Button type="submit" variant="info">*/}
+                            {/*    Reset Password*/}
+                            {/*</Button>*/}
+                        </Form>
+                    </FormContainer>
+                </Col>
+            </Row>
+        </React.Fragment>
     );
 };
 
-export default LoginScreen;
+export default ResetPasswordScreen;

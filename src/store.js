@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { userLoginReducer } from "./reducers/userReducers";
+import { userLoginReducer, userRegisterReducer,userForgotPasswordReducer,userResetPasswordReducer,userDetailsReducer } from "./reducers/userReducers";
 import {
   patientAdmitReducer,
   patientDischargeReducer,
@@ -13,7 +13,7 @@ import {
 import { bedSearchReducer ,bedLoadReducer } from "./reducers/bedReducers";
 import { testEnterReducer, patientTestDetailsReducer } from "./reducers/testReducers";
 import { reportCreateReducer, patientReportDetailsReducer, reportUpdateReducer } from "./reducers/reportReducers";
-import { getFacilityReducer } from "./reducers/facilityReducers";
+import { getFacilityReducer,facilityListReducer,facilitiesActiveReducer,facilitiesRecoveredReducer,facilitiesDeathsReducer,facilitiesBedsReducer } from "./reducers/facilityReducers";
 
 
 
@@ -29,11 +29,20 @@ const reducer = combineReducers({
   bedSearch: bedSearchReducer,
   bedLoad : bedLoadReducer,
   testEnter:testEnterReducer,
- reportCreate :reportCreateReducer,
- facilityLoad: getFacilityReducer,
- patientReportDetails: patientReportDetailsReducer,
- patientTestDetails: patientTestDetailsReducer,
- patientReportUpdate: reportUpdateReducer,
+  reportCreate :reportCreateReducer,
+  facilityLoad: getFacilityReducer,
+  patientReportDetails: patientReportDetailsReducer,
+  patientTestDetails: patientTestDetailsReducer,
+  patientReportUpdate: reportUpdateReducer,
+  userRegister: userRegisterReducer,
+  facilityList: facilityListReducer,
+  facilitiesActive:facilitiesActiveReducer,
+  facilitiesRecovered:facilitiesRecoveredReducer,
+  facilitiesDeaths:facilitiesDeathsReducer,
+  facilitiesBeds:facilitiesBedsReducer,
+  userForgotPassword:userForgotPasswordReducer,
+  userResetPassword:userResetPasswordReducer,
+  userDetails:userDetailsReducer
 });
 
 

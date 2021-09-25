@@ -1,37 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Form, Button, Row, Col, ListGroup } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap'
-import { useDispatch, useSelector } from "react-redux";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
-import FormContainer from "../../components/FormContainer";
-import HospitalAdminSideNav from "./HospitalAdminSideNav";
+import Message from '../../components/Message';
+import Loader from '../../components/Loader';
+import { useDispatch, useSelector } from 'react-redux'
 import { getPatientDetails } from '../../actions/patientActions'
+import HospitalAdminSideNav from "./HospitalAdminSideNav";
 
-const HAViewPatientInfo = ({  match , history }) => {
+const HAViewPatientInfo = ({ match , history }) =>{
     const patientId = match.params.id
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
+
+    const patientDetails = useSelector((state) => state.patientDetails)
+    const { loading, error, patient } = patientDetails
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
-    const patientDetails = useSelector((state) => state.patientDetails)
-    const { loading, error, patient } = patientDetails
-   
     useEffect(() => {
-        console.log(userInfo["results"])
         if (!userInfo) {
-            history.push("/login");
-        } else {
-            dispatch(getPatientDetails(patientId));
-        }
-      }, [history,userInfo,dispatch,patientId]);
+        history.push("/login");
+    } else{
+        dispatch(getPatientDetails(patientId))
+    }
+    },[dispatch,history,userInfo,patientId])
 
     return (
         <div>
             <Row >
-                <Col sm={3}>    <HospitalAdminSideNav /></Col>
+                <Col sm={3}><HospitalAdminSideNav from='viewPatientsList'/></Col>
                 <Col sm={8} >
                 <Row>
                     {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
@@ -44,6 +42,7 @@ const HAViewPatientInfo = ({  match , history }) => {
                     height: 2,
                     }}
                 />
+
                 {loading ? (
                     <Loader />
                 ) : error ? (
@@ -84,29 +83,30 @@ const HAViewPatientInfo = ({  match , history }) => {
                             </p>
                         </ListGroup.Item>
                     </ListGroup>
-                    <Row>
-                        <Col align='left'>
-                            <LinkContainer to={"/hospitalAdmin/viewPatientList"}>
-                                <Button className='button button1'>
-                                    BACK 
-                                </Button>
-                            </LinkContainer>
-                        </Col>
-                        <Col align='right'>
-                            <LinkContainer to={`/hospitalAdmin/editPatientInfo/${patient.patient_id}`}>
-                                <Button className='button button1'>
-                                    UPDATE
-                                </Button>
-                            </LinkContainer>
-                        </Col>
-                    </Row>  
-                    </Col>
-                )}
-                    </Col>
-                <Col sm={2} ></Col>
-            </Row >
-        </div>
-    );
-};
-export default HAViewPatientInfo;
 
+                    <Row>
+                        <Col sm={6} align="left">
+                            <LinkContainer to={'/hospitalAdmin/patientList'}>
+                                <Button className='btn-sm button button1'>
+                                    Back
+                                </Button>
+                            </LinkContainer>
+                        </Col>
+                        <Col sm={6} align="right">
+                            <LinkContainer to={`/hospitalAdmin/editPatientInfo/${patient.patient_id}`}>
+                                <Button className='btn-sm button button1'>
+                                    Update
+                                </Button>
+                            </LinkContainer>
+                        </Col>
+                    </Row>
+                </Col>
+                )}
+            </Col>
+            <Col sm={1}></Col>
+        </Row>
+    </div>
+    );
+}
+
+export default HAViewPatientInfo;

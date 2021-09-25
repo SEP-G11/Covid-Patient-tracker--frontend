@@ -8,6 +8,8 @@ import {
   BED_LOAD_SUCCESS,
   BED_LOAD_FAIL,
 
+
+
 } from "../constants/bedConstants";
 import { logout } from "./userActions";
 
@@ -96,5 +98,3 @@ export const loadbeds = (facilityId) => async (dispatch, getState) => {
     });
   }
 };
-
-

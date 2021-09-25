@@ -52,68 +52,20 @@ h2 {
   }
 }
 
-.btn-default {
-  background-color: #009387;
-  color: #000;
-  border-color: #000;
-  font-size: 12px;
-}
-
-.btn-default-pages {
-  background-color: #009387;
-  color: #000;
-  border-color: #000;
-  font-size: 12px;
-  margin: 15px;
-}
-
-.text-center {
-  font-size: 15px;
+#myInput {
+  font-size: 13px;
+  padding: 6px 13px 6px 13px;
+  border: 1px solid #ddd;
 }
 
 .table-head {
-  font-size: 14px;
-}
-
-.table-head-test {
   font-size: 12px;
 }
 
-.listGroup {
-  padding: 50px;
-}
-
-.listGroup-mr {
-  padding-right: 10px;
-  padding-top: 30px;
-  padding-left: 20px;
-  padding-bottom: 30px;
-}
-
-.text-dark {
-  font-size: 15px;
-}
-
-.id {
-  padding: 0%;
-}
-
-#myInput {
-  width: 50%;
-  font-size: 16px;
-  padding: 6px 20px 6px 20px;
-  border: 1px solid #ddd;
+.list-group {
   margin-bottom: 20px;
-  margin-top: 15px;
 }
 
-.dropdown {
-  top: 0;
-  right: 0;
-  height: 40px;
-  width: 65px;
-}
-
-h5 {
-  margin-top: 30px;
+#myTable {
+  margin-bottom: 30px;
 }

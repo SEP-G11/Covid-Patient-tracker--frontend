@@ -39,12 +39,13 @@ export const patientReportDetailsReducer = (state = { report: {} }, action) => {
     }
   }
 
+  
   export const reportUpdateReducer = (state = { report: {} }, action) => {
     switch (action.type) {
       case REPORT_UPDATE_REQUEST:
         return { loading: true }
       case REPORT_UPDATE_SUCCESS:
-        return { loading: false , response:action.payload  }
+        return { loading: false , success: true   }
       case REPORT_UPDATE_FAIL:
         return { loading: false, error: action.payload }
       case REPORT_UPDATE_RESET:
@@ -55,4 +56,6 @@ export const patientReportDetailsReducer = (state = { report: {} }, action) => {
         return state
     }
   }
+
+
 

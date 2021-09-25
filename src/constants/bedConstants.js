@@ -6,4 +6,3 @@ export const BED_SEARCH_FAIL = 'BED_SEARCH_FAIL'
 export const BED_LOAD_REQUEST = 'BED_LOAD_REQUEST'
 export const BED_LOAD_SUCCESS = 'BED_LOAD_SUCCESS'
 export const BED_LOAD_FAIL = 'BED_LOAD_FAIL'
-

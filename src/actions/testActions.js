@@ -66,44 +66,44 @@ export const Enter = (testId,
         }
     };
 
-    export const getPatientTestDetails = (id) => async (dispatch, getState) => {
+    
+export const getPatientTestDetails = (id) => async (dispatch, getState) => {
         try {
-          dispatch({
-            type: TEST_DETAILS_REQUEST,
-          });
-      
-          const {
-            userLogin: { userInfo },
-          } = getState();
-      
-          const config = {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${userInfo["results"]["token"]}`,
-            },
-          };
-      
-          const { data } = await axios.get(`/test/testDetails/${id}`, config)
-      
-          dispatch({
-            type: TEST_DETAILS_SUCCESS,
-            payload: data,
-          });
-       
+
+
+            dispatch({
+                type: TEST_DETAILS_REQUEST,
+            });
+
+            const {
+                userLogin: { userInfo },
+            } = getState();
+
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${userInfo["results"]["token"]}`,
+
+                },
+            };
+
+            const { data } = await axios.get(`/test/testDetails/${id}`, config)
+
+            dispatch({
+                type: TEST_DETAILS_SUCCESS,
+                payload: data,
+            });
         } catch (error) {
-          const message =
-            error.response && error.response.data.message
-              ? error.response.data.message
-              : error.message;
-          if (message === "Not authorized, token failed") {
-            dispatch(logout());
-          }
-          dispatch({
-            type: TEST_DETAILS_FAIL,
-            payload: message,
-          });
+            const message =
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message;
+            if (message === "Not authorized, token failed") {
+                dispatch(logout());
+            }
+            dispatch({
+                type: TEST_DETAILS_FAIL,
+                payload: message,
+            });
         }
-      };
-      
-      
+    };
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form,  Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
@@ -80,7 +80,7 @@ const DoctorCreateReportScreen = ({ location, history }) => {
     return (
         <div>
             <Row >
-                <Col sm={3}><DoctorSideNav /></Col>
+                <Col sm={3}><DoctorSideNav from='createReport'/></Col>
                 <Col sm={8} >
                     <Row>
                         {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}

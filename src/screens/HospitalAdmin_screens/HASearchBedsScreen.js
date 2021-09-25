@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+
 import { Form, Button, Row, Col, ListGroup, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
@@ -15,7 +15,7 @@ const HASearchBedsScreen = ({ location, history }) => {
   const [show1, setShow1] = useState(false);
   const [show2, setShow2] = useState(false);
 
-
+  
   const dispatch = useDispatch();
 
   const bedSearch = useSelector((state) => state.bedSearch);
@@ -24,11 +24,15 @@ const HASearchBedsScreen = ({ location, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const facilityLoad = useSelector((state) => state.facilityLoad);
+  const { facilityInfo } = facilityLoad;
+
   useEffect(() => {
-    if (!userInfo) {
+    
+    if (!userInfo  || !facilityInfo ) {
       history.push("/login");
     }
-  }, [history, response]);
+  }, [facilityInfo, history, response, userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -49,8 +53,10 @@ const HASearchBedsScreen = ({ location, history }) => {
 
 
       <Row >
-        <Col sm={3}><HospitalAdminSideNav /></Col>
+        <Col sm={3}><HospitalAdminSideNav from='search'/></Col>
         <Col sm={8} >
+
+          
           <Row>
             {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
             <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px", paddingTop: "60px" }}>Search Facility beds</h1> </Col>
@@ -82,14 +88,18 @@ const HASearchBedsScreen = ({ location, history }) => {
                     <br />
                     <select className="form-control" value={facilityId} style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} name="facilityId" onChange={(e) => setFacilityId(e.target.value)}>
                       <option >SELECT</option>
-                      <option value="1">
-                        New York City National Hospital  </option>
-                      <option value="2">Trablice National Hospital</option>
-                      <option value="3">Gelang National Hospital</option>
-                      <option value="4">Ararat National Hospital</option>
-                      <option value="5">Fengcun National Hospital</option>
-                      <option value="6">Paarl National Hospital</option>
-                      <option value="12">Cibungur National Hospital</option>
+
+
+                      <> {Array.from({ length: facilityInfo["results"].length }).map(
+                        (_, i) => (
+
+                          <>  <option style={{ color: "#007c7a" }} value={facilityInfo["results"][`${i}`]["facility_id"]}>{facilityInfo["results"][`${i}`]["name"]}</option> </>
+
+                        )
+                      )}
+                      </>
+
+
                     </select>
                   </Form.Group>
 
@@ -134,15 +144,18 @@ const HASearchBedsScreen = ({ location, history }) => {
         </Row><Row>
 
             <Col sm={3}></Col>
-            <Col sm={4} style={{paddingLeft:"100px"}}>
-              <br />
-              
-              <br /> <br />
-              <div style={{ paddingLeft: "10px" }}>
+            <Col sm={3}>
+
+
+              <div >
                 <Card style={{ width: '15rem', borderColor: "#007c7a", borderRadius: "20px", borderWidth: "2px" }}>
                   <Card.Header style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold", color: "#007c7a", fontSize: "18px" }}>Covid Ward</Card.Header>
                   <Card.Body>
-                    <Card.Title style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Bed capatity {response["results"]["CovidWardCapacity"]}</Card.Title>
+
+                    <Card.Title style={{ color: "black", textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Total Beds : {response["results"]["CovidWardCapacity"]}</Card.Title>
+                    <Card.Title style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Used  :{response["results"]["CovidBedUsed"]} Free : {response["results"]["CovidBedFree"]}</Card.Title>
+
+
                     <div style={{ paddingLeft: "44px" }}>
                       <form onSubmit={handleSubmit1}>
                         <button class="button button4" type="submit">More</button>
@@ -164,15 +177,18 @@ const HASearchBedsScreen = ({ location, history }) => {
                     ) : (null)}</>
                   </Card.Body>
                 </Card></div> </Col>
-            <Col sm={4} style={{}}>
-              <div style={{ paddingTop: "5px" }}>
-                <br />
+                <Col sm={2} > </Col>
+      
+            <Col sm={3}>
+              <div >
 
-                <br /> <br />
+
                 <Card style={{ width: '15rem', borderColor: "#007c7a", borderRadius: "20px", borderWidth: "2px" }}>
                   <Card.Header style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold", color: "#007c7a", fontSize: "18px" }}>Normal Ward</Card.Header>
                   <Card.Body>
-                    <Card.Title style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Bed capatity {response["results"]["NormalWardCapacity"]}</Card.Title>
+                    <Card.Title style={{ color: "black", textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Total Beds : {response["results"]["NormalWardCapacity"]}</Card.Title>
+                    <Card.Title style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Used  :{response["results"]["NormalBedUsed"]} Free : {response["results"]["NormalBedFree"]}</Card.Title>
+
                     <div style={{ paddingLeft: "44px" }}>
                       <form onSubmit={handleSubmit2}>
                         <button class="button button4" type="submit">More</button>
@@ -196,7 +212,6 @@ const HASearchBedsScreen = ({ location, history }) => {
 
                   </Card.Body>
                 </Card>
-                <br/> <br/>
               </div>
             </Col>
             <br /> <Col sm={1}> </Col>

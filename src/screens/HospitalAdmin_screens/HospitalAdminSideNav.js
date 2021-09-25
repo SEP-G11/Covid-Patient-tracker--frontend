@@ -15,10 +15,11 @@ import '../../components/sidenavstyle.css';
 
 import { NavLink } from 'react-router-dom';
 
-const HospitalAdminSideNav = () => {
+const HospitalAdminSideNav = ({...props})=> {
     const dispatch = useDispatch();
 
-  const submitHandler = () => {    
+  const submitHandler = (e) => {  
+    e.preventDefault();     
     dispatch(logout());
   };
 
@@ -45,7 +46,6 @@ const HospitalAdminSideNav = () => {
 
     return (
         <div>
-
        
         <ProSidebar collapsed={menuCollapse}>
             <div class="toggle" onClick={toggleIconClick} style={{width:"50px",height:"30px"}}>
@@ -57,7 +57,7 @@ const HospitalAdminSideNav = () => {
             </div>
           
             <ul>
-                <li class="list active">
+                <li className={`list ${props.from==='home' && 'active'}`}>
                     <b></b>
                     <b></b>
                     <NavLink exact to="/hospitalAdmin/home" className='a' onClick={collapseHandler}>
@@ -65,15 +65,15 @@ const HospitalAdminSideNav = () => {
                         <span class="title">Dashboard</span>
                     </NavLink>
                 </li>
-                <li class="list">
+                <li className={`list ${props.from==='viewPatientsList' && 'active'}`}>
                     <b></b>
                     <b></b>
-                    <NavLink to="/hospitalAdmin/viewPatientList" className='a' onClick={collapseHandler}>
+                    <NavLink to="/hospitalAdmin/patientList" className='a' onClick={collapseHandler}>
                         <span class="icon"><BsFillPersonLinesFill size={18}/></span>
                         <span class="title">Patients List</span>
                     </NavLink>
                 </li>
-                <li class="list">
+                <li className={`list ${props.from==='admit' && 'active'}`}>
                     <b></b>
                     <b></b>
                     <NavLink to="/hospitalAdmin/admit" className='a' onClick={collapseHandler}>
@@ -81,7 +81,7 @@ const HospitalAdminSideNav = () => {
                         <span class="title">Admit</span>
                     </NavLink>
                 </li>
-                <li class="list">
+                <li className={`list ${props.from==='discharge' && 'active'}`}>
                     <b></b>
                     <b></b>
                     <NavLink to="/hospitalAdmin/discharge" className='a' onClick={collapseHandler}>
@@ -89,7 +89,7 @@ const HospitalAdminSideNav = () => {
                         <span class="title">Discharge</span>
                     </NavLink>
                 </li>
-                <li class="list">
+                <li className={`list ${props.from==='transfer' && 'active'}`}>
                     <b></b>
                     <b></b>
                     <NavLink to="/hospitalAdmin/transfer" className='a' onClick={collapseHandler}>
@@ -97,7 +97,7 @@ const HospitalAdminSideNav = () => {
                         <span class="title">Transfer</span>
                     </NavLink>
                 </li>
-                <li class="list">
+                <li className={`list ${props.from==='search' && 'active'}`}>
                     <b></b>
                     <b></b>
                     <NavLink to="/hospitalAdmin/search" className='a' onClick={collapseHandler}>
@@ -105,7 +105,7 @@ const HospitalAdminSideNav = () => {
                         <span class="title">Search Beds</span>
                     </NavLink>
                 </li>
-                <li class="list">
+                <li className={`list ${props.from==='enter' && 'active'}`}>
                     <b></b>
                     <b></b>
                     <NavLink to="/hospitalAdmin/enter" className='a' onClick={collapseHandler}>

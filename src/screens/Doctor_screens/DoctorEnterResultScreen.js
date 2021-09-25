@@ -38,7 +38,7 @@ const DoctorEnterResultScreen = ({ location, history }) => {
             setDate("");          
             setTestType("");
         }
-    }, [history, response]);
+    }, [history, response, userInfo]);
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -57,7 +57,7 @@ const DoctorEnterResultScreen = ({ location, history }) => {
         <div>
 
             <Row >
-                <Col sm={3}>    <DoctorSideNav /></Col>
+                <Col sm={3}>    <DoctorSideNav from='enter'/></Col>
                 <Col sm={8} >
                     <Row>
                         {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
@@ -122,7 +122,7 @@ const DoctorEnterResultScreen = ({ location, history }) => {
                                 </Col>
                                 <Col>
                                 <Form.Group controlId="RATresult">
-                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>RAT Result</Form.Label>
+                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Test Result</Form.Label>
                     <br />
                     <select className="form-control" value={RATresult} name="RATresult" style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setRATresult(e.target.value)}>
                       <option >SELECT</option>

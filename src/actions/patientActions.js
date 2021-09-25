@@ -1,159 +1,308 @@
-import axios from 'axios'
+import axios from "axios";
 import {
-    PATIENT_LIST_FAIL,
-    PATIENT_LIST_SUCCESS,
-    PATIENT_LIST_REQUEST,
-    PATIENT_DETAILS_REQUEST,
-    PATIENT_DETAILS_SUCCESS,
-    PATIENT_DETAILS_FAIL,
-    PATIENT_UPDATE_REQUEST,
-    PATIENT_UPDATE_SUCCESS,
-    PATIENT_UPDATE_FAIL,
-    PATIENT_UPDATE_RESET,
-    PATIENT_REPORT_REQUEST,
-    PATIENT_REPORT_SUCCESS,
-    PATIENT_REPORT_FAIL,
-    TEST_DETAILS_REQUEST,
-    TEST_DETAILS_SUCCESS,
-    TEST_DETAILS_FAIL,
-    REPORT_UPDATE_REQUEST,
-    REPORT_UPDATE_SUCCESS,
-    REPORT_UPDATE_FAIL,
-    REPORT_UPDATE_RESET
+  PATIENT_ADMIT_REQUEST,
+  PATIENT_ADMIT_SUCCESS,
+  PATIENT_ADMIT_FAIL,
+  PATIENT_DISCHARGE_REQUEST,
+  PATIENT_DISCHARGE_SUCCESS,
+  PATIENT_DISCHARGE_FAIL,
+  PATIENT_TRANSFER_REQUEST,
+  PATIENT_TRANSFER_SUCCESS,
+  PATIENT_TRANSFER_FAIL,
+  PATIENT_LIST_FAIL,
+  PATIENT_LIST_SUCCESS,
+  PATIENT_LIST_REQUEST,
+  PATIENT_DETAILS_REQUEST,
+  PATIENT_DETAILS_SUCCESS,
+  PATIENT_DETAILS_FAIL,
+  PATIENT_UPDATE_REQUEST,
+  PATIENT_UPDATE_SUCCESS,
+  PATIENT_UPDATE_FAIL,
+} from "../constants/patientConstants";
+import store from "../store";
+import { logout } from "./userActions";
 
-} from '../constants/patientConstants'
-
-export const listPatients = () => async (dispatch) => {
-    try {
-      dispatch({
-        type: PATIENT_LIST_REQUEST,
-      })
-  
-      const config = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-      }
-  
-      const { data } = await axios.get(`/patient/getPatients`, config)
-  
-      dispatch({
-        type: PATIENT_LIST_SUCCESS,
-        payload: data,
-      })
-    } catch (error) {
-      const message =
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message
-      dispatch({
-        type: PATIENT_LIST_FAIL,
-        payload: message,
-      })
-    }
-}
-
-export const getPatientDetails = (id) => async (dispatch) => {
+export const admit = (
+  name,
+        id,
+        age,
+        gender,
+        address,
+        contactnumber,
+        bloodtype,
+        district,
+        testId,
+        isvaccinated,
+        RATresult,
+        medicalHistory,
+        reportId,
+        bedId,
+        allocationId,
+        admitDateTime,
+        bday,
+) => async (dispatch, getState) => {
   try {
     dispatch({
-      type: PATIENT_DETAILS_REQUEST,
-    })
+      type: PATIENT_ADMIT_REQUEST,
+    });
+
+     const {
+   userLogin: { userInfo },
+  } = getState();
 
     const config = {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo["results"]["token"]}`,
       },
+    };
+
+    const { data } = await axios.post(
+      "/patient/admit",
+      {
+        name,
+        id,
+        age,
+        gender,
+        address,
+        contactnumber,
+        bloodtype,
+        district,
+        testId,
+        isvaccinated,
+        RATresult,
+        medicalHistory,
+        reportId,
+        bedId,
+        allocationId,
+        admitDateTime,
+        bday,
+      },
+      config
+    );
+   
+
+   dispatch({
+      type: PATIENT_ADMIT_SUCCESS,
+      payload: data,
+    });
+  
+  
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Not authorized, token failed") {
+      dispatch(logout());
     }
+    dispatch({
+      type: PATIENT_ADMIT_FAIL,
+      payload: message,
+    });
+  }
+};
+
+export const discharge = (
+  patient_id,discharged_at,description,status
+) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: PATIENT_DISCHARGE_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo["results"]["token"]}`,
+      },
+    };
+
+    const { data } = await axios.post(
+      "/patient/discharge",
+      {
+        patient_id,discharged_at,description,status
+      },
+      config
+    );
+
+
+    console.log(data)
+
+    dispatch({
+      type: PATIENT_DISCHARGE_SUCCESS,
+      payload: data,
+    });
+   
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Not authorized, token failed") {
+      dispatch(logout());
+    }
+    dispatch({
+      type: PATIENT_DISCHARGE_FAIL,
+      payload: message,
+    });
+  }
+};
+
+export const transfer = (
+  patient_id,
+  origin_bed_id,
+  dest_bed_id,
+  transfer_date
+) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: PATIENT_TRANSFER_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo["results"]["token"]}`,
+      },
+    };
+
+    const { data } = await axios.post(
+      "/patient/transfer",
+      {
+        patient_id,
+        origin_bed_id,
+        dest_bed_id,
+        transfer_date
+      },
+      config
+    );
+
+    dispatch({
+      type: PATIENT_TRANSFER_SUCCESS,
+      payload: data,
+    });
+ 
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Not authorized, token failed") {
+      dispatch(logout());
+    }
+    dispatch({
+      type: PATIENT_TRANSFER_FAIL,
+      payload: message,
+    });
+  }
+};
+
+
+export const listPatients = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: PATIENT_LIST_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo["results"]["token"]}`,
+      },
+    };
+
+    const { data } = await axios.get(`/patient/getPatients`, config)
+
+    dispatch({
+      type: PATIENT_LIST_SUCCESS,
+      payload: data,
+    });
+ 
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Not authorized, token failed") {
+      dispatch(logout());
+    }
+    dispatch({
+      type: PATIENT_LIST_FAIL,
+      payload: message,
+    });
+  }
+};
+
+
+export const getPatientDetails = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: PATIENT_DETAILS_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo["results"]["token"]}`,
+      },
+    };
 
     const { data } = await axios.get(`/patient/patientDetails/${id}`, config)
 
     dispatch({
       type: PATIENT_DETAILS_SUCCESS,
       payload: data,
-    })
+    });
+ 
   } catch (error) {
     const message =
-    error.response && error.response.data.message
-    ? error.response.data.message
-    : error.message
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Not authorized, token failed") {
+      dispatch(logout());
+    }
     dispatch({
       type: PATIENT_DETAILS_FAIL,
       payload: message,
-    })
+    });
   }
-}
+};
 
-export const getPatientReportDetails = (id) => async (dispatch) => {
-  try {
-    dispatch({
-      type: PATIENT_REPORT_REQUEST,
-    })
 
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-
-    const { data } = await axios.get(`/patient/patientReportDetails/${id}`, config)
-
-    dispatch({
-      type: PATIENT_REPORT_SUCCESS,
-      payload: data,
-    })
-  } catch (error) {
-    const message =
-    error.response && error.response.data.message
-    ? error.response.data.message
-    : error.message
-    dispatch({
-      type: PATIENT_REPORT_FAIL,
-      payload: message,
-    })
-  }
-}
-
-export const getPatientTestDetails = (id) => async (dispatch) => {
-  try {
-    dispatch({
-      type: TEST_DETAILS_REQUEST,
-    })
-
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-
-    const { data } = await axios.get(`/patient/testDetails/${id}`, config)
-
-    dispatch({
-      type: TEST_DETAILS_SUCCESS,
-      payload: data,
-    })
-  } catch (error) {
-    const message =
-    error.response && error.response.data.message
-    ? error.response.data.message
-    : error.message
-    dispatch({
-      type: TEST_DETAILS_FAIL,
-      payload: message,
-    })
-  }
-}
-
-export const updatePatient = (patient) => async (dispatch) => {
+export const updatePatient = (patient) => async (dispatch, getState) => {
   try {
     dispatch({
       type: PATIENT_UPDATE_REQUEST,
-    })
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
 
     const config = {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo["results"]["token"]}`,
       },
-    }
+    };
 
     const { data } = await axios.put(
       `/patient/updatePatient/${patient.patient_id}`,
@@ -164,53 +313,20 @@ export const updatePatient = (patient) => async (dispatch) => {
     dispatch({
       type: PATIENT_UPDATE_SUCCESS,
       payload: data,
-    })
-    dispatch({ type: PATIENT_UPDATE_SUCCESS, payload: data })
+    });
+ 
   } catch (error) {
     const message =
       error.response && error.response.data.message
-      ? error.response.data.message
-      : error.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Not authorized, token failed") {
+      dispatch(logout());
+    }
     dispatch({
       type: PATIENT_UPDATE_FAIL,
       payload: message,
-    })
+    });
   }
-}
+};
 
-export const updatePatientReport = (report) => async (dispatch) => {
-  try {
-    dispatch({
-      type: REPORT_UPDATE_REQUEST,
-    })
-
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-
-    const { data } = await axios.put(
-      `/patient/updatePatientReport/${report.patient_id}`,
-      report,
-      config
-    )
-
-    dispatch({
-      type: REPORT_UPDATE_SUCCESS,
-      payload: data,
-    })
-    dispatch({ type: REPORT_UPDATE_SUCCESS, payload: data })
-  } catch (error) {
-    const message =
-      error.response && error.response.data.message
-      ? error.response.data.message
-      : error.message
-    dispatch({
-      type: REPORT_UPDATE_FAIL,
-      payload: message,
-    })
-  }
-}
-  
-  

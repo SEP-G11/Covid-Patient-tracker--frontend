@@ -34,5 +34,3 @@ import {
           return state;
       }
     };
-
-   

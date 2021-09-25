@@ -35,7 +35,7 @@ export const usePagination = ({
       const lastPageIndex = totalPageCount;
   
       if (!shouldShowLeftDots && shouldShowRightDots) {
-        let leftItemCount = 3 + 2 * siblingCount;
+        let leftItemCount = 2 + 2 * siblingCount;
         let leftRange = range(1, leftItemCount);
   
         return [...leftRange, '...' , totalPageCount];
@@ -43,7 +43,7 @@ export const usePagination = ({
   
       if (shouldShowLeftDots && !shouldShowRightDots) {
         
-        let rightItemCount = 3 + 2 * siblingCount;
+        let rightItemCount = 2 + 2 * siblingCount;
         let rightRange = range(
           totalPageCount - rightItemCount + 1,
           totalPageCount

@@ -1,98 +1,89 @@
 import {
-    PATIENT_LIST_REQUEST,
-    PATIENT_LIST_SUCCESS,
-    PATIENT_LIST_FAIL,
-    PATIENT_DETAILS_REQUEST,
-    PATIENT_DETAILS_SUCCESS,
-    PATIENT_DETAILS_FAIL,
-    PATIENT_UPDATE_REQUEST,
-    PATIENT_UPDATE_SUCCESS,
-    PATIENT_UPDATE_FAIL,
-    PATIENT_UPDATE_RESET,
-    PATIENT_REPORT_REQUEST,
-    PATIENT_REPORT_SUCCESS,
-    PATIENT_REPORT_FAIL,
-    TEST_DETAILS_REQUEST,
-    TEST_DETAILS_SUCCESS,
-    TEST_DETAILS_FAIL,
-    REPORT_UPDATE_REQUEST,
-    REPORT_UPDATE_SUCCESS,
-    REPORT_UPDATE_FAIL,
-    REPORT_UPDATE_RESET
-} from '../constants/patientConstants'
+  PATIENT_ADMIT_REQUEST,
+  PATIENT_ADMIT_SUCCESS,
+  PATIENT_ADMIT_FAIL,
+  PATIENT_DISCHARGE_REQUEST,
+  PATIENT_DISCHARGE_SUCCESS,
+  PATIENT_DISCHARGE_FAIL,
+  PATIENT_TRANSFER_REQUEST,
+  PATIENT_TRANSFER_SUCCESS,
+  PATIENT_TRANSFER_FAIL,
+  PATIENT_LIST_FAIL,
+  PATIENT_LIST_SUCCESS,
+  PATIENT_LIST_REQUEST,
+  PATIENT_DETAILS_REQUEST,
+  PATIENT_DETAILS_SUCCESS,
+  PATIENT_DETAILS_FAIL,
+  PATIENT_UPDATE_REQUEST,
+  PATIENT_UPDATE_SUCCESS,
+  PATIENT_UPDATE_FAIL,
+  PATIENT_UPDATE_RESET,
+} from "../constants/patientConstants";
 
-export const patientListReducer = (state = { patients: [] }, action) => {
+
+  
+  export const patientAdmitReducer = (state = {}, action) => {
     switch (action.type) {
-      case PATIENT_LIST_REQUEST:
-        return {
-          loading: true,
-        }
-      case PATIENT_LIST_SUCCESS:
-        return {
-          loading: false,
-          patients: action.payload,
-        }
-      case PATIENT_LIST_FAIL:
-        return {
-          loading: false,
-          error: action.payload,
-        }
+      case PATIENT_ADMIT_REQUEST:
+        return { loading: true }
+      case PATIENT_ADMIT_SUCCESS:
+        return { loading: false , response:action.payload  }
+      case PATIENT_ADMIT_FAIL:
+        return { loading: false, error: action.payload }
+      default:
+        return state
+    }
+  }
+  
+
+  export const patientDischargeReducer = (state = {}, action) => {
+    switch (action.type) {
+      case PATIENT_DISCHARGE_REQUEST:
+        return { loading: true }
+      case PATIENT_DISCHARGE_SUCCESS:
+        return { loading: false , response:action.payload  }
+      case PATIENT_DISCHARGE_FAIL:
+        return { loading: false, error: action.payload }
       default:
         return state
     }
 }
+  
 
-export const patientDetailsReducer = (state = { patient: {} }, action) => {
+
+export const patientTransferReducer = (state = {}, action) => {
   switch (action.type) {
-    case PATIENT_DETAILS_REQUEST:
-      return { 
-        loading: true,
-      }
-    case PATIENT_DETAILS_SUCCESS:
-      return {
-        loading: false,
-        patient: action.payload,
-      }
-    case PATIENT_DETAILS_FAIL:
+    case PATIENT_TRANSFER_REQUEST:
+      return { loading: true }
+    case PATIENT_TRANSFER_SUCCESS:
+      return { loading: false , response:action.payload  }
+    case PATIENT_TRANSFER_FAIL:
       return { loading: false, error: action.payload }
     default:
       return state
   }
 }
 
-export const patientTestDetailsReducer = (state = { tests: [] }, action) => {
+export const patientListReducer = (state = { patients: [] }, action) => {
   switch (action.type) {
-    case TEST_DETAILS_REQUEST:
-      return {
-        loading: true,
-      }
-    case TEST_DETAILS_SUCCESS:
-      return {
-        loading: false,
-        tests: action.payload,
-      }
-    case TEST_DETAILS_FAIL:
-      return {
-        loading: false,
-        error: action.payload,
-      }
+    case PATIENT_LIST_REQUEST:
+      return { loading: true }
+    case PATIENT_LIST_SUCCESS:
+      return { loading: false , patients:action.payload  }
+    case PATIENT_LIST_FAIL:
+      return { loading: false, error: action.payload }
     default:
       return state
   }
 }
 
-export const patientReportDetailsReducer = (state = { report: {} }, action) => {
+export const patientDetailsReducer = (state = { patient: {} }, action) => {
   switch (action.type) {
-    case PATIENT_REPORT_REQUEST:
-      return { 
-        loading: true,
-      }
-    case PATIENT_REPORT_SUCCESS:
-      return {
-        loading: false,
-        report: action.payload,
-      }
-    case PATIENT_REPORT_FAIL:
+    case PATIENT_DETAILS_REQUEST:
+      return { loading: true }
+    case PATIENT_DETAILS_SUCCESS:
+      return { loading: false , patient:action.payload  }
+    case PATIENT_DETAILS_FAIL:
       return { loading: false, error: action.payload }
     default:
       return state
@@ -102,18 +93,11 @@ export const patientReportDetailsReducer = (state = { report: {} }, action) => {
 export const patientUpdateReducer = (state = { patient: {} }, action) => {
   switch (action.type) {
     case PATIENT_UPDATE_REQUEST:
-      return { 
-        loading: true 
-      }
+      return { loading: true }
     case PATIENT_UPDATE_SUCCESS:
-      return { 
-        loading: false, 
-        success: true 
-      }
+      return { loading: false ,  success: true   }
     case PATIENT_UPDATE_FAIL:
-      return { 
-        loading: false, 
-        error: action.payload }
+      return { loading: false, error: action.payload }
     case PATIENT_UPDATE_RESET:
       return {
         patient: {},
@@ -123,26 +107,7 @@ export const patientUpdateReducer = (state = { patient: {} }, action) => {
   }
 }
 
-export const patientReportUpdateReducer = (state = { report: {} }, action) => {
-  switch (action.type) {
-    case REPORT_UPDATE_REQUEST:
-      return { 
-        loading: true 
-      }
-    case REPORT_UPDATE_SUCCESS:
-      return { 
-        loading: false, 
-        success: true 
-      }
-    case REPORT_UPDATE_FAIL:
-      return { 
-        loading: false, 
-        error: action.payload }
-    case REPORT_UPDATE_RESET:
-      return {
-        report: {},
-      }
-    default:
-      return state
-  }
-}
+
+
+
+  

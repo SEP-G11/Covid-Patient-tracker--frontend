@@ -5,7 +5,6 @@ import {
     TEST_DETAILS_REQUEST,
     TEST_DETAILS_SUCCESS,
     TEST_DETAILS_FAIL,
-
 } from "../constants/testConstants";
 
 
@@ -22,16 +21,19 @@ export const testEnterReducer = (state = {}, action) => {
     }
 }
 
+
 export const patientTestDetailsReducer = (state = { tests: [] }, action) => {
     switch (action.type) {
-      case TEST_DETAILS_REQUEST:
-        return { loading: true }
-      case TEST_DETAILS_SUCCESS:
-        return { loading: false , tests:action.payload  }
-      case TEST_DETAILS_FAIL:
-        return { loading: false, error: action.payload }
-      default:
-        return state
+        case TEST_DETAILS_REQUEST:
+            return { loading: true }
+        case TEST_DETAILS_SUCCESS:
+            return { loading: false, tests: action.payload }
+        case TEST_DETAILS_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
     }
-  }
+}
+
+
 

@@ -6,8 +6,9 @@ import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import { listPatients } from '../../actions/patientActions'
 import Pagination from '../../components/Pagination';
+import DoctorSideNav from "./DoctorSideNav";
 
-const DoctorViewPatientList = () => {
+const DoctorViewPatientList = ( { history }) => {
     const dispatch = useDispatch()
 
     const patientList = useSelector((state) => state.patientList)
@@ -18,6 +19,9 @@ const DoctorViewPatientList = () => {
 
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
+
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
 
     const myFunction = () => {
         let input = document.getElementById("myInput");
@@ -38,83 +42,111 @@ const DoctorViewPatientList = () => {
     }
 
     useEffect(() => {
-        dispatch(listPatients())
-    }, [dispatch])
+        if (!userInfo) {
+            history.push("/login");
+        } else {
+            dispatch(listPatients())
+        }
+    }, [dispatch,history,userInfo])
 
     return (
         <div>
-            <h1 align='center'>Patients List</h1>
-            {loading ? (
-                <Loader />
-            ) : error ? (
-                <Message variant='danger'>{error}</Message>
-            ) : (
-                <Col md={12} align='center'>
-                    <Row>
-                        <Col md={10} align='left'>
-                            <input type="text" id="myInput" onKeyUp={myFunction} placeholder="Search for names.." title="Type in a name"></input>
-                        </Col>
-                        <Col md={2} align="right">
-                            <Form.Group controlId='pageSize'>
-                                <Form.Label class="text-dark">Rows Per Page</Form.Label>
-                                <Form.Control className="dropdown"
-                                    as='select'
-                                    value={PageSize}
-                                    onChange={(e) => setPageSize(e.target.value)}
-                                >
-                                    <option value='' disabled selected hidden>Select Page Size</option>
-                                    <option value='10'>10</option>
-                                    <option value='20'>20</option>
-                                    <option value='30'>30</option>
-                                    <option value='40'>40</option>
-                                    <option value='50'>50</option>
-                                    <option value={patients.length}>All</option>
-                                </Form.Control>
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                    <Table id="myTable" striped bordered hover responsive className='table-sm'>
-                        <thead className="thead-dark">
-                            <tr>
-                                <th className="text-center table-head">Patient Id</th>
-                                <th className="text-center table-head">Name</th>
-                                <th className="text-center table-head">Patient Information</th>
-                                <th className="text-center table-head">Medical Report</th>
-                            </tr>
-                        </thead>
-                        <tbody className="text-dark">
-                            {(patients.slice(firstPageIndex, lastPageIndex)).map((patient) => (
-                                <tr key={patient.patient_id}>
-                                    <td className="text-center">{patient.patient_id}</td>
-                                    <td className="text-center">{patient.name}</td>
-                                    <td className="text-center">
-                                        <LinkContainer to={`/doctor/viewPatientInfo/${patient.patient_id}`}>
-                                            <Button className='btn-sm btn-default'>
-                                                View Patient Info
-                                            </Button>
-                                        </LinkContainer>
-                                    </td>
-                                    <td className="text-center">
-                                        <LinkContainer to={`/doctor/viewMedicalReport/${patient.patient_id}`}>
-                                            <Button className='btn-sm btn-default'>
-                                                View Medical Report
-                                            </Button>
-                                        </LinkContainer>
-                                    </td>
+            <Row >
+                <Col sm={3}><DoctorSideNav from='viewPatientsList'/></Col>
+                <Col sm={8} >
+                <Row>
+                    {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
+                    <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px" }}>Patients List</h1> </Col>
+                </Row>
+                <hr
+                    style={{
+                    color: "white",
+                    backgroundColor: "#007c7a",
+                    height: 2,
+                    }}
+                />
+
+                {loading ? (
+                    <Loader />
+                ) : error ? (
+                    <Message variant='danger'>{error}</Message>
+                ) : (
+                    <Col md={12} align='center'>
+                        <Row>
+                            <Col md={5} align='left'>
+                                <Form.Group controlId="searchname">
+                                    <Form.Label style={{ color: "#008A77", fontWeight: "bold"}}>Patient Name</Form.Label>
+                                        <Form.Control
+                                        id="myInput"
+                                        type="text"
+                                        placeholder="Search for names.."
+                                        onKeyUp={myFunction}
+                                        style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
+                                        ></Form.Control>
+                                </Form.Group>
+                            </Col>
+                            <Col md={2} align="left">
+                                <Form.Group controlId='pageSize'>
+                                    <Form.Label style={{ color: "#008A77", fontWeight: "bold"}}>Rows Per Page</Form.Label>
+                                        <select className="form-control" as='select'
+                                        value={PageSize}
+                                        onChange={(e) => setPageSize(e.target.value)}
+                                        style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163"}}>
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="30">30</option>
+                                            <option value="40">40</option>
+                                            <option value="50">50</option>
+                                            <option value={patients.length}>All</option>
+                                        </select>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Table id="myTable" striped bordered hover responsive className='table-sm'>
+                            <thead className="thead-dark">
+                                <tr>
+                                    <th className="text-center table-head">Patient Id</th>
+                                    <th className="text-center table-head">Name</th>
+                                    <th className="text-center table-head">Patient Information</th>
+                                    <th className="text-center table-head">Medical Report</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                    <Pagination
-                        className="pagination-bar"
-                        currentPage={currentPage}
-                        totalCount={patients.length}
-                        pageSize={PageSize}
-                        onPageChange={page => setCurrentPage(page)}
-                    />
-                </Col>
-            )}
-        </div>
+                            </thead>
+                            <tbody className="text-dark">
+                                {(patients.slice(firstPageIndex, lastPageIndex)).map((patient) => (
+                                    <tr key={patient.patient_id}>
+                                        <td className="text-center">{patient.patient_id}</td>
+                                        <td className="text-center">{patient.name}</td>
+                                        <td className="text-center">
+                                            <LinkContainer to={`/doctor/viewPatientInfo/${patient.patient_id}`}>
+                                                <Button className='btn-sm button button5'>
+                                                    View Patient Info
+                                                </Button>
+                                            </LinkContainer>
+                                        </td>
+                                        <td className="text-center">
+                                            <LinkContainer to={`/doctor/viewMedicalReport/${patient.patient_id}`}>
+                                                <Button className='btn-sm button button5' >
+                                                    View Medical Report
+                                                </Button>
+                                            </LinkContainer>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                        <Pagination
+                            className="pagination-bar"
+                            currentPage={currentPage}
+                            totalCount={patients.length}
+                            pageSize={PageSize}
+                            onPageChange={page => setCurrentPage(page)}
+                        />
+                    </Col>
+                )}   
+            </Col>
+            <Col sm={1}></Col>
+        </Row>        
+    </div>
     );
 }
 

@@ -35,7 +35,7 @@ const HATransferPatientScreen = ({ location, history }) => {
       setTransferDateTime("");
 
     }
-  }, [history, response]);
+  }, [history, response, userInfo]);
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
@@ -52,7 +52,7 @@ const HATransferPatientScreen = ({ location, history }) => {
   return (
     <div>
       <Row >
-        <Col sm={3}>    <HospitalAdminSideNav /></Col>
+        <Col sm={3}>    <HospitalAdminSideNav from='transfer'/></Col>
         <Col sm={8} >
           <Row>
             {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}

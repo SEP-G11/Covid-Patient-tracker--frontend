@@ -52,16 +52,16 @@ const MOHSideNav = ({...props}) => {
             <ul>
                 <li className={`list ${props.from==='home' && 'active'}`}>
 
-                    {/*<b></b>*/}
-                    {/*<b></b>*/}
+                    <b></b>
+                    <b></b>
                     <NavLink exact to="/moh/home" className='a' onClick={collapseHandler} >
                         <span class="icon"><BsFillHouseDoorFill size={18}/></span>
                         <span class="title">Dashboard</span>
                     </NavLink>
                 </li>
                 <li className={`list ${props.from==='cas' && 'active'}`}>
-                    {/*<b></b>*/}
-                    {/*<b></b>*/}
+                    <b></b>
+                    <b></b>
                     <NavLink to="/moh/register" className='a' onClick={collapseHandler}>
                         <span class="icon"><HiUserAdd size={18}/></span>
                         <span class="title">Create User</span>

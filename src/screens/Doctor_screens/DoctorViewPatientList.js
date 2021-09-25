@@ -7,6 +7,7 @@ import Loader from '../../components/Loader';
 import { listPatients } from '../../actions/patientActions'
 import Pagination from '../../components/Pagination';
 import DoctorSideNav from "./DoctorSideNav";
+import './DoctorViewPatientList.css';
 
 const DoctorViewPatientList = ( { history }) => {
     const dispatch = useDispatch()

@@ -25,12 +25,10 @@ const LoginScreen = ({ location, history }) => {
     if (userInfo) {
    
       if (userInfo["results"]["accType"] === "DOC") {
-        dispatch(loadbeds("4"));
+        dispatch(loadbeds("*"));
         dispatch(getFacility());
         history.push("/doctor/home");
       } else if (userInfo["results"]["accType"] === "MOH") {
-        dispatch(loadbeds("4"));
-        dispatch(getFacility());
         history.push("/moh/home");
       } else {
         dispatch(loadbeds("*"));

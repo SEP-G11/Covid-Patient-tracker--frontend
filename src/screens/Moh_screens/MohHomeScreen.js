@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Container, Row, Col } from "react-bootstrap";
 import { login, logout } from "../../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 const MohHomeScreen = ({ location, history }) => {
   const dispatch = useDispatch();
 
@@ -11,18 +13,22 @@ const MohHomeScreen = ({ location, history }) => {
   };
 
   return (
-    <Row>
+    <div>
+ <Header/>
+    <Container className='py-3'>
+      <Row>
         <Col>
           {" "}
           <h1>MOH Home </h1>
         </Col>
         <Col>
-          <Button type="submit" variant="info" onClick={submitHandler}>
-            {" "}
-            LOG OUT
-          </Button>
+        
         </Col>
-      </Row>
+      </Row>   
+    </Container>
+    <Footer/>
+    </div>
+   
   );
 };
 export default MohHomeScreen;

@@ -63,7 +63,7 @@ export const listFacilities = () => async (dispatch,getState) => {
 
         const config = {
             headers: {
-                Authorization: `Bearer ${userInfo.token}`
+                Authorization: `Bearer ${userInfo.results.token}`
             }
         };
 
@@ -93,7 +93,7 @@ export const listFacilitiesActive = () => async (dispatch,getState) => {
 
         const config = {
             headers: {
-                Authorization: `Bearer ${userInfo.token}`
+                Authorization: `Bearer ${userInfo.results.token}`
             }
         };
 
@@ -123,7 +123,7 @@ export const listFacilitiesRecovered = () => async (dispatch,getState) => {
 
         const config = {
             headers: {
-                Authorization: `Bearer ${userInfo.token}`
+                Authorization: `Bearer ${userInfo.results.token}`
             }
         };
 
@@ -153,7 +153,7 @@ export const listFacilitiesDeaths = () => async (dispatch,getState) => {
 
         const config = {
             headers: {
-                Authorization: `Bearer ${userInfo.token}`
+                Authorization: `Bearer ${userInfo.results.token}`
             }
         };
 
@@ -183,7 +183,7 @@ export const listFacilitiesBeds = () => async (dispatch,getState) => {
 
         const config = {
             headers: {
-                Authorization: `Bearer ${userInfo.token}`
+                Authorization: `Bearer ${userInfo.results.token}`
             }
         };
 

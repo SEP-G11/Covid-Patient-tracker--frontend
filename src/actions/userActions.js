@@ -65,7 +65,7 @@ export const register = (id, name, email, contact, password, accountType, facili
     const config = {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${userInfo.token}`
+        Authorization: `Bearer ${userInfo.results.token}`
       }
     };
 
@@ -170,7 +170,7 @@ export const getUserDetails = () => async (dispatch, getState) => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${userInfo.token}`
+        Authorization: `Bearer ${userInfo.results.token}`
       }
     };
 

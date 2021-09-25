@@ -40,7 +40,7 @@ const MohHomeScreen = ({ location, history }) => {
     const { userInfo } = userLogin;
 
     useEffect(() => {
-        if (userInfo && userInfo.accType === 'MOH'){
+        if (userInfo && userInfo.results.accType === 'MOH'){
             dispatch(listFacilities());
             dispatch(listFacilitiesActive());dispatch(listFacilitiesRecovered());dispatch(listFacilitiesDeaths());dispatch(listFacilitiesBeds());
         }
@@ -276,7 +276,47 @@ const MohHomeScreen = ({ location, history }) => {
 
                 </Row>
             </Container>
+            {/*<div className='moh-home'>*/}
+
+            {/*    /!*<div className='moh-home__header'>*!/*/}
+            {/*    /!*    <Card>*!/*/}
+            {/*    /!*            <Card.Body>*!/*/}
+            {/*    /!*                <h4>Daily Investigations</h4>*!/*/}
+
+            {/*    /!*            </Card.Body>*!/*/}
+            {/*    /!*    </Card>*!/*/}
+            {/*    /!*</div>*!/*/}
+            {/*    /!*<div className='moh-home__left'>*!/*/}
+            {/*    /!*    <Card>*!/*/}
+            {/*    /!*        <Card.Body>*!/*/}
+            {/*    /!*            <h4>Daily Investigations</h4>*!/*/}
+
+            {/*    /!*        </Card.Body>*!/*/}
+            {/*    /!*    </Card>*!/*/}
+            {/*    /!*</div>*!/*/}
+            {/*    /!*<div className='moh-home__right'>*!/*/}
+            {/*    /!*    <Card>*!/*/}
+            {/*    /!*        <Card.Body>*!/*/}
+            {/*    /!*            <h4>Daily Investigations</h4>*!/*/}
+
+            {/*    /!*        </Card.Body>*!/*/}
+            {/*    /!*    </Card>*!/*/}
+            {/*    /!*</div>*!/*/}
+            {/*</div>*/}
         </React.Fragment>
+        //
+        // <Row>
+        //     <Col>
+        //       {" "}
+        //       <h1>MOH Home </h1>
+        //     </Col>
+        //     <Col>
+        //       <Button type="submit" variant="info" onClick={submitHandler}>
+        //         {" "}
+        //         LOG OUT
+        //       </Button>
+        //     </Col>
+        //   </Row>
     );
 };
 export default MohHomeScreen;

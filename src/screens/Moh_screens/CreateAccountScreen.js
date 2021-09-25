@@ -9,7 +9,6 @@ import { register } from '../../actions/userActions';
 import { listFacilities } from '../../actions/facilityActions';
 import {USER_REGISTER_RESET} from "../../constants/userConstants";
 import MOHSideNav from './MOHSideNav';
-import './CreateAccountScreen.css';
 
 const CreateAccountScreen = ({ location, history }) => {
     const [id, setId] = useState('');
@@ -23,7 +22,7 @@ const CreateAccountScreen = ({ location, history }) => {
     const [message, setMessage] = useState(null);
 
     const dispatch = useDispatch();
-
+    //
     const userRegister = useSelector(state => state.userRegister);
     const { loading, error, user } = userRegister;
 
@@ -32,10 +31,14 @@ const CreateAccountScreen = ({ location, history }) => {
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
+    //
+    //const redirect = location.search ? location.search.split('=')[1] : '/';
+    //
+    //console.log(user);
 
 
     useEffect(() => {
-        if (userInfo && userInfo.accType === 'MOH'){
+        if (userInfo.results && userInfo.results.accType === 'MOH'){
             dispatch(listFacilities());
 
             if (user){
@@ -73,7 +76,18 @@ const CreateAccountScreen = ({ location, history }) => {
                     onChange={(e) => setFacility(e)}
                     options={options}
                 />
-
+                {/*<Form.Control*/}
+                {/*    as='select'*/}
+                {/*    value={facilityId}*/}
+                {/*    onChange={(e) => setFacilityId(e.target.value)}*/}
+                {/*>*/}
+                {/*    <option value='' disabled selected hidden>Select Facility</option>*/}
+                {/*    {*/}
+                {/*        facilitiesList.results.map(facility => (*/}
+                {/*            <option value={facility.facility_id}>{facility.name}</option>*/}
+                {/*        ))*/}
+                {/*    }*/}
+                {/*</Form.Control>*/}
             </Form.Group>
         );
 
@@ -186,6 +200,14 @@ const CreateAccountScreen = ({ location, history }) => {
                     </Button>
                 </Form>
 
+                {/*<Row className='py-3'>*/}
+                {/*    <Col>*/}
+                {/*        Have an Account?{' '}*/}
+                {/*        <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>*/}
+                {/*            Login*/}
+                {/*        </Link>*/}
+                {/*    </Col>*/}
+                {/*</Row>*/}
             </FormContainer>
         </React.Fragment>
     );

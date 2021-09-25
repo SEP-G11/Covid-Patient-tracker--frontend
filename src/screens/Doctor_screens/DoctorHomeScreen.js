@@ -38,7 +38,7 @@ const DoctorHomeScreen = ({ location, history }) => {
 
 
   useEffect(() => {
-    dispatch(loadbeds("4"));
+    dispatch(loadbeds("*"));
     if (!userInfo) {
       history.push("/login");
     }

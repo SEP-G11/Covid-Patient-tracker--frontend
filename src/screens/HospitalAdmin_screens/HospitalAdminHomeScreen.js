@@ -43,7 +43,7 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
   console.log(bedInfo);
 
   useEffect(() => {
-    dispatch(loadbeds("4"));
+    dispatch(loadbeds("*"));
     if (!userInfo) {
       history.push("/login");
     }

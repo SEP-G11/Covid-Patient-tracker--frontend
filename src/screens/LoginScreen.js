@@ -33,7 +33,7 @@ const LoginScreen = ({ location, history }) => {
         dispatch(getFacility());
         history.push("/moh/home");
       } else {
-        dispatch(loadbeds("4"));
+        dispatch(loadbeds("*"));
         dispatch(getFacility());
         history.push("/hospitalAdmin/home");
       }

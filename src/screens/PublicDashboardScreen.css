@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+}
+
+body{
+    background-color: #f5f6fa;
+}
+
+.pd {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+.pd__dropdown{
+    background-color: white;
+}
+
+.pd__left {
+    flex: 0.9;
+}
+
+/*.pd__left_left {*/
+/*    width: 458px;*/
+/*    flex: 0.9;*/
+/*    display: inline;*/
+/*    float: left;*/
+/*    margin-right: 5px;*/
+/*}*/
+
+/*.pd__left_right{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    margin-left: 5px;*/
+/*    !*width: 458px;*!*/
+/*}*/
+
+.pd__header > h1{
+    color: #fc3c3c;
+    font-size: 2rem;
+}
+
+.pd__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+
+.pd__stats {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pd__right{
+    display: flex;
+    flex-direction: column;
+    width: 27rem;
+}
+
+/*.pd__right card{*/
+/*    width: 27rem;*/
+/*}*/
+
+/*.pd__right .MuiCardContent-root{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    flex-grow: 1;*/
+/*}*/
+
+.pd__graph{
+    flex-grow: 1;
+}
+
+.pd__graphTitle{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 990px) {
+    .pd {
+        flex-direction: column;
+    }
+    .pd__right{
+        margin-top: 1rem;
+        width: 100%;
+    }
+    /*.pd__left_left{*/
+    /*    width: 100%;*/
+    /*}*/
+}
+
+.pd select{
+    background-color: white;
+}

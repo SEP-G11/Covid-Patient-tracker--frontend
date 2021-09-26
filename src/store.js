@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { userLoginReducer, userRegisterReducer,userForgotPasswordReducer,userResetPasswordReducer,userDetailsReducer } from "./reducers/userReducers";
+import { userLoginReducer, userRegisterReducer,userForgotPasswordReducer,userResetPasswordReducer,userDetailsReducer,userUpdateProfileReducer } from "./reducers/userReducers";
 import {
   patientAdmitReducer,
   patientDischargeReducer,
@@ -42,7 +42,8 @@ const reducer = combineReducers({
   facilitiesBeds:facilitiesBedsReducer,
   userForgotPassword:userForgotPasswordReducer,
   userResetPassword:userResetPasswordReducer,
-  userDetails:userDetailsReducer
+  userDetails:userDetailsReducer,
+  userUpdateProfile:userUpdateProfileReducer
 });
 
 

@@ -36,7 +36,7 @@ const LoginScreen = ({ location, history }) => {
         history.push("/hospitalAdmin/home");
       }
     }
-  }, [history, userInfo]);
+  }, [history, userInfo, dispatch]);
 
   const submitHandler = (e) => {
     e.preventDefault();

@@ -1,0 +1,86 @@
+.cas__hr{
+    color: white;
+    background-color: #007c7a;
+    height: 2px;
+}
+
+.cas__title{
+    font-family: "Arial";
+    text-align: center;
+    color: #007c7a;
+    font-size: 40px;
+    padding-left: -50px;
+}
+
+.cas__formContainer{
+    border: 2px solid #000000;
+}
+
+.cas__formLabel{
+    color: #008A77;
+    font-weight: bold;
+}
+
+.cas__formControl{
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: #007c7a;
+    border-style: solid;
+    color: black;
+    outline: #913163;
+    background-color: white;
+}
+
+.cas__formControl:focus{
+    background-color: white;
+    color: black;
+}
+
+
+/*.react-tel-input .form-control{*/
+/*    width: inherit;*/
+/*}*/
+
+.react-tel-input .selected-flag {
+    border-radius: 20px 0 0 20px;
+}
+
+.react-tel-input .flag-dropdown {
+    border-radius: 20px 0 0 20px;
+}
+
+.cas__selectOption{
+    color: black;
+}
+
+.cas__button {
+    background-color: #007c7a; /* Green */
+    border: 10px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.casButton {
+    background-color: #007c7a;
+    color: white;
+    border: 2px solid #20d1ce;
+    border-radius: 0px;
+    width: 200px;
+    height: 50px;
+    transition: all .4s ease;
+}
+
+.casButton:hover {
+    background-color: white;
+    color: #007c7a;
+    border-radius: 0px;
+    width: 200px;
+    height: 50px;
+}
+

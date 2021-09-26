@@ -109,7 +109,7 @@ const MohHomeScreen = ({ location, history }) => {
 
 
     return (
-        <React.Fragment >
+        <React.Fragment>
             <Row>
                 <Col sm={3}> <MOHSideNav from='home'/> </Col>
             </Row>
@@ -117,7 +117,7 @@ const MohHomeScreen = ({ location, history }) => {
 
                 <Row className='moh-home__sidemargins'>
                     <Col>
-                        <Card>
+                        <Card className='moh-home__header_card'>
                             <Card.Body>
                                 <Row>
                                     <Col>

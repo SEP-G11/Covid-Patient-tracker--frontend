@@ -1,0 +1,69 @@
+.ups__hr{
+    color: white;
+    background-color: #007c7a;
+    height: 2px;
+}
+
+.ups__title{
+    font-family: "Arial";
+    text-align: center;
+    color: #007c7a;
+    font-size: 40px;
+    padding-left: -50px;
+}
+
+.ups__formContainer{
+    border: 2px solid #000000;
+}
+
+.ups__formLabel{
+    color: #008A77;
+    font-weight: bold;
+}
+
+.ups__formControl{
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: #007c7a;
+    border-style: solid;
+    color: black;
+    outline: #913163;
+    background-color: white;
+}
+
+.ups__formControl:focus{
+    background-color: white;
+    color: black;
+}
+
+.ups__button {
+    background-color: #007c7a; /* Green */
+    border: 10px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.upsButton {
+    background-color: #007c7a;
+    color: white;
+    border: 2px solid #20d1ce;
+    border-radius: 0px;
+    width: 200px;
+    height: 50px;
+    transition: all .4s ease;
+}
+
+.upsButton:hover {
+    background-color: white;
+    color: #007c7a;
+    border-radius: 0px;
+    width: 200px;
+    height: 50px;
+}
+

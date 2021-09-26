@@ -5,7 +5,7 @@ import { BsFillHouseDoorFill } from "react-icons/bs";
 import { BsList } from "react-icons/bs";
 import { BsX } from "react-icons/bs";
 import { BsPower } from "react-icons/bs";
-import { HiUserAdd } from "react-icons/hi";
+import { HiUserAdd, HiUserCircle } from "react-icons/hi";
 
 import { ProSidebar } from "react-pro-sidebar";
 import '../../components/sidenavstyle.css';
@@ -65,6 +65,14 @@ const MOHSideNav = ({...props}) => {
                     <NavLink to="/moh/register" className='a' onClick={collapseHandler}>
                         <span class="icon"><HiUserAdd size={18}/></span>
                         <span class="title">Create User</span>
+                    </NavLink>
+                </li>
+                <li className={`list ${props.from === 'ups' && 'active'}`}>
+                    <b></b>
+                    <b></b>
+                    <NavLink to="/profile" className='a' onClick={collapseHandler}>
+                        <span className="icon"><HiUserCircle size={18}/></span>
+                        <span className="title">Profile</span>
                     </NavLink>
                 </li>
                 <li>

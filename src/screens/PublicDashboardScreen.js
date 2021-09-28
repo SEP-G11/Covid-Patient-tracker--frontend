@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import {Form, Card,Image} from 'react-bootstrap';
+import {Form, Card,Image,ButtonGroup,Button,Container,Row,Col} from 'react-bootstrap';
 import InfoBox from '../components/InfoBox';
 import Map from '../components/Map';
 import Table from '../components/Table';
@@ -7,8 +7,10 @@ import LineGraph from '../components/LineGraph';
 import TestsGraph from '../components/TestsGraph';
 import BreakdownGraph from '../components/BreakdownGraph';
 import {sortData,prettyPrintStat,capitalize} from '../utils';
+import Zoom from 'react-reveal/Zoom';
 import 'leaflet/dist/leaflet.css';
 import './PublicDashboardScreen.css';
+import GlobalGraph from  '../components/GlobalGraph';
 
 const PublicDashboard = () => {
     const [districts,setDistricts] = useState([]);
@@ -20,6 +22,7 @@ const PublicDashboard = () => {
     const [mapDistricts, setMapDistricts] = useState([]);
     const [casesType, setCasesType]=useState('cases');
     const [countryInfo,setCountryInfo] = useState({});
+    const [rateType,setRateType] = useState('recoveries');
 
     useEffect(() => {
         fetch('http://localhost:8000/moh/countryStats')
@@ -112,65 +115,91 @@ const PublicDashboard = () => {
                         </Form>
 
                     </div>
-                    <div className='pd__stats'>
-                        <InfoBox
-                            isRed
-                            active={casesType === 'cases'}
-                            onClick={(e) => setCasesType('cases')}
-                            title='Coronavirus Cases'
-                            cases={prettyPrintStat(districtInfo.todayCases)}
-                            total={prettyPrintStat(districtInfo.cases)}
-                            img='/cases.gif'
-                        />
-                        <InfoBox
-                            active={casesType === 'recovered'}
-                            onClick={(e) => setCasesType('recovered')}
-                            title='Recovered'
-                            cases={prettyPrintStat(districtInfo.todayRecovered)}
-                            total={prettyPrintStat(districtInfo.recovered)}
-                            img='/recovered.gif'
-                        />
-                        <InfoBox
-                            isRed
-                            active={casesType === 'deaths'}
-                            onClick={(e) => setCasesType('deaths')}
-                            title='Deaths'
-                            cases={prettyPrintStat(districtInfo.todayDeaths)}
-                            total={prettyPrintStat(districtInfo.deaths)}
-                            img='/deaths.gif'
-                        />
+                    <Zoom>
+                        <div className='pd__stats'>
+                            <InfoBox
+                                isRed
+                                active={casesType === 'cases'}
+                                onClick={(e) => setCasesType('cases')}
+                                title='Coronavirus Cases'
+                                cases={prettyPrintStat(districtInfo.todayCases)}
+                                total={prettyPrintStat(districtInfo.cases)}
+                                img='/cases.gif'
+                            />
+                            <InfoBox
+                                active={casesType === 'recovered'}
+                                onClick={(e) => setCasesType('recovered')}
+                                title='Recovered'
+                                cases={prettyPrintStat(districtInfo.todayRecovered)}
+                                total={prettyPrintStat(districtInfo.recovered)}
+                                img='/recovered.gif'
+                            />
+                            <InfoBox
+                                isRed
+                                active={casesType === 'deaths'}
+                                onClick={(e) => setCasesType('deaths')}
+                                title='Deaths'
+                                cases={prettyPrintStat(districtInfo.todayDeaths)}
+                                total={prettyPrintStat(districtInfo.deaths)}
+                                img='/deaths.gif'
+                            />
+                        </div>
+                    </Zoom>
+                    <Zoom>
+                        <Map casesType={casesType} districts={mapDistricts} center={mapCenter} zoom={mapZoom}/>
+                    </Zoom>
+                </div>
+                <Zoom>
+                    <div className='pd__right '>
+                        <Card>
+                            <Card.Body>
+                                <h4>Live {capitalize(casesType)} by District</h4>
+                                <Table districts={tableData} casesType={casesType}/>
+                                <h4 className='pd__graphTitle'>Islandwide new {casesType}</h4>
+                                <LineGraph className='pd__graph' casesType={casesType} />
+                            </Card.Body>
+                        </Card>
                     </div>
-                    <Map casesType={casesType} districts={mapDistricts} center={mapCenter} zoom={mapZoom}/>
-                </div>
-                <div className='pd__right '>
-                    <Card>
-                        <Card.Body>
-                            <h4>Live {capitalize(casesType)} by District</h4>
-                            <Table districts={tableData} casesType={casesType}/>
-                            <h4 className='pd__graphTitle'>Islandwide new {casesType}</h4>
-                            <LineGraph className='pd__graph' casesType={casesType} />
-                        </Card.Body>
-                    </Card>
-                </div>
+                </Zoom>
             </div>
             <div className='pd'>
-                <div className='pd__left'>
-                    <Card>
-                        <Card.Body>
-                            <h4 className='pd__graphTitle'>Daily Investigations</h4>
-                            <TestsGraph className='pd__graph' />
-                        </Card.Body>
-                    </Card>
-                </div>
-                <div className='pd__right'>
-                    <Card>
-                        <Card.Body>
-                            <h4 className='pd__graphTitle'>Summary of Total Cases </h4>
-                            <BreakdownGraph className='pd__graph' info={countryInfo}/>
-                        </Card.Body>
-                    </Card>
-                </div>
+                <Zoom>
+                    <div className='pd__left'>
+                        <Card>
+                            <Card.Body>
+                                <h4 className='pd__graphTitle'>Daily Investigations</h4>
+                                <TestsGraph className='pd__graph' />
+                            </Card.Body>
+                        </Card>
+                    </div>
+                </Zoom>
+                <Zoom>
+                    <div className='pd__right'>
+                        <Card className='bottomrightheight'>
+                            <Card.Body>
+                                <h4 className='pd__graphTitle'>Summary of Total Cases </h4>
+                                <BreakdownGraph className='pd__graph' info={countryInfo}/>
+                                <hr></hr>
+                                <h4 className='pd__graphTitle'>{rateType} Comparison</h4>
+                                <GlobalGraph countryInfo={countryInfo} rateType={rateType}/>
+                                <ButtonGroup size='sm' className='d-flex'>
+                                    <Button variant='outline-success' onClick={(e) => {e.preventDefault();setRateType('recoveries')}}>Recoveries</Button>
+                                    <Button variant='outline-danger' onClick={(e) => {e.preventDefault();setRateType('fatalities')}}>Fatalities</Button>
+                                </ButtonGroup>
+                            </Card.Body>
+                        </Card>
+                    </div>
+                </Zoom>
             </div>
+            <footer>
+                <Container>
+                    <Row>
+                        <Col className='text-center py-3'>
+                            &copy; 2021 RLC Solutions
+                        </Col>
+                    </Row>
+                </Container>
+            </footer>
         </React.Fragment>
     );
 };

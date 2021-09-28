@@ -116,76 +116,79 @@ const PublicDashboard = () => {
 
                     </div>
                     <Zoom>
-                    <div className='pd__stats'>
-                        <InfoBox
-                            isRed
-                            active={casesType === 'cases'}
-                            onClick={(e) => setCasesType('cases')}
-                            title='Coronavirus Cases'
-                            cases={prettyPrintStat(districtInfo.todayCases)}
-                            total={prettyPrintStat(districtInfo.cases)}
-                            img='/cases.gif'
-                        />
-                        <InfoBox
-                            active={casesType === 'recovered'}
-                            onClick={(e) => setCasesType('recovered')}
-                            title='Recovered'
-                            cases={prettyPrintStat(districtInfo.todayRecovered)}
-                            total={prettyPrintStat(districtInfo.recovered)}
-                            img='/recovered.gif'
-                        />
-                        <InfoBox
-                            isRed
-                            active={casesType === 'deaths'}
-                            onClick={(e) => setCasesType('deaths')}
-                            title='Deaths'
-                            cases={prettyPrintStat(districtInfo.todayDeaths)}
-                            total={prettyPrintStat(districtInfo.deaths)}
-                            img='/deaths.gif'
-                        />
-                    </div></Zoom>
+                        <div className='pd__stats'>
+                            <InfoBox
+                                isRed
+                                active={casesType === 'cases'}
+                                onClick={(e) => setCasesType('cases')}
+                                title='Coronavirus Cases'
+                                cases={prettyPrintStat(districtInfo.todayCases)}
+                                total={prettyPrintStat(districtInfo.cases)}
+                                img='/cases.gif'
+                            />
+                            <InfoBox
+                                active={casesType === 'recovered'}
+                                onClick={(e) => setCasesType('recovered')}
+                                title='Recovered'
+                                cases={prettyPrintStat(districtInfo.todayRecovered)}
+                                total={prettyPrintStat(districtInfo.recovered)}
+                                img='/recovered.gif'
+                            />
+                            <InfoBox
+                                isRed
+                                active={casesType === 'deaths'}
+                                onClick={(e) => setCasesType('deaths')}
+                                title='Deaths'
+                                cases={prettyPrintStat(districtInfo.todayDeaths)}
+                                total={prettyPrintStat(districtInfo.deaths)}
+                                img='/deaths.gif'
+                            />
+                        </div>
+                    </Zoom>
                     <Zoom>
-                        <Map casesType={casesType} districts={mapDistricts} center={mapCenter} zoom={mapZoom}/></Zoom>
+                        <Map casesType={casesType} districts={mapDistricts} center={mapCenter} zoom={mapZoom}/>
+                    </Zoom>
                 </div>
                 <Zoom>
-                <div className='pd__right '>
-                    <Card>
-                        <Card.Body>
-                            <h4>Live {capitalize(casesType)} by District</h4>
-                            <Table districts={tableData} casesType={casesType}/>
-                            <h4 className='pd__graphTitle'>Islandwide new {casesType}</h4>
-                            <LineGraph className='pd__graph' casesType={casesType} />
-                        </Card.Body>
-                    </Card>
-                </div></Zoom>
+                    <div className='pd__right '>
+                        <Card>
+                            <Card.Body>
+                                <h4>Live {capitalize(casesType)} by District</h4>
+                                <Table districts={tableData} casesType={casesType}/>
+                                <h4 className='pd__graphTitle'>Islandwide new {casesType}</h4>
+                                <LineGraph className='pd__graph' casesType={casesType} />
+                            </Card.Body>
+                        </Card>
+                    </div>
+                </Zoom>
             </div>
             <div className='pd'>
                 <Zoom>
-                <div className='pd__left'>
-                    <Card>
-                        <Card.Body>
-                            <h4 className='pd__graphTitle'>Daily Investigations</h4>
-                            <TestsGraph className='pd__graph' />
-                        </Card.Body>
-                    </Card>
-                </div>
+                    <div className='pd__left'>
+                        <Card>
+                            <Card.Body>
+                                <h4 className='pd__graphTitle'>Daily Investigations</h4>
+                                <TestsGraph className='pd__graph' />
+                            </Card.Body>
+                        </Card>
+                    </div>
                 </Zoom>
                 <Zoom>
-                <div className='pd__right'>
-                    <Card className='bottomrightheight'>
-                        <Card.Body>
-                            <h4 className='pd__graphTitle'>Summary of Total Cases </h4>
-                            <BreakdownGraph className='pd__graph' info={countryInfo}/>
-                            <hr></hr>
-                            <h4 className='pd__graphTitle'>{rateType} Comparison</h4>
-                            <GlobalGraph countryInfo={countryInfo} rateType={rateType}/>
-                            <ButtonGroup size='sm' className='d-flex'>
-                                <Button variant='outline-success' onClick={(e) => {e.preventDefault();setRateType('recoveries')}}>Recoveries</Button>
-                                <Button variant='outline-danger' onClick={(e) => {e.preventDefault();setRateType('fatalities')}}>Fatalities</Button>
-                            </ButtonGroup>
-                        </Card.Body>
-                    </Card>
-                </div>
+                    <div className='pd__right'>
+                        <Card className='bottomrightheight'>
+                            <Card.Body>
+                                <h4 className='pd__graphTitle'>Summary of Total Cases </h4>
+                                <BreakdownGraph className='pd__graph' info={countryInfo}/>
+                                <hr></hr>
+                                <h4 className='pd__graphTitle'>{rateType} Comparison</h4>
+                                <GlobalGraph countryInfo={countryInfo} rateType={rateType}/>
+                                <ButtonGroup size='sm' className='d-flex'>
+                                    <Button variant='outline-success' onClick={(e) => {e.preventDefault();setRateType('recoveries')}}>Recoveries</Button>
+                                    <Button variant='outline-danger' onClick={(e) => {e.preventDefault();setRateType('fatalities')}}>Fatalities</Button>
+                                </ButtonGroup>
+                            </Card.Body>
+                        </Card>
+                    </div>
                 </Zoom>
             </div>
             <footer>

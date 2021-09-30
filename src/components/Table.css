@@ -1,4 +1,4 @@
-.table{
+.ttable{
     margin-top: 20px;
     overflow: scroll;
     height: 400px;
@@ -7,15 +7,15 @@
 
 }
 
-.table tr{
+.ttable tr{
     display: flex;
     justify-content: space-between;
 }
 
-.table td{
+.ttable td{
     padding: 0.5rem;
 }
 
-.table tr:nth-of-type(odd){
+.ttable tr:nth-of-type(odd){
     background-color: #f3f2f8;
 }

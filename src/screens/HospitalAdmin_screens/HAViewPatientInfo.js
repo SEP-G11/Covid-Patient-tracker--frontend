@@ -49,41 +49,36 @@ const HAViewPatientInfo = ({ match , history }) =>{
                     <Message variant='danger'>{error}</Message>
                 ) : (
                 <Col md={12} align='center'>
-                    <ListGroup variant='flush'>
-                        <ListGroup.Item className='listGroup'>
-                            <p class="text-dark">
-                                <strong>Id: </strong> {patient.patient_id}
-                            </p>
-                            <p class="text-dark">
-                                <strong>Name: </strong> {patient.name}
-                            </p>
-                            <p class="text-dark">
-                                <strong>Age: </strong> {patient.age}
-                            </p>
-                            <p class="text-dark">
-                                <strong>Birth Day: </strong> {patient.bday}
-                            </p>
-                            <p class="text-dark">
-                                <strong>Gender: </strong> {patient.gender}
-                            </p>
-                            <p class="text-dark">
-                                <strong>Blood Type: </strong> {patient.blood_type}
-                            </p>
-                            <p class="text-dark">
-                                <strong>Contact No: </strong> {patient.contact_no}
-                            </p>
-                            <p class="text-dark">
-                                <strong>Address: </strong> {patient.address}
-                            </p>
-                            <p class="text-dark">
-                                <strong>District: </strong> {patient.district}
-                            </p>
-                            <p class="text-dark">
-                                <strong>Vaccination Details: </strong> {patient.is_Vaccinated}
-                            </p>
-                        </ListGroup.Item>
-                    </ListGroup>
-
+                    <p class="text-dark">
+                        <strong>Id: </strong> {patient.patient_id}
+                    </p>
+                    <p class="text-dark">
+                        <strong>Name: </strong> {patient.name}
+                    </p>
+                    <p class="text-dark">
+                        <strong>Age: </strong> {patient.age}
+                    </p>
+                    <p class="text-dark">
+                        <strong>Birth Day: </strong> {patient.bday}
+                    </p>
+                    <p class="text-dark">
+                        <strong>Gender: </strong> {patient.gender}
+                    </p>
+                    <p class="text-dark">
+                        <strong>Blood Type: </strong> {patient.blood_type}
+                    </p>
+                    <p class="text-dark">
+                        <strong>Contact No: </strong> {patient.contact_no}
+                    </p>
+                    <p class="text-dark">
+                        <strong>Address: </strong> {patient.address}
+                    </p>
+                    <p class="text-dark">
+                        <strong>District: </strong> {patient.district}
+                    </p>
+                    <p class="text-dark">
+                        <strong>Vaccination Details: </strong> {patient.is_Vaccinated}
+                    </p>
                     <Row>
                         <Col sm={6} align="left">
                             <LinkContainer to={'/hospitalAdmin/patientList'}>

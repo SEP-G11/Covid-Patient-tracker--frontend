@@ -4,7 +4,7 @@ import './Table.css';
 
 const Table = ({districts,casesType}) => {
     return (
-        <div className='table'>
+        <div className='ttable'>
             {districts.map((district) => (
                 <tr>
                     <td>{district.district}</td>

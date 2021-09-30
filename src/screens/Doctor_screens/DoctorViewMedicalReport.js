@@ -97,37 +97,33 @@ const DoctorViewMedicalReport = ({ match , history }) => {
                 ) : (
                     <Col md={12} align='center'>
                     <Col md={6} align='center'>
-                        <ListGroup variant='flush'>
-                            <ListGroup.Item className='listGroup-mr'>
-                                <p class="text-dark">
-                                    <strong>Report Id: </strong> {report.report_id}
-                                </p>
-                                <p class="text-dark">
-                                    <strong>Patient Id: </strong> {report.patient_id}
-                                </p>
-                                <p class="text-dark">
-                                    <strong>Bed No: </strong> {report.bed_no}
-                                </p>
-                                <p class="text-dark">
-                                    <strong>Ward No: </strong> {report.ward}
-                                </p>
-                                <p class="text-dark">
-                                    <strong>Symptoms: </strong> {report.symptoms}
-                                </p>
-                                <p class="text-dark">
-                                    <strong>Status: </strong> {report.status}
-                                </p>
-                                <p class="text-dark">
-                                    <strong>Medical History: </strong> {report.description}
-                                </p>
-                                <p class="text-dark">
-                                    <strong>Admitted At: </strong> {getdate(report.admitted_at)}
-                                </p>
-                                <p class="text-dark">
-                                    <strong>Discharged At: </strong> {getdate(report.discharged_at)}
-                                </p>
-                            </ListGroup.Item>
-                        </ListGroup>
+                        <p class="text-dark">
+                            <strong>Report Id: </strong> {report.report_id}
+                        </p>
+                        <p class="text-dark">
+                            <strong>Patient Id: </strong> {report.patient_id}
+                        </p>
+                        <p class="text-dark">
+                            <strong>Bed No: </strong> {report.bed_no}
+                        </p>
+                        <p class="text-dark">
+                            <strong>Ward No: </strong> {report.ward}
+                        </p>
+                        <p class="text-dark">
+                            <strong>Symptoms: </strong> {report.symptoms}
+                        </p>
+                        <p class="text-dark">
+                            <strong>Status: </strong> {report.status}
+                        </p>
+                        <p class="text-dark">
+                            <strong>Medical History: </strong> {report.description}
+                        </p>
+                        <p class="text-dark">
+                            <strong>Admitted At: </strong> {getdate(report.admitted_at)}
+                        </p>
+                        <p class="text-dark">
+                            <strong>Discharged At: </strong> {getdate(report.discharged_at)}
+                        </p>
                     </Col>
                     {loading_ ? (
                     <Loader />

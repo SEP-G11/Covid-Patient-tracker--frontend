@@ -183,8 +183,8 @@ const PublicDashboard = () => {
                                 <h4 className='pd__graphTitle'>{rateType} Comparison</h4>
                                 <GlobalGraph countryInfo={countryInfo} rateType={rateType}/>
                                 <ButtonGroup size='sm' className='d-flex'>
-                                    <Button variant='outline-success' onClick={(e) => {e.preventDefault();setRateType('recoveries')}}>Recoveries</Button>
-                                    <Button variant='outline-danger' onClick={(e) => {e.preventDefault();setRateType('fatalities')}}>Fatalities</Button>
+                                    <Button variant='outline-success' onClick={(e) => {e.preventDefault();setRateType('recoveries')}} active={rateType==='recoveries'}>Recoveries</Button>
+                                    <Button variant='outline-danger' onClick={(e) => {e.preventDefault();setRateType('fatalities')}} active={rateType==='fatalities'}>Fatalities</Button>
                                 </ButtonGroup>
                             </Card.Body>
                         </Card>

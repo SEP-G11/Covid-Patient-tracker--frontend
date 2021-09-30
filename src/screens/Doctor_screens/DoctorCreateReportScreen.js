@@ -232,7 +232,7 @@ const DoctorCreateReportScreen = ({ location, history }) => {
                             <Row>
                                 <Col sm={3}></Col>
                                 <Col>
-                                    <button class="button button1" type="submit" >ADMIT</button>
+                                    <button class="button button1" type="submit" >CREATE</button>
                                 </Col>
                             </Row>
                         </Form>

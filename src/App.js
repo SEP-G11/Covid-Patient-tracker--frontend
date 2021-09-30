@@ -44,20 +44,20 @@ const App = () => {
         <Route path="/" component={HomeScreen} exact />
         <Route path="/hospitalAdmin/home" component={HospitalAdminHomeScreen} />
         <Route path="/hospitalAdmin/admit" component={HAAdmitPatientScreen} />
-        <Route path="/hospitalAdmin/discharge" component={HADischargePatientScreen} />
-        <Route path="/hospitalAdmin/transfer" component={HATransferPatientScreen} />
+        <Route path="/hospitalAdmin/discharge/:id" component={HADischargePatientScreen} />
+        <Route path="/hospitalAdmin/transfer/:id" component={HATransferPatientScreen} />
         <Route path="/hospitalAdmin/search" component={HASearchBedsScreen} />
-        <Route path="/hospitalAdmin/enter" component={HAEnterResultScreen} />
+        <Route path="/hospitalAdmin/enter/:id" component={HAEnterResultScreen} />
         <Route path="/hospitalAdmin/patientList" component={HAViewPatientList} />
         <Route path='/hospitalAdmin/viewPatientInfo/:id' component={HAViewPatientInfo} />
         <Route path='/hospitalAdmin/editPatientInfo/:id' component={HAEditPatientInfo} />
         
         <Route path="/doctor/home" component={DoctorHomeScreen} />
         <Route path="/doctor/admit" component={DoctorAdmitPatientScreen} />
-        <Route path="/doctor/discharge" component={DoctorDischargePatientScreen} />
-        <Route path="/doctor/transfer" component={DoctorTransferPatientScreen} />
+        <Route path="/doctor/discharge/:id" component={DoctorDischargePatientScreen} />
+        <Route path="/doctor/transfer/:id" component={DoctorTransferPatientScreen} />
         <Route path="/doctor/search" component={DoctorSearchBedsScreen} />
-        <Route path="/doctor/enter" component={DoctorEnterResultScreen} />
+        <Route path="/doctor/enter/:id" component={DoctorEnterResultScreen} />
         <Route path="/doctor/createReport" component={DoctorCreateReportScreen} />
         <Route path="/doctor/patientList" component={DoctorViewPatientList} />
         <Route path='/doctor/viewPatientInfo/:id' component={DoctorViewPatientInfo} />

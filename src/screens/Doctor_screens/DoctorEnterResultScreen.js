@@ -7,15 +7,15 @@ import FormContainer from "../../components/FormContainer";
 import { Enter } from "../../actions/testActions";
 import DoctorSideNav from "./DoctorSideNav";
 
-const DoctorEnterResultScreen = ({ location, history }) => {
+const DoctorEnterResultScreen = ({match, location, history }) => {
 
 
     const [RATresult, setRATresult] = useState("");    
     const [date, setDate] = useState("");
     const [testType, setTestType] = useState("");
-    const [id, setId] = useState("");
+    // const [id, setId] = useState("");
 
-
+    const [id, setId] = useState(match.params.id ==":id" ? (""):(match.params.id));
     
     const testId = id + Date.parse(date) + "T";
 

@@ -93,7 +93,7 @@ const DoctorSideNav = ({...props}) => {
                 <li className={`list ${props.from==='discharge' && 'active'}`}>
                     <b></b>
                     <b></b>
-                    <NavLink to="/doctor/discharge" className='a' onClick={collapseHandler}>
+                    <NavLink to="/doctor/discharge/:id" className='a' onClick={collapseHandler}>
                         <span class="icon"><HiUserRemove size={18}/></span>
                         <span class="title">Discharge</span>
                     </NavLink>
@@ -101,7 +101,7 @@ const DoctorSideNav = ({...props}) => {
                 <li className={`list ${props.from==='transfer' && 'active'}`}>
                     <b></b>
                     <b></b>
-                    <NavLink to="/doctor/transfer" className='a' onClick={collapseHandler}>
+                    <NavLink to="/doctor/transfer/:id" className='a' onClick={collapseHandler}>
                         <span class="icon"><BiTransfer size={18}/></span>
                         <span class="title">Transfer</span>
                     </NavLink>
@@ -117,7 +117,7 @@ const DoctorSideNav = ({...props}) => {
                 <li className={`list ${props.from==='enter' && 'active'}`}>
                     <b></b>
                     <b></b>
-                    <NavLink to="/doctor/enter" className='a' onClick={collapseHandler}>
+                    <NavLink to="/doctor/enter/:id" className='a' onClick={collapseHandler}>
                         <span class="icon"><CgEnter size={18}/></span>
                         <span class="title">Enter Test Results</span>
                     </NavLink>

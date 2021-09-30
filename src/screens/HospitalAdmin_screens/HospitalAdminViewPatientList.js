@@ -80,6 +80,9 @@ const HospitalAdminViewPatientList = () => {
                     <th className="text-center table-head">Patient Id</th>
                     <th className="text-center table-head">Name</th>
                     <th className="text-center table-head">Patient Information</th>
+                    <th className="text-center table-head">Discharge</th>
+                                    <th className="text-center table-head">Transfer</th>
+                                    <th className="text-center table-head"> Enter Result</th>
                 </tr>
                 </thead>
                 <tbody className="text-dark">
@@ -91,6 +94,27 @@ const HospitalAdminViewPatientList = () => {
                                 <LinkContainer to={`/hospitalAdmin/viewPatientInfo/${patient.patient_id}`}>
                                     <Button className='btn-sm btn-default'>
                                         Patient Info
+                                    </Button>
+                                </LinkContainer>
+                            </td>
+                            <td className="text-center">
+                                <LinkContainer to={`/hospitalAdmin/discharge/${patient.patient_id}`}>
+                                    <Button className='btn-sm btn-default'>
+                                        Discharge
+                                    </Button>
+                                </LinkContainer>
+                            </td>
+                            <td className="text-center">
+                                <LinkContainer to={`/hospitalAdmin/transfer/${patient.patient_id}`}>
+                                    <Button className='btn-sm btn-default'>
+                                        Transfer
+                                    </Button>
+                                </LinkContainer>
+                            </td>
+                            <td className="text-center">
+                                <LinkContainer to={`/hospitalAdmin/enter/${patient.patient_id}`}>
+                                    <Button className='btn-sm btn-default'>
+                                    Enter Result
                                     </Button>
                                 </LinkContainer>
                             </td>

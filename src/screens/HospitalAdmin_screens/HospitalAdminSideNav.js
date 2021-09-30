@@ -84,7 +84,7 @@ const HospitalAdminSideNav = ({...props})=> {
                 <li className={`list ${props.from==='discharge' && 'active'}`}>
                     <b></b>
                     <b></b>
-                    <NavLink to="/hospitalAdmin/discharge" className='a' onClick={collapseHandler}>
+                    <NavLink to="/hospitalAdmin/discharge/:id" className='a' onClick={collapseHandler}>
                         <span class="icon"><HiUserRemove size={18}/></span>
                         <span class="title">Discharge</span>
                     </NavLink>
@@ -92,7 +92,7 @@ const HospitalAdminSideNav = ({...props})=> {
                 <li className={`list ${props.from==='transfer' && 'active'}`}>
                     <b></b>
                     <b></b>
-                    <NavLink to="/hospitalAdmin/transfer" className='a' onClick={collapseHandler}>
+                    <NavLink to="/hospitalAdmin/transfer/:id" className='a' onClick={collapseHandler}>
                         <span class="icon"><BiTransfer size={18}/></span>
                         <span class="title">Transfer</span>
                     </NavLink>
@@ -108,7 +108,7 @@ const HospitalAdminSideNav = ({...props})=> {
                 <li className={`list ${props.from==='enter' && 'active'}`}>
                     <b></b>
                     <b></b>
-                    <NavLink to="/hospitalAdmin/enter" className='a' onClick={collapseHandler}>
+                    <NavLink to="/hospitalAdmin/enter/:id" className='a' onClick={collapseHandler}>
                         <span class="icon"><CgEnter size={18}/></span>
                         <span class="title">Enter Test Results</span>
                     </NavLink>

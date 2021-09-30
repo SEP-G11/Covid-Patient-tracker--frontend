@@ -110,6 +110,10 @@ const DoctorViewPatientList = ( { history }) => {
                                     <th className="text-center table-head">Name</th>
                                     <th className="text-center table-head">Patient Information</th>
                                     <th className="text-center table-head">Medical Report</th>
+                                    <th className="text-center table-head">Discharge</th>
+                                    <th className="text-center table-head">Transfer</th>
+                                    <th className="text-center table-head"> Enter Result</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody className="text-dark">
@@ -131,6 +135,28 @@ const DoctorViewPatientList = ( { history }) => {
                                                 </Button>
                                             </LinkContainer>
                                         </td>
+                                        <td className="text-center">
+                                            <LinkContainer to={`/doctor/discharge/${patient.patient_id}`}>
+                                                <Button className='btn-sm button button5' >
+                                                    Discharge
+                                                </Button>
+                                            </LinkContainer>
+                                        </td>
+                                        <td className="text-center">
+                                            <LinkContainer to={`/doctor/transfer/${patient.patient_id}`}>
+                                                <Button className='btn-sm button button5' >
+                                                Transfer
+                                                </Button>
+                                            </LinkContainer>
+                                        </td>
+                                        <td className="text-center">
+                                            <LinkContainer to={`/doctor/enter/${patient.patient_id}`}>
+                                                <Button className='btn-sm button button5' >
+                                                Enter Result
+                                                </Button>
+                                            </LinkContainer>
+                                        </td>
+                                     
                                     </tr>
                                 ))}
                             </tbody>

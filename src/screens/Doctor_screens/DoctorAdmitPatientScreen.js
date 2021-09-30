@@ -17,7 +17,7 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
   const address ="";
   const [contactnumber, setContactnumber] = useState("");
   const bloodtype ="";
-  const district ="";
+  const [district, setDistrict] = useState("");
   const isvaccinated="";
   const [RATresult, setRATresult] = useState("");
  
@@ -149,6 +149,40 @@ useEffect(() => {
 
                     ></Form.Control> </Form.Group>
                 </Col>        <Col>
+
+                <Form.Group controlId="district">
+                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>District</Form.Label>
+                    <br />
+                    <select className="form-control" value={district} name="district" style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setDistrict(e.target.value)}>
+                      <option >SELECT</option>
+                      <option value="Ampara">Ampara</option>
+                      <option value="Anuradhapura">Anuradhapura</option>
+                      <option value="Badulla">Badulla</option>
+                      <option value="Batticaloa">Batticaloa</option>
+                      <option value="Colombo">Colombo</option>
+                      <option value="Galle">Galle</option>
+                      <option value="Gampaha">Gampaha</option>
+                      <option value="Hambantota">Hambantota</option>
+                      <option value="Jaffna">Jaffna</option>
+                      <option value="Kalutara">Kalutara</option>
+                      <option value="Kandy">Kandy</option>
+                      <option value="Kegalle">Kegalle</option>
+                      <option value="Kilinochchi">Kilinochchi</option>
+                      <option value="Kurunegala">Kurunegala</option>
+                      <option value="Mannar">Mannar</option>
+                      <option value="Matale">Matale</option>
+                      <option value="Matara">Matara</option>
+                      <option value="Monaragala">Monaragala</option>
+                      <option value="Mullaitivu">Mullaitivu</option>
+                      <option value="NuwaraEliya">NuwaraEliya</option>
+                      <option value="Polonnaruwa">Polonnaruwa</option>
+                      <option value="Puttalam">Puttalam</option>
+                      <option value="Ratnapura">Ratnapura</option>
+                      <option value="Trincomalee">Trincomalee</option>
+                      <option value="Vavuniya">Vavuniya</option>
+                     
+                    </select>
+                  </Form.Group>
                  </Col>
               </Row>
 

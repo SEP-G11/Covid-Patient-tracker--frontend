@@ -7,8 +7,10 @@ import FormContainer from "../../components/FormContainer";
 import { discharge } from "../../actions/patientActions";
 import HospitalAdminSideNav from "./HospitalAdminSideNav";
 
-const HADischargePatientScreen = ({ location, history }) => {
-  const [patient_id, setId] = useState("");
+const HADischargePatientScreen = ({match, location, history }) => {
+  
+  const [patient_id, setId] = useState(match.params.id ==":id" ? (""):(match.params.id));
+ 
   const [discharged_at, setDischargeDateTime] = useState("");
   const description = ""
   const [status, setStatus] = useState("");
@@ -24,6 +26,7 @@ const HADischargePatientScreen = ({ location, history }) => {
 
 
   useEffect(() => {
+
     if (!userInfo) {
       history.push("/login");
     } else if (response) {

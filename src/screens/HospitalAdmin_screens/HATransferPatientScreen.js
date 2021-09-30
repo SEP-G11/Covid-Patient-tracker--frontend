@@ -7,9 +7,11 @@ import FormContainer from "../../components/FormContainer";
 import { admit, transfer } from "../../actions/patientActions";
 import HospitalAdminSideNav from "./HospitalAdminSideNav";
 
-const HATransferPatientScreen = ({ location, history }) => {
+const HATransferPatientScreen = ({match, location, history }) => {
 
-  const [patient_id, setId] = useState("");
+
+  const [patient_id, setId] = useState(match.params.id ==":id" ? (""):(match.params.id));
+ 
   const [origin_bed_id, setOriginBedId] = useState("");
   const [dest_bed_id, setDestinationBedId] = useState("");
   const [transfer_date, setTransferDateTime] = useState("");

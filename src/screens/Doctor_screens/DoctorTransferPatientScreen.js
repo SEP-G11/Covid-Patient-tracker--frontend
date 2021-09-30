@@ -8,10 +8,10 @@ import {  transfer } from "../../actions/patientActions";
 import DoctorSideNav from "./DoctorSideNav";
 
 
-const DoctorTransferPatientScreen = ({ location, history }) => {
+const DoctorTransferPatientScreen = ({ match,location, history }) => {
 
-  
-  const [patient_id, setId] = useState("");
+  const [patient_id, setId] = useState(match.params.id ==":id" ? (""):(match.params.id));
+  // const [patient_id, setId] = useState("");
   const [origin_bed_id, setOriginBedId] = useState("");
   const [dest_bed_id, setDestinationBedId] = useState("");
   const [transfer_date, setTransferDateTime] = useState("");

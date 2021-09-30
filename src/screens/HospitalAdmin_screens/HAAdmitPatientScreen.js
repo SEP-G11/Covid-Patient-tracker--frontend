@@ -62,6 +62,7 @@ const HAAdmitPatientScreen = ({ history }) => {
 
   
   useEffect(() => {
+    
   
     if (!userInfo) {
       history.push("/login");
@@ -221,9 +222,9 @@ const HAAdmitPatientScreen = ({ history }) => {
                         value="Female"
                         name="formHorizontalRadios"
                         id="formHorizontalRadios1"
-                        style={{ marginLeft: "20px" }}
+                        
                         checked={"Female" === gender}
-                        style={{ color: "#008A77", fontWeight: "bold" }}
+                        style={{marginLeft: "20px", color: "#008A77", fontWeight: "bold" }}
                         onChange={(e) => setGender(e.target.value)}
                       />
                     </Row>

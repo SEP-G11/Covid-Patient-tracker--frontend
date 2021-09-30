@@ -6,11 +6,14 @@ import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
 import { discharge } from "../../actions/patientActions";
 import DoctorSideNav from "./DoctorSideNav";
+ 
+
+const DoctorDischargePatientScreen = ({ match,location, history }) => {
 
 
-const DoctorDischargePatientScreen = ({ location, history }) => {
+ 
 
-  const [patient_id, setId] = useState("");
+  const [patient_id, setId] = useState(match.params.id ==":id" ? (""):(match.params.id));
   const [discharged_at, setDischargeDateTime] = useState("");
   const [description, setMedicalHistory] = useState("");
   const [status, setStatus] = useState("");
@@ -34,7 +37,7 @@ const DoctorDischargePatientScreen = ({ location, history }) => {
       setDischargeDateTime("");
       setMedicalHistory("");
     }
-  }, [history, response, userInfo]);
+  }, [match,history, response, userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();

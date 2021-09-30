@@ -7,15 +7,14 @@ import FormContainer from "../../components/FormContainer";
 import { Enter } from "../../actions/testActions";
 import HospitalAdminSideNav from "./HospitalAdminSideNav";
 
-const HAEnterResultScreen = ({ location, history }) => {
+const HAEnterResultScreen = ({match, location, history }) => {
 
 
     const [RATresult, setRATresult] = useState("");    
     const [date, setDate] = useState("");
     const [testType, setTestType] = useState("");
-    const [id, setId] = useState("");
-
-
+    const [id, setId] = useState(match.params.id ==":id" ? (""):(match.params.id));
+    
     
     const testId = id + Date.parse(date) + "T";
 
@@ -30,6 +29,7 @@ const HAEnterResultScreen = ({ location, history }) => {
 
 
     useEffect(() => {
+        
         if (!userInfo) {
             history.push("/login");
         } else if (response) {

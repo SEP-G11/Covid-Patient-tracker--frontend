@@ -131,7 +131,7 @@ const DoctorViewMedicalReport = ({ match , history }) => {
                         <Message variant='danger'>{error_}</Message>
                     ) : (
                     <Col md={12} align='center'>
-                        <h5 className="text-dark">TEST RESULTS</h5>
+                        <h5 className="text-dark" style={{paddingTop: "15px"}}>TEST RESULTS</h5>
                         <Table id="myTable" className='table-sm'>
                             <thead>
                                 <tr>

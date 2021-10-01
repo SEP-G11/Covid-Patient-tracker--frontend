@@ -16,38 +16,20 @@ h2 {
   padding: 0.5rem 0;
 }
 
-.rating span {
-  margin: 0.1rem;
-}
+/*#myInput {*/
+/*  font-size: 13px;*/
+/*  padding: 6px 13px 6px 13px;*/
+/*  border: 1px solid #ddd;*/
+/*}*/
 
-/* carousel */
-.carousel-item-next,
-.carousel-item-prev,
-.carousel-item.active {
-  display: flex;
-}
-.carousel-caption {
-  position: absolute;
-  top: 0;
-}
+/*.table-head {*/
+/*  font-size: 12px;*/
+/*}*/
 
-.carousel-caption h2 {
-  color: #fff;
-}
+/*.list-group {*/
+/*  margin-bottom: 20px;*/
+/*}*/
 
-.carousel img {
-  height: 300px;
-  padding: 30px;
-  margin: 40px;
-  border-radius: 50%;
-  margin-left: auto;
-  margin-right: auto;
-}
-.carousel a {
-  margin: 0 auto;
-}
-@media (max-width: 900px) {
-  .carousel-caption h2 {
-    font-size: 2.5vw;
-  }
-}
+/*#myTable {*/
+/*  margin-bottom: 30px;*/
+/*}*/

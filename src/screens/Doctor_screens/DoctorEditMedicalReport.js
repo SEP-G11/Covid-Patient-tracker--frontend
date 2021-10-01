@@ -13,8 +13,6 @@ import DoctorSideNav from "./DoctorSideNav";
 const DoctorEditMedicalReport = ({ match, history }) => {
     const patientId = match.params.id 
 
-    const [bed_no, setBed_no] = useState('')
-    const [ward, setWard] = useState('')
     const [status, setStatus] = useState('')
     const [symptoms, setSymptoms] = useState('')
     const [description, setDescription] = useState('')
@@ -47,8 +45,6 @@ const DoctorEditMedicalReport = ({ match, history }) => {
           if (report.patient_id !== patientId) {
             dispatch(getPatientReportDetails(patientId))
           } else {
-            setBed_no(report.bed_no)
-            setWard(report.ward)
             setSymptoms(report.symptoms)
             setAdmittedAt(report.admitted_at)
             setDischargedAt(report.discharged_at)
@@ -61,7 +57,7 @@ const DoctorEditMedicalReport = ({ match, history }) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(updatePatientReport({ report_id:report.report_id , patient_id:patientId, bed_no,ward,symptoms, admitted_at, discharged_at, description, status }))
+        dispatch(updatePatientReport({ report_id:report.report_id , patient_id:patientId, symptoms, admitted_at, discharged_at, description, status }))
     }
 
     return (
@@ -83,44 +79,22 @@ const DoctorEditMedicalReport = ({ match, history }) => {
 
               <Row>
                 {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
-                <Col sm={12}><h6 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "15px", paddingLeft: "-50px", marginBottom: "20px" }}>Patient Id {patientId}</h6> </Col>
+                <Col sm={12}><h6 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "15px", paddingLeft: "-50px", marginBottom: "20px" }}>Patient Id: {patientId}</h6> </Col>
               </Row>
               <Row>
                 {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
-                <Col sm={12}><h6 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "15px", paddingLeft: "-50px", marginBottom: "20px" }}>Report Id {report.report_id}</h6> </Col>
+                <Col sm={12}><h6 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "15px", paddingLeft: "-50px", marginBottom: "20px" }}>Report Id: {report.report_id}</h6> </Col>
+              </Row>
+              <Row>
+                {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
+                <Col sm={6}><h6 style={{ fontFamily: "arial", textAlign: "right", color: "#007c7a", fontSize: "13px", paddingLeft: "-50px", marginBottom: "20px" }}>Ward: {report.ward}</h6> </Col>
+                <Col sm={6}><h6 style={{ fontFamily: "arial", textAlign: "left", color: "#007c7a", fontSize: "13px", paddingLeft: "-50px", marginBottom: "20px" }}>Bed No: {report.bed_no}</h6> </Col>
               </Row>
 
               <FormContainer style={{ border: '2px solid #000000' }}>
                 {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
                 {loadingUpdate && <Loader />}
                 <Form onSubmit={submitHandler}>
-                  <Row>
-                    <Col>
-                      <Form.Group controlId="bedno">
-                        <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Bed No</Form.Label>
-                        <Form.Control
-                          type="text"
-                          placeholder="Enter bed no."
-                          value={bed_no}
-                          onChange={(e) => setBed_no(e.target.value)}
-                          style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col>
-                      <Form.Group controlId="ward">
-                        <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Ward</Form.Label>
-                        <Form.Control
-                          type="text"
-                          placeholder="Enter ward"
-                          value={ward}
-                          onChange={(e) => setWard(e.target.value)}
-                          style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-
                   <Row>
                     <Col>
                       <Form.Group controlId="status">

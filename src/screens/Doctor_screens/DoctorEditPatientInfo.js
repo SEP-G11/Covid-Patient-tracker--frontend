@@ -87,7 +87,7 @@ const DoctorEditPatientInfo = ({ match, history }) => {
 
               <Row>
                 {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
-                <Col sm={12}><h6 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "15px", paddingLeft: "-50px",marginBottom: "20px" }}>Patient Id {patientId}</h6> </Col>
+                <Col sm={12}><h6 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "15px", paddingLeft: "-50px",marginBottom: "20px" }}>Patient Id: {patientId}</h6> </Col>
               </Row>
 
               <FormContainer style={{ border: '2px solid #000000' }}>

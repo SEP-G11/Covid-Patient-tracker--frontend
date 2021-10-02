@@ -40,7 +40,7 @@ const CreateAccountScreen = ({ location, history }) => {
 
 
     useEffect(() => {
-        if (userInfo.results && userInfo.results.accType === 'MOH'){
+        if (userInfo && userInfo.results.accType === 'MOH'){
             dispatch(listFacilities());
 
             if (user){

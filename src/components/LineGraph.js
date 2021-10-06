@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import numeral from 'numeral';
+import {API_URL} from '../config';
 
 const options = {
     legend: {
@@ -67,7 +68,7 @@ const LineGraph = ({casesType='cases', ...props}) => {
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
-    let url = `http://localhost:8000/moh/`;
+    let url = `${API_URL}/moh/`;
     if (props.facilities){
         url+=`facilities/historical?lastdays=30&type=${casesType}`
     }

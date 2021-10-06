@@ -1,6 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import {Form, Button, Row, Col, Card, Container, Image} from "react-bootstrap";
-import { login, logout } from "../../actions/userActions";
+import { Row, Col, Card, Container, Image} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Select from 'react-select';
 import { listFacilities,listFacilitiesActive ,listFacilitiesRecovered,listFacilitiesDeaths,listFacilitiesBeds} from '../../actions/facilityActions';
@@ -9,12 +8,11 @@ import InfoBox from '../../components/InfoBox';
 import BedsGraph from '../../components/BedsGraph';
 import {prettyPrintStat} from '../../utils';
 import MOHSideNav from './MOHSideNav';
-import {capitalize} from "../../utils";
 import LineGraph from "../../components/LineGraph";
 import {FaHospitalAlt,FaPhoneAlt,FaSearch} from "react-icons/fa";
 import {MdLocationOn} from "react-icons/md";
 
-const MohHomeScreen = ({ location, history }) => {
+const MohHomeScreen = ({ history }) => {
     const dispatch = useDispatch();
 
     const [facility,setFacility] = useState({});

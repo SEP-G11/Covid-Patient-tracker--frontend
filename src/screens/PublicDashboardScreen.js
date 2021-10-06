@@ -6,11 +6,12 @@ import Table from '../components/Table';
 import LineGraph from '../components/LineGraph';
 import TestsGraph from '../components/TestsGraph';
 import BreakdownGraph from '../components/BreakdownGraph';
+import GlobalGraph from  '../components/GlobalGraph';
 import {sortData,prettyPrintStat,capitalize} from '../utils';
 import Zoom from 'react-reveal/Zoom';
 import 'leaflet/dist/leaflet.css';
 import './PublicDashboardScreen.css';
-import GlobalGraph from  '../components/GlobalGraph';
+import {API_URL} from '../config';
 
 const PublicDashboard = () => {
     const [districts,setDistricts] = useState([]);
@@ -25,7 +26,7 @@ const PublicDashboard = () => {
     const [rateType,setRateType] = useState('recoveries');
 
     useEffect(() => {
-        fetch('http://localhost:8000/moh/countryStats')
+        fetch(`${API_URL}/moh/countryStats`)
             .then((response) => response.json())
             .then(data => {
                 setDistrictInfo(data.results);
@@ -35,7 +36,7 @@ const PublicDashboard = () => {
 
     useEffect(() => {
         const getDistrictsData = async () => {
-            await fetch('http://localhost:8000/moh/districtStats')
+            await fetch(`${API_URL}/moh/districtStats`)
                 .then((response) => response.json())
                 .then((data) => {
                     //console.log(data.results);
@@ -62,8 +63,8 @@ const PublicDashboard = () => {
     const onDistrictChange = async (e) => {
         const district = e.target.value;
         const url = district === 'islandwide' ?
-            'http://localhost:8000/moh/countryStats' :
-            `http://localhost:8000/moh/districtStats/${district}`;
+            `${API_URL}/moh/countryStats` :
+            `${API_URL}/moh/districtStats/${district}`;
 
         await fetch(url)
             .then(response => response.json())

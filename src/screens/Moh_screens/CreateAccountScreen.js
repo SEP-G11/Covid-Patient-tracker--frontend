@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import FormContainer from '../../components/FormContainer';
 import { register } from '../../actions/userActions';
 import { listFacilities } from '../../actions/facilityActions';
-import {USER_REGISTER_RESET} from "../../constants/userConstants";
 import MOHSideNav from './MOHSideNav';
 import PhoneInput from 'react-phone-input-2'
 import './CreateAccountScreen.css';
 
-const CreateAccountScreen = ({ location, history }) => {
+const CreateAccountScreen = ({ history }) => {
     const [id, setId] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -26,40 +25,36 @@ const CreateAccountScreen = ({ location, history }) => {
     const dispatch = useDispatch();
     //
     const userRegister = useSelector(state => state.userRegister);
-    const { loading, error, user } = userRegister;
+    const { loading, error,success, user } = userRegister;
 
     const facilityList = useSelector(state => state.facilityList);
     const {loading:loadingFacilityList, error:errorFacilityList, facilitiesList} = facilityList;
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
-    //
-    //const redirect = location.search ? location.search.split('=')[1] : '/';
-    //
-    //console.log(user);
+
 
 
     useEffect(() => {
         if (userInfo && userInfo.results.accType === 'MOH'){
             dispatch(listFacilities());
 
-            if (user){
-                console.log(user)
-                dispatch({type: USER_REGISTER_RESET});
-                history.push('/moh/home')
+            if (success){
+                setName('');setId('');setEmail('');setContact('');setPassword('');setConfirmPassword('');setAccountType('');setFacility({})
             }
         }
         else {
             history.push('/login');
         }
 
-    }, [ user,dispatch,history,userInfo]);
+    }, [user,dispatch,history,userInfo,success]);
     //
     const submitHandler = (e) => {
         e.preventDefault();
         if(password !== confirmPassword){
             setMessage('Passwords do not match');
         }
+
         else {
             dispatch(register(id, name, email, contact, password, accountType, facility.value));
         }
@@ -104,6 +99,7 @@ const CreateAccountScreen = ({ location, history }) => {
                     <hr className='cas__hr'/>
 
                     <FormContainer className='cas__formContainer'>
+                        {success && <Message variant='success'>{user.message}</Message>}
                         {message && <Message variant='danger'>{message}</Message>}
                         {error && <Message variant='danger'>{error}</Message>}
                         {loading && <Loader/>}

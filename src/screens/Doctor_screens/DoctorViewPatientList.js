@@ -138,6 +138,7 @@ const DoctorViewPatientList = ( { history }) => {
                                 <tr>
                                     <th className="text-center table-head">Patient Id</th>
                                     <th className="text-center table-head">Name</th>
+                                    <th className="text-center table-head">District</th>
                                     <th className="text-center table-head">Patient Information</th>
                                     <th className="text-center table-head">Medical Report</th>
                                     <th className="text-center table-head">Discharge</th>
@@ -151,6 +152,7 @@ const DoctorViewPatientList = ( { history }) => {
                                     <tr key={patient.patient_id}>
                                         <td className="text-center">{patient.patient_id}</td>
                                         <td className="text-center">{patient.name}</td>
+                                        <td className="text-center">{patient.district}</td>
                                         <td className="text-center">
                                             <LinkContainer to={`/doctor/viewPatientInfo/${patient.patient_id}`}>
                                                 <Button className='btn-sm button button5'>

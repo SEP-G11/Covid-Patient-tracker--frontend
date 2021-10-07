@@ -24,13 +24,31 @@ const DoctorViewPatientList = ( { history }) => {
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
-    const myFunction = () => {
-        let input = document.getElementById("myInput");
+    const myFunction1 = () => {
+        let input = document.getElementById("myInput1");
         let filter = input.value.toUpperCase();
         let table = document.getElementById("myTable");
         let tr = table.getElementsByTagName("tr");
         for (let i = 0; i < tr.length; i++) {
             let td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                let txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    const myFunction2 = () => {
+        let input = document.getElementById("myInput2");
+        let filter = input.value.toUpperCase();
+        let table = document.getElementById("myTable");
+        let tr = table.getElementsByTagName("tr");
+        for (let i = 0; i < tr.length; i++) {
+            let td = tr[i].getElementsByTagName("td")[2];
             if (td) {
                 let txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -74,14 +92,26 @@ const DoctorViewPatientList = ( { history }) => {
                 ) : (
                     <Col md={12} align='center'>
                         <Row>
-                            <Col md={5} align='left'>
+                        <Col md={3} align='left'>
                                 <Form.Group controlId="searchname">
                                     <Form.Label style={{ color: "#008A77", fontWeight: "bold"}}>Patient Name</Form.Label>
                                         <Form.Control
-                                        id="myInput"
+                                        id="myInput1"
                                         type="text"
                                         placeholder="Search for names.."
-                                        onKeyUp={myFunction}
+                                        onKeyUp={myFunction1}
+                                        style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
+                                        ></Form.Control>
+                                </Form.Group>
+                            </Col>
+                            <Col md={3} align='left'>
+                                <Form.Group controlId="searchname">
+                                    <Form.Label style={{ color: "#008A77", fontWeight: "bold"}}>District</Form.Label>
+                                        <Form.Control
+                                        id="myInput2"
+                                        type="text"
+                                        placeholder="Search by district.."
+                                        onKeyUp={myFunction2}
                                         style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
                                         ></Form.Control>
                                 </Form.Group>

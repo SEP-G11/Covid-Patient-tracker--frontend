@@ -4,7 +4,7 @@ import { Table, Button, Row, Col, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
-import { listPatients } from '../../actions/patientActions'
+import { listPatients , filterPatients } from '../../actions/patientActions'
 import Pagination from '../../components/Pagination';
 import DoctorSideNav from "./DoctorSideNav";
 import './DoctorViewPatientList.css';
@@ -24,20 +24,18 @@ const DoctorViewPatientList = ( { history }) => {
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
+    const filteredPatients = useSelector((state) => state.filteredPatients)
+    const { loading:loading_, error:error_, filtered_Patients } = filteredPatients
+
     const myFunction = () => {
         let input = document.getElementById("myInput");
-        let filter = input.value.toUpperCase();
-        let table = document.getElementById("myTable");
-        let tr = table.getElementsByTagName("tr");
-        for (let i = 0; i < tr.length; i++) {
-            let td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-                let txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
+        if (input.value.length != 0){
+            dispatch(filterPatients(input.value))
+        }else{
+            let table2 = document.getElementById("myTable2");
+            let tr = table2.getElementsByTagName("tr");
+            for (let i = 0; i < tr.length; i++) {
                     tr[i].style.display = "none";
-                }
             }
         }
     }
@@ -74,13 +72,13 @@ const DoctorViewPatientList = ( { history }) => {
                 ) : (
                     <Col md={12} align='center'>
                         <Row>
-                            <Col md={5} align='left'>
+                        <Col md={5} align='left'>
                                 <Form.Group controlId="searchname">
-                                    <Form.Label style={{ color: "#008A77", fontWeight: "bold"}}>Patient Name</Form.Label>
+                                    <Form.Label style={{ color: "#008A77", fontWeight: "bold"}}>Search</Form.Label>
                                         <Form.Control
                                         id="myInput"
                                         type="text"
-                                        placeholder="Search for names.."
+                                        placeholder="Search for patients.."
                                         onKeyUp={myFunction}
                                         style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
                                         ></Form.Control>
@@ -103,6 +101,58 @@ const DoctorViewPatientList = ( { history }) => {
                                 </Form.Group>
                             </Col>
                         </Row>
+                        {loading_ ? (
+                        <Loader />
+                    ) : (
+                    <Col md={12} align='center'>
+                    <Table id="myTable2" striped bordered hover responsive className='table-sm'>
+                            <tbody className="text-dark">
+                                {filtered_Patients.map((patient) => (
+                                    <tr key={patient.patient_id}>
+                                        <td className="text-center">{patient.patient_id}</td>
+                                        <td className="text-center">{patient.name}</td>
+                                        <td className="text-center">
+                                            <LinkContainer to={`/doctor/viewPatientInfo/${patient.patient_id}`}>
+                                                <Button className='btn-sm button button5'>
+                                                    View Patient Info
+                                                </Button>
+                                            </LinkContainer>
+                                        </td>
+                                        <td className="text-center">
+                                            <LinkContainer to={`/doctor/viewMedicalReport/${patient.patient_id}`}>
+                                                <Button className='btn-sm button button5' >
+                                                    View Medical Report
+                                                </Button>
+                                            </LinkContainer>
+                                        </td>
+                                        <td className="text-center">
+                                            <LinkContainer to={`/doctor/discharge/${patient.patient_id}`}>
+                                                <Button className='btn-sm button button5' >
+                                                    Discharge
+                                                </Button>
+                                            </LinkContainer>
+                                        </td>
+                                        <td className="text-center">
+                                            <LinkContainer to={`/doctor/transfer/${patient.patient_id}`}>
+                                                <Button className='btn-sm button button5' >
+                                                Transfer
+                                                </Button>
+                                            </LinkContainer>
+                                        </td>
+                                        <td className="text-center">
+                                            <LinkContainer to={`/doctor/enter/${patient.patient_id}`}>
+                                                <Button className='btn-sm button button5' >
+                                                Enter Result
+                                                </Button>
+                                            </LinkContainer>
+                                        </td>
+                                     
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                </Col>
+                    )}
                         <Table id="myTable" striped bordered hover responsive className='table-sm'>
                             <thead className="thead-dark">
                                 <tr>

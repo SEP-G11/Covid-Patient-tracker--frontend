@@ -18,6 +18,15 @@ const HAViewPatientInfo = ({ match , history }) =>{
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
+    const getAge = (bday) => {
+        if(Math.floor((new Date() - new Date(bday).getTime()) / 3.15576e+10)){
+          return (Math.floor((new Date() - new Date(bday).getTime()) / 3.15576e+10));
+        }
+        else{
+          return Math.round(((new Date() - new Date(bday).getTime()) / 3.15576e+10 + Number.EPSILON) * 1000) / 1000; 
+        }       
+    };
+
     useEffect(() => {
         if (!userInfo) {
         history.push("/login");
@@ -56,7 +65,7 @@ const HAViewPatientInfo = ({ match , history }) =>{
                         <strong>Name: </strong> {patient.name}
                     </p>
                     <p class="text-dark">
-                        <strong>Age: </strong> {patient.age}
+                        <strong>Age: </strong> {getAge(patient.bday)}
                     </p>
                     <p class="text-dark">
                         <strong>Birth Day: </strong> {patient.bday}

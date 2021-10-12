@@ -82,6 +82,7 @@ const CreateAccountScreen = ({ history }) => {
                     options={options}
                     menuPlacement="top"
                     styles={customStyles}
+                    isLoading={loadingFacilityList}
                 />
             </Form.Group>
         );

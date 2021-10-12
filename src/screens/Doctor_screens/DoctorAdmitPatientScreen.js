@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form,  Row, Col, FloatingLabel } from "react-bootstrap";
+import { Form, Row, Col, FloatingLabel } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
@@ -9,40 +9,73 @@ import DoctorSideNav from "./DoctorSideNav";
 import PhoneInput from 'react-phone-input-2'
 
 const DoctorAdmitPatientScreen = ({ location, history }) => {
- 
+
 
   const [name, setName] = useState("");
   const [bday, setBday] = useState("");
-   const gender ="";
-  const address ="";
+  const gender = "";
+  const address = "";
   const [contactnumber, setContactnumber] = useState("");
-  const bloodtype ="";
+  const bloodtype = "";
   const [district, setDistrict] = useState("");
-  const isvaccinated="";
+  const isvaccinated = "";
   const [RATresult, setRATresult] = useState("");
- 
-  const [bedId, setBedId] = useState("");
   const [admitDateTime, setAdmitDateTime] = useState("");
   const [medicalHistory, setMedicalHistory] = useState("");
 
 
   const getAge = bday => {
-    if(Math.floor((new Date() - new Date(bday).getTime()) / 3.15576e+10)){
+    if (Math.floor((new Date() - new Date(bday).getTime()) / 3.15576e+10)) {
       return (Math.floor((new Date() - new Date(bday).getTime()) / 3.15576e+10));
     }
-    else{
-      return Math.round(((new Date() - new Date(bday).getTime()) / 3.15576e+10 + Number.EPSILON) * 1000) / 1000; 
-    }       
-   };
+    else {
+      return Math.round(((new Date() - new Date(bday).getTime()) / 3.15576e+10 + Number.EPSILON) * 1000) / 1000;
+    }
+  };
 
-  
-   const age =getAge(bday)
+
+  const getBedId = bedInfo => {
+    let covidFree = [];
+    let normalFree = [];
+
+
+
+    Array.from({ length: bedInfo["results"]["CovidBed"].length }).map(
+      (_, i) => (
+
+        bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] != 1 ? (covidFree.push(bedInfo["results"]["CovidBed"][`${i}`]["BedID"])) : (null)
+
+      )
+    )
+
+    Array.from({ length: bedInfo["results"]["NormalBed"].length }).map(
+      (_, j) => (
+        bedInfo["results"]["NormalBed"][`${j}`]["IsOccupied"] != 1 ? (normalFree.push(bedInfo["results"]["NormalBed"][`${j}`]["BedID"])) : (null)
+
+      )
+    )
+
+    if (RATresult === "1" && covidFree.length > 0) {
+      return covidFree[0];
+    }
+    else if (RATresult === "0" && normalFree.length > 0) {
+      return normalFree[0];
+    }
+
+    else {
+      return "no"
+    }
+  };
+
+
+  const age = getAge(bday)
+
   const id = contactnumber.toString() + Date.parse(bday);
   const allocationId = id + Date.parse(admitDateTime) + "A";
   const reportId = id + Date.parse(admitDateTime) + "R";
   const testId = id + Date.parse(admitDateTime) + "T";
   const phonenumber = "+" + contactnumber.toString();
- 
+
 
   const dispatch = useDispatch();
 
@@ -52,30 +85,29 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
   const bedLoad = useSelector((state) => state.bedLoad);
   const { bedInfo } = bedLoad;
 
+  const bedId = getBedId(bedInfo)
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-useEffect(() => {
-   
+  useEffect(() => {
+
     console.log(userInfo["results"])
     if (!userInfo) {
       history.push("/login");
     } else if (response) {
       setName("");
-      setBday(""); 
+      setBday("");
       setRATresult("");
-      setContactnumber("");     
-      
+      setContactnumber("");
       setMedicalHistory("");
-     
-      setBedId("");
       setAdmitDateTime("");
       setBday("");
-      
+
 
 
     }
-  }, [history,userInfo, response]);
+  }, [history, userInfo, response]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -106,7 +138,7 @@ useEffect(() => {
   return (
     <div>
       <Row >
-        <Col sm={3}><DoctorSideNav from='admit'/></Col>
+        <Col sm={3}><DoctorSideNav from='admit' /></Col>
         <Col sm={8} >
           <Row>
             {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
@@ -150,7 +182,7 @@ useEffect(() => {
                     ></Form.Control> </Form.Group>
                 </Col>        <Col>
 
-                <Form.Group controlId="district">
+                  <Form.Group controlId="district">
                     <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>District</Form.Label>
                     <br />
                     <select className="form-control" value={district} name="district" style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setDistrict(e.target.value)}>
@@ -180,28 +212,28 @@ useEffect(() => {
                       <option value="Ratnapura">Ratnapura</option>
                       <option value="Trincomalee">Trincomalee</option>
                       <option value="Vavuniya">Vavuniya</option>
-                     
+
                     </select>
                   </Form.Group>
-                 </Col>
+                </Col>
               </Row>
 
 
-     
+
 
               <Form.Group controlId="medicalHistory">
-            <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Medical History</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows={3}
-              type="text"
-              placeholder="Enter Any Medical History"
-              value={medicalHistory}
-              onChange={(e) => setMedicalHistory(e.target.value)}
-              style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-                    
-            ></Form.Control>
-          </Form.Group>
+                <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Medical History</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  type="text"
+                  placeholder="Enter Any Medical History"
+                  value={medicalHistory}
+                  onChange={(e) => setMedicalHistory(e.target.value)}
+                  style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
+
+                ></Form.Control>
+              </Form.Group>
 
               <Form.Group controlId="contactnumber">
                 <Form.Label style={{ color: "#008A77", fontWeight: "bold" }} >Contact Number</Form.Label>
@@ -229,7 +261,7 @@ useEffect(() => {
 
               <Row>
                 <Col>
-                <Form.Group controlId="RATresult">
+                  <Form.Group controlId="RATresult">
                     <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>RAT Result</Form.Label>
                     <br />
                     <select className="form-control" value={RATresult} name="RATresult" style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setRATresult(e.target.value)}>
@@ -240,9 +272,9 @@ useEffect(() => {
                   </Form.Group>
                 </Col>
                 <Col>
-                 
 
-                  <Form.Group controlId="bedId">
+
+                  {/* <Form.Group controlId="bedId">
                     <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}> Bed Id</Form.Label>
 
                     <br />
@@ -269,14 +301,14 @@ useEffect(() => {
                       </>
 
                     </select>
-                  </Form.Group>
+                  </Form.Group> */}
 
 
-           
 
-                
+
+
                 </Col>
-                
+
               </Row>
 
 

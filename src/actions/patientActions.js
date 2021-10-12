@@ -155,7 +155,6 @@ export const discharge = (
 
 export const transfer = (
   patient_id,
-  origin_bed_id,
   dest_bed_id,
   transfer_date
 ) => async (dispatch, getState) => {
@@ -178,8 +177,7 @@ export const transfer = (
     const { data } = await axios.post(
       "/patient/transfer",
       {
-        patient_id,
-        origin_bed_id,
+        patient_id,    
         dest_bed_id,
         transfer_date
       },
@@ -230,6 +228,8 @@ export const listPatients = () => async (dispatch, getState) => {
       type: PATIENT_LIST_SUCCESS,
       payload: data,
     });
+
+    console.log(data)
  
   } catch (error) {
     const message =

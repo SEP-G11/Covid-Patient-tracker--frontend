@@ -26,7 +26,7 @@ const HAAdmitPatientScreen = ({ history }) => {
   const [isvaccinated, setIsvaccinated] = useState("");
   const [RATresult, setRATresult] = useState("");
   const medicalHistory = "";
-  const [bedId, setBedId] = useState("");
+
   const [admitDateTime, setAdmitDateTime] = useState("");
 
   const getAge = bday => {
@@ -39,6 +39,38 @@ const HAAdmitPatientScreen = ({ history }) => {
    };
 
 
+   const getBedId = bedInfo => {
+    let covidFree = [];
+    let normalFree = [];
+
+
+
+    Array.from({ length: bedInfo["results"]["CovidBed"].length }).map(
+      (_, i) => (
+
+        bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] != 1 ? (covidFree.push(bedInfo["results"]["CovidBed"][`${i}`]["BedID"])) : (null)
+
+      )
+    )
+
+    Array.from({ length: bedInfo["results"]["NormalBed"].length }).map(
+      (_, j) => (
+        bedInfo["results"]["NormalBed"][`${j}`]["IsOccupied"] != 1 ? (normalFree.push(bedInfo["results"]["NormalBed"][`${j}`]["BedID"])) : (null)
+
+      )
+    )
+
+    if (RATresult === "1" && covidFree.length > 0) {
+      return covidFree[0];
+    }
+    else if (RATresult === "0" && normalFree.length > 0) {
+      return normalFree[0];
+    }
+
+    else {
+      return "no"
+    }
+  };
 
 
   const id = contactnumber.toString() + Date.parse(bday);
@@ -56,7 +88,7 @@ const HAAdmitPatientScreen = ({ history }) => {
   const bedLoad = useSelector((state) => state.bedLoad);
   const { bedInfo } = bedLoad;
 
-
+  const bedId = getBedId(bedInfo);
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -68,14 +100,13 @@ const HAAdmitPatientScreen = ({ history }) => {
       history.push("/login");
     } else if (response) {
       setName("");
-      setBday("");
-      
+      setBday("");      
       setAddress("");
       setContactnumber("");
       setBloodtype(" ");
       setDistrict("");
       setRATresult(" ");
-      setBedId("");
+;
       setAdmitDateTime("");
       setBday("");
       setGender("");
@@ -286,9 +317,17 @@ const HAAdmitPatientScreen = ({ history }) => {
                   </Form.Group>
                 </Col>
                 <Col>
-                 
+                <Form.Group controlId="RATresult">
+                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>RAT Result</Form.Label>
+                    <br />
+                    <select className="form-control" value={RATresult} name="RATresult" style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setRATresult(e.target.value)}>
+                      <option >SELECT</option>
+                      <option value="1">POSITIVE </option>
+                      <option value="0">NEGATIVE</option>
+                    </select>
+                  </Form.Group>
 
-                  <Form.Group controlId="bedId">
+                  {/* <Form.Group controlId="bedId">
                     <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}> Bed Id</Form.Label>
 
                     <br />
@@ -315,7 +354,7 @@ const HAAdmitPatientScreen = ({ history }) => {
                       </>
 
                     </select>
-                  </Form.Group>
+                  </Form.Group> */}
 
 
 
@@ -355,7 +394,7 @@ const HAAdmitPatientScreen = ({ history }) => {
                 <Col>
 
 
-                  <Form.Group controlId="RATresult">
+                  {/* <Form.Group controlId="RATresult">
                     <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>RAT Result</Form.Label>
                     <br />
                     <select className="form-control" value={RATresult} name="RATresult" style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setRATresult(e.target.value)}>
@@ -363,7 +402,7 @@ const HAAdmitPatientScreen = ({ history }) => {
                       <option value="1">POSITIVE </option>
                       <option value="0">NEGATIVE</option>
                     </select>
-                  </Form.Group>
+                  </Form.Group> */}
                 </Col>
               </Row>
 

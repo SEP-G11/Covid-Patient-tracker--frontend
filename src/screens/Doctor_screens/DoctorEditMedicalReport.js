@@ -57,7 +57,7 @@ const DoctorEditMedicalReport = ({ match, history }) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(updatePatientReport({ report_id:report.report_id , patient_id:patientId, bed_no,ward,symptoms, admitted_at, discharged_at, description, status }))
+        dispatch(updatePatientReport({ report_id:report.report_id , patient_id:patientId, symptoms, admitted_at, discharged_at, description, status }))
     }
 
     return (

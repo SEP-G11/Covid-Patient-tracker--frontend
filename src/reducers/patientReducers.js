@@ -11,6 +11,9 @@ import {
   PATIENT_LIST_FAIL,
   PATIENT_LIST_SUCCESS,
   PATIENT_LIST_REQUEST,
+  PATIENT_FILTER_REQUEST,
+  PATIENT_FILTER_FAIL,
+  PATIENT_FILTER_SUCCESS,
   PATIENT_DETAILS_REQUEST,
   PATIENT_DETAILS_SUCCESS,
   PATIENT_DETAILS_FAIL,
@@ -106,6 +109,20 @@ export const patientUpdateReducer = (state = { patient: {} }, action) => {
       return state
   }
 }
+
+export const filterPatientsReducer = (state = { filtered_Patients: [] }, action) => {
+  switch (action.type) {
+    case PATIENT_FILTER_REQUEST:
+      return { loading: true }
+    case PATIENT_FILTER_SUCCESS:
+      return { loading: false , filtered_Patients:action.payload  }
+    case PATIENT_FILTER_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
 
 
 

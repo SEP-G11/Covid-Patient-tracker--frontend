@@ -40,6 +40,8 @@ export const admit = (
         allocationId,
         admitDateTime,
         bday,
+        Type_vaccine,
+        Num_vaccine
 ) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -77,6 +79,8 @@ export const admit = (
         allocationId,
         admitDateTime,
         bday,
+        Type_vaccine,
+        Num_vaccine
       },
       config
     );

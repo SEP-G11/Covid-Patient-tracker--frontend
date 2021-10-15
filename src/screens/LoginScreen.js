@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form,  Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
@@ -8,7 +8,7 @@ import FormContainer from "../components/FormContainer";
 import { login } from "../actions/userActions";
 import { loadbeds } from "../actions/bedActions";
 import { getFacility } from "../actions/facilityActions";
-const LoginScreen = ({ location, history }) => {
+const LoginScreen = ({  history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -17,8 +17,6 @@ const LoginScreen = ({ location, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
-  const facilityLoad = useSelector((state) => state.facilityLoad);
-  const { facilityInfo } = facilityLoad;
 
 
   useEffect(() => {

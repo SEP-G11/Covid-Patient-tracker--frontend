@@ -15,7 +15,7 @@ const DoctorCreateReportScreen = ({ location, history }) => {
     const [bday, setBday] = useState("");
     const [contactnumber, setContactnumber] = useState("");
     const [RATresult, setRATresult] = useState("");
-    const [bedId, setBedId] = useState("");
+    // const [bedId, setBedId] = useState("");
     const [date, setDate] = useState("");
     const [description, setMedicalHistory] = useState("");
 
@@ -26,6 +26,41 @@ const DoctorCreateReportScreen = ({ location, history }) => {
     const testId = id + Date.parse(date) + "T";
     const phonenumber = "+" + contactnumber.toString();
 
+    
+  const getBedId = bedInfo => {
+    let covidFree = [];
+    let normalFree = [];
+
+
+
+    Array.from({ length: bedInfo["results"]["CovidBed"].length }).map(
+      (_, i) => (
+
+        bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] !== 1 ? (covidFree.push(bedInfo["results"]["CovidBed"][`${i}`]["BedID"])) : (null)
+
+      )
+    )
+
+    Array.from({ length: bedInfo["results"]["NormalBed"].length }).map(
+      (_, j) => (
+        bedInfo["results"]["NormalBed"][`${j}`]["IsOccupied"] !== 1 ? (normalFree.push(bedInfo["results"]["NormalBed"][`${j}`]["BedID"])) : (null)
+
+      )
+    )
+
+    if (RATresult === "1" && covidFree.length > 0) {
+      return covidFree[0];
+    }
+    else if (RATresult === "0" && normalFree.length > 0) {
+      return normalFree[0];
+    }
+
+    else {
+      return "no"
+    }
+  };
+
+
     const dispatch = useDispatch();
 
     const reportCreate = useSelector((state) => state.reportCreate);
@@ -34,6 +69,8 @@ const DoctorCreateReportScreen = ({ location, history }) => {
 
     const bedLoad = useSelector((state) => state.bedLoad);
     const { bedInfo } = bedLoad;
+
+    const bedId = getBedId(bedInfo)
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
@@ -49,7 +86,7 @@ const DoctorCreateReportScreen = ({ location, history }) => {
             setRATresult("");
             setContactnumber("");
             setMedicalHistory("");
-            setBedId("");
+
             setDate("");
             setBday("");
 
@@ -126,8 +163,9 @@ const DoctorCreateReportScreen = ({ location, history }) => {
                             <Row>
                                 <Col>
                                     <PhoneInput
-                                        containerStyle={{ color: "#007c7a" }}
-                                        containerClass="border-6 rounded"
+                                          containerStyle={{ color: "#007c7a" }}
+                                          containerClass=""
+                                          inputStyle={{ borderRadius: '20px', height: 'calc(1.5em + 1.5rem + 0px)', width: 'inherit' }}
                                         country="lk"
                                         onlyCountries={["lk"]}
                                         fullWidth="true"
@@ -138,8 +176,7 @@ const DoctorCreateReportScreen = ({ location, history }) => {
                                         onChange={phone => setContactnumber(phone)}
                                     />
                                 </Col>
-                                <Col>
-                                </Col>
+                            
                             </Row>
                             <br />
 
@@ -173,39 +210,7 @@ const DoctorCreateReportScreen = ({ location, history }) => {
                                 </Col>
                                 <Col>
 
-
-                                    <Form.Group controlId="bedId">
-                                        <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}> Bed Id</Form.Label>
-
-                                        <br />
-
-                                        <select className="form-control" value={bedId} name="bedId" style={{ borderRadius: "20px", width: "200px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setBedId(e.target.value)}>
-
-                                            <option >SELECT</option>
-
-                                            <> {Array.from({ length: bedInfo["results"]["CovidBed"].length }).map(
-                                                (_, i) => (
-
-                                                    <>  {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] != 1 ? (<option style={{ color: "#007c7a" }} value={bedInfo["results"]["CovidBed"][`${i}`]["BedID"]}>{bedInfo["results"]["CovidBed"][`${i}`]["BedID"]}  </option>) : (null)}</>
-
-                                                )
-                                            )}
-                                            </>
-                                            <> {Array.from({ length: bedInfo["results"]["NormalBed"].length }).map(
-                                                (_, i) => (
-
-                                                    <>  {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] != 1 ? (<option style={{ color: "#007c7a" }} value={bedInfo["results"]["NormalBed"][`${i}`]["BedID"]}>{bedInfo["results"]["NormalBed"][`${i}`]["BedID"]}  </option>) : (null)}</>
-
-                                                )
-                                            )}
-                                            </>
-
-                                        </select>
-                                    </Form.Group>
-
-
-
-
+                                  
 
                                 </Col>
 

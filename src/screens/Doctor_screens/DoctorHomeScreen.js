@@ -1,5 +1,5 @@
 
-import {  Row, Col,  Card, ListGroup } from "react-bootstrap";
+import { Row, Col, Card, ListGroup } from "react-bootstrap";
 import { Chart } from "react-google-charts";
 import { useSpring, animated } from 'react-spring';
 import Warning from "../../components/Warning";
@@ -17,8 +17,8 @@ const DoctorHomeScreen = ({ location, history }) => {
   const styles = useSpring({
     loop: true,
     to: [
-      { opacity: 3, color: 'red' },           
-      { opacity: 0, color: 'red' },       
+      { opacity: 3, color: 'red' },
+      { opacity: 0, color: 'red' },
     ],
     from: { opacity: 0, color: 'red' },
   });
@@ -34,7 +34,7 @@ const DoctorHomeScreen = ({ location, history }) => {
 
   const dispatch = useDispatch();
 
-  
+
 
 
   useEffect(() => {
@@ -57,11 +57,12 @@ const DoctorHomeScreen = ({ location, history }) => {
 
   return (
     <div>
+      <Row>
+        <Col sm={3}><DoctorSideNav from='home' /></Col>
+      </Row>
       <>  {bedInfo ? (
         <><Row>
-          <Col sm={3}><DoctorSideNav from='home' /></Col>
-
-
+          <Col sm={3}></Col>
 
           <Col sm={8}>
             <Row>
@@ -82,9 +83,9 @@ const DoctorHomeScreen = ({ location, history }) => {
                 backgroundColor: "#007c7a",
                 height: 2,
               }} />
-              
-{(bedInfo["results"]["NormalBedUsed"]+bedInfo["results"]["CovidBedUsed"])/(bedInfo["results"]["NormalBedFree"]+bedInfo["results"]["CovidBedFree"]+bedInfo["results"]["NormalBedUsed"]+bedInfo["results"]["CovidBedUsed"])>0.75 && <animated.div style={{fontsize:"20px", fontWeight:"10px" ,...styles}}>
-  <Warning variant="danger">The hospital beds capacity is about to <strong>full.</strong> (More than 75% beds are used) </Warning></animated.div> }
+
+            {(bedInfo["results"]["NormalBedUsed"] + bedInfo["results"]["CovidBedUsed"]) / (bedInfo["results"]["NormalBedFree"] + bedInfo["results"]["CovidBedFree"] + bedInfo["results"]["NormalBedUsed"] + bedInfo["results"]["CovidBedUsed"]) > 0.75 && <animated.div style={{ fontsize: "20px", fontWeight: "10px", ...styles }}>
+              <Warning variant="danger">The hospital beds capacity is about to <strong>full.</strong> (More than 75% beds are used) </Warning></animated.div>}
             <Row>
               <Col>
                 <br />   <br />
@@ -236,7 +237,7 @@ const DoctorHomeScreen = ({ location, history }) => {
                       {Array.from({ length: bedInfo["results"]["CovidBed"].length }).map(
                         (_, i) => (
 
-                          <>  {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] == 1 ? (<ListGroup.Item style={{ color: "red", textAlign: "center" }}>{bedInfo["results"]["CovidBed"][`${i}`]["BedID"]}    {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>) : (<ListGroup.Item style={{ color: "green", textAlign: "center" }}>{bedInfo["results"]["CovidBed"][`${i}`]["BedID"]} {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>)} </>
+                          <>  {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] === 1 ? (<ListGroup.Item style={{ color: "red", textAlign: "center" }}>{bedInfo["results"]["CovidBed"][`${i}`]["BedID"]}    {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] === 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>) : (<ListGroup.Item style={{ color: "green", textAlign: "center" }}>{bedInfo["results"]["CovidBed"][`${i}`]["BedID"]} {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] === 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>)} </>
 
                         )
                       )}
@@ -247,8 +248,8 @@ const DoctorHomeScreen = ({ location, history }) => {
                     ) : (null)}</>
                   </Card.Body>
                 </Card></div> </Col>
-                <Col sm={3} style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold", color: "#007c7a", fontSize: "40px" }}>Ward capacity</Col>
-      
+            <Col sm={3} style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold", color: "#007c7a", fontSize: "40px" }}>Ward capacity</Col>
+
             <Col sm={3}>
               <div >
 
@@ -270,7 +271,7 @@ const DoctorHomeScreen = ({ location, history }) => {
                         (_, i) => (
 
 
-                          <>  {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] == 1 ? (<ListGroup.Item style={{ color: "red", textAlign: "center" }}>{bedInfo["results"]["NormalBed"][`${i}`]["BedID"]}    {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>) : (<ListGroup.Item style={{ color: "green", textAlign: "center" }}>{bedInfo["results"]["NormalBed"][`${i}`]["BedID"]} {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>)} </>
+                          <>  {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] === 1 ? (<ListGroup.Item style={{ color: "red", textAlign: "center" }}>{bedInfo["results"]["NormalBed"][`${i}`]["BedID"]}    {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] === 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>) : (<ListGroup.Item style={{ color: "green", textAlign: "center" }}>{bedInfo["results"]["NormalBed"][`${i}`]["BedID"]} {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] === 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>)} </>
 
                         )
                       )}

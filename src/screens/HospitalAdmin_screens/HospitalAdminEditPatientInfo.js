@@ -1,10 +1,8 @@
 import React, { useState, useEffect }  from "react";
-import { Form, Button, Row, Col, ListGroup } from "react-bootstrap";
-import { LinkContainer } from 'react-router-bootstrap'
+import { Form, Button,  ListGroup } from "react-bootstrap";
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import FormContainer from '../../components/FormContainer'
 import { getPatientDetails, updatePatient } from '../../actions/patientActions'
 import { PATIENT_UPDATE_RESET } from '../../constants/patientConstants'

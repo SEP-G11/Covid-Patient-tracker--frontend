@@ -13,7 +13,7 @@ const HAEnterResultScreen = ({match, location, history }) => {
     const [RATresult, setRATresult] = useState("");    
     const [date, setDate] = useState("");
     const [testType, setTestType] = useState("");
-    const [id, setId] = useState(match.params.id ==":id" ? (""):(match.params.id));
+    const [id, setId] = useState(match.params.id ===":id" ? (""):(match.params.id));
     
     
     const testId = id + Date.parse(date) + "T";

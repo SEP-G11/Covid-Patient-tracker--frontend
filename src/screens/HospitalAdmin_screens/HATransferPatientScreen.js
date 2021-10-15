@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Row, Col, FloatingLabel } from "react-bootstrap";
+import { Form,  Row, Col,  } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
-import { admit, transfer } from "../../actions/patientActions";
+import {  transfer } from "../../actions/patientActions";
 import HospitalAdminSideNav from "./HospitalAdminSideNav";
 
 const HATransferPatientScreen = ({match, location, history }) => {
 
 
-  const [patient_id, setId] = useState(match.params.id ==":id" ? (""):(match.params.id));
+  const [patient_id, setId] = useState(match.params.id ===":id" ? (""):(match.params.id));
  
   // const [origin_bed_id, setOriginBedId] = useState("");
   const [dest_bed_id, setDestinationBedId] = useState("");

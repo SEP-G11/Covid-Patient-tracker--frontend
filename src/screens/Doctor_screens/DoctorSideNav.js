@@ -124,7 +124,7 @@ const DoctorSideNav = ({...props}) => {
                 </li>
 
                 <li>
-                    <NavLink to="#" className="a" onClick={submitHandler}>
+                    <NavLink to="/" className="a" onClick={submitHandler}>
                     <span class="icon"><BsPower size={18}/></span>
                     <span class="title">Log Out</span>
                     </NavLink>

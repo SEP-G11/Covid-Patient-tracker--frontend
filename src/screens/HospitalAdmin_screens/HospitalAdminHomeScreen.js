@@ -65,9 +65,12 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
 
   return (
     <div>
+          <Row>
+        <Col sm={3}><HospitalAdminSideNav from='home' /></Col>
+      </Row>
  <>  { bedInfo ? (
       <><Row>
-          <Col sm={3}><HospitalAdminSideNav from='home'/></Col>
+          <Col sm={3}></Col>
 
           
           <Col sm={8}>
@@ -242,7 +245,7 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
                       {Array.from({ length: bedInfo["results"]["CovidBed"].length }).map(
                         (_, i) => (
 
-                          <>  {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] == 1 ? (<ListGroup.Item style={{ color: "red", textAlign: "center" }}>{bedInfo["results"]["CovidBed"][`${i}`]["BedID"]}    {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>) : (<ListGroup.Item style={{ color: "green", textAlign: "center" }}>{bedInfo["results"]["CovidBed"][`${i}`]["BedID"]} {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>)} </>
+                          <>  {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] === 1 ? (<ListGroup.Item style={{ color: "red", textAlign: "center" }}>{bedInfo["results"]["CovidBed"][`${i}`]["BedID"]}    {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] === 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>) : (<ListGroup.Item style={{ color: "green", textAlign: "center" }}>{bedInfo["results"]["CovidBed"][`${i}`]["BedID"]} {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] === 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>)} </>
 
                         )
                       )}
@@ -275,7 +278,7 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
                         (_, i) => (
 
 
-                          <>  {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] == 1 ? (<ListGroup.Item style={{ color: "red", textAlign: "center" }}>{bedInfo["results"]["NormalBed"][`${i}`]["BedID"]}    {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>) : (<ListGroup.Item style={{ color: "green", textAlign: "center" }}>{bedInfo["results"]["NormalBed"][`${i}`]["BedID"]} {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>)} </>
+                          <>  {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] === 1 ? (<ListGroup.Item style={{ color: "red", textAlign: "center" }}>{bedInfo["results"]["NormalBed"][`${i}`]["BedID"]}    {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] === 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>) : (<ListGroup.Item style={{ color: "green", textAlign: "center" }}>{bedInfo["results"]["NormalBed"][`${i}`]["BedID"]} {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] === 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>)} </>
 
                         )
                       )}

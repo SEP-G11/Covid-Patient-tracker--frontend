@@ -12,6 +12,9 @@ import {
   PATIENT_LIST_FAIL,
   PATIENT_LIST_SUCCESS,
   PATIENT_LIST_REQUEST,
+  PATIENT_FILTER_REQUEST,
+  PATIENT_FILTER_FAIL,
+  PATIENT_FILTER_SUCCESS,
   PATIENT_DETAILS_REQUEST,
   PATIENT_DETAILS_SUCCESS,
   PATIENT_DETAILS_FAIL,
@@ -329,6 +332,45 @@ export const updatePatient = (patient) => async (dispatch, getState) => {
     }
     dispatch({
       type: PATIENT_UPDATE_FAIL,
+      payload: message,
+    });
+  }
+};
+
+export const filterPatients = (input) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: PATIENT_FILTER_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo["results"]["token"]}`,
+      },
+    };
+
+    const { data } = await axios.get(`/patient/filterPatients/${input}`, config)
+
+    dispatch({
+      type: PATIENT_FILTER_SUCCESS,
+      payload: data,
+    });
+ 
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Not authorized, token failed") {
+      dispatch(logout());
+    }
+    dispatch({
+      type: PATIENT_FILTER_FAIL,
       payload: message,
     });
   }

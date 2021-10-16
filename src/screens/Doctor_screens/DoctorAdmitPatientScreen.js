@@ -45,22 +45,22 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
     Array.from({ length: bedInfo["results"]["CovidBed"].length }).map(
       (_, i) => (
 
-        bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] !== 1 ? (covidFree.push(bedInfo["results"]["CovidBed"][`${i}`]["BedID"])) : (null)
+        bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] != 1 ? (covidFree.push(bedInfo["results"]["CovidBed"][`${i}`]["BedID"])) : (null)
 
       )
     )
 
     Array.from({ length: bedInfo["results"]["NormalBed"].length }).map(
       (_, j) => (
-        bedInfo["results"]["NormalBed"][`${j}`]["IsOccupied"] !== 1 ? (normalFree.push(bedInfo["results"]["NormalBed"][`${j}`]["BedID"])) : (null)
+        bedInfo["results"]["NormalBed"][`${j}`]["IsOccupied"] != 1 ? (normalFree.push(bedInfo["results"]["NormalBed"][`${j}`]["BedID"])) : (null)
 
       )
     )
 
-    if (RATresult === "1" && covidFree.length > 0) {
+    if (RATresult == "1" && covidFree.length > 0) {
       return covidFree[0];
     }
-    else if (RATresult === "0" && normalFree.length > 0) {
+    else if (RATresult == "0" && normalFree.length > 0) {
       return normalFree[0];
     }
 

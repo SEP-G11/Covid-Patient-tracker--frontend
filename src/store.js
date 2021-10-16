@@ -9,6 +9,7 @@ import {
   patientListReducer,
   patientDetailsReducer,
   patientUpdateReducer,
+  filterPatientsReducer,
 } from "./reducers/patientReducers";
 import { bedSearchReducer ,bedLoadReducer } from "./reducers/bedReducers";
 import { testEnterReducer, patientTestDetailsReducer } from "./reducers/testReducers";
@@ -26,6 +27,7 @@ const reducer = combineReducers({
   patientList: patientListReducer,
   patientDetails: patientDetailsReducer,
   patientUpdate: patientUpdateReducer,
+  filteredPatients: filterPatientsReducer,
   bedSearch: bedSearchReducer,
   bedLoad : bedLoadReducer,
   testEnter:testEnterReducer,

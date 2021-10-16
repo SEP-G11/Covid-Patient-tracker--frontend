@@ -13,7 +13,7 @@ const DoctorDischargePatientScreen = ({ match,location, history }) => {
 
  
 
-  const [patient_id, setId] = useState(match.params.id ===":id" ? (""):(match.params.id));
+  const [patient_id, setId] = useState(match.params.id ==":id" ? (""):(match.params.id));
   const [discharged_at, setDischargeDateTime] = useState("");
   const [description, setMedicalHistory] = useState("");
   const [status, setStatus] = useState("");

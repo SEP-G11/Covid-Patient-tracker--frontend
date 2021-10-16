@@ -51,22 +51,22 @@ const HAAdmitPatientScreen = ({ history }) => {
     Array.from({ length: bedInfo["results"]["CovidBed"].length }).map(
       (_, i) => (
 
-        bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] !== 1 ? (covidFree.push(bedInfo["results"]["CovidBed"][`${i}`]["BedID"])) : (null)
+        bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] != 1 ? (covidFree.push(bedInfo["results"]["CovidBed"][`${i}`]["BedID"])) : (null)
 
       )
     )
 
     Array.from({ length: bedInfo["results"]["NormalBed"].length }).map(
       (_, j) => (
-        bedInfo["results"]["NormalBed"][`${j}`]["IsOccupied"] !== 1 ? (normalFree.push(bedInfo["results"]["NormalBed"][`${j}`]["BedID"])) : (null)
+        bedInfo["results"]["NormalBed"][`${j}`]["IsOccupied"] != 1 ? (normalFree.push(bedInfo["results"]["NormalBed"][`${j}`]["BedID"])) : (null)
 
       )
     )
 
-    if (RATresult === "1" && covidFree.length > 0) {
+    if (RATresult == "1" && covidFree.length > 0) {
       return covidFree[0];
     }
-    else if (RATresult === "0" && normalFree.length > 0) {
+    else if (RATresult == "0" && normalFree.length > 0) {
       return normalFree[0];
     }
 
@@ -249,7 +249,7 @@ const HAAdmitPatientScreen = ({ history }) => {
                         value="Male"
                         name="formHorizontalRadios"
                         id="formHorizontalRadios1"
-                        checked={"Male" === gender}
+                        checked={"Male" == gender}
                         style={{ color: "#008A77", fontWeight: "bold" }}
                         onChange={(e) => setGender(e.target.value)}
                       />
@@ -261,7 +261,7 @@ const HAAdmitPatientScreen = ({ history }) => {
                         name="formHorizontalRadios"
                         id="formHorizontalRadios1"
 
-                        checked={"Female" === gender}
+                        checked={"Female" == gender}
                         style={{ marginLeft: "20px", color: "#008A77", fontWeight: "bold" }}
                         onChange={(e) => setGender(e.target.value)}
                       />
@@ -350,7 +350,7 @@ const HAAdmitPatientScreen = ({ history }) => {
                         value="1"
                         name="formHorizontalRadios1"
                         id="formHorizontalRadios1"
-                        checked={"1" === isvaccinated}
+                        checked={"1" == isvaccinated}
                         style={{ color: "#008A77", fontWeight: "bold" }}
                         onChange={(e) => setIsvaccinated(e.target.value)}
                       />
@@ -361,7 +361,7 @@ const HAAdmitPatientScreen = ({ history }) => {
                         value="0"
                         name="formHorizontalRadios1"
                         id="formHorizontalRadios2"
-                        checked={"0" === isvaccinated}
+                        checked={"0" == isvaccinated}
                         style={{ marginLeft: "20px", color: "#008A77", fontWeight: "bold" }}
                         onChange={(e) => setIsvaccinated(e.target.value)}
                       />
@@ -369,7 +369,7 @@ const HAAdmitPatientScreen = ({ history }) => {
                   </Form.Group>
                 </Col>
 
-                {"1" === isvaccinated ? (
+                {"1" == isvaccinated ? (
                   <>
                     <Col>
                       <Form.Group controlId="testType">

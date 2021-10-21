@@ -88,10 +88,25 @@ const DoctorTransferPatientScreen = ({ match,location, history }) => {
 
 
               <Row>
+
+              <Col>
+                  {" "}
+                  <Form.Group controlId="dest_bed_id">
+                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Destination Bed Id</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter Dest: Bed Id"
+                      value={dest_bed_id}
+                      onChange={(e) => setDestinationBedId(e.target.value)}
+                      style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
+
+                    ></Form.Control>
+                  </Form.Group>
+                </Col>
                 <Col>
 
 
-                  <Form.Group controlId="origin_bed_id">
+                  {/* <Form.Group controlId="origin_bed_id">
                     <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Origin Bed Id</Form.Label>
 
                     <br />
@@ -118,23 +133,10 @@ const DoctorTransferPatientScreen = ({ match,location, history }) => {
                       </>
 
                     </select>
-                  </Form.Group>
+                  </Form.Group> */}
                 </Col>
 
-                <Col>
-                  {" "}
-                  <Form.Group controlId="dest_bed_id">
-                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Destination Bed Id</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter Dest: Bed Id"
-                      value={dest_bed_id}
-                      onChange={(e) => setDestinationBedId(e.target.value)}
-                      style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-
-                    ></Form.Control>
-                  </Form.Group>
-                </Col>
+           
               </Row>
 
 

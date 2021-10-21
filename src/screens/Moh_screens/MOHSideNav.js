@@ -42,7 +42,7 @@ const MOHSideNav = ({...props}) => {
 
     return (
         <ProSidebar collapsed={menuCollapse}>
-            <div class="toggle" onClick={toggleIconClick}>
+            <div className="toggle" onClick={toggleIconClick}>
                 {menuCollapse ? (
                     <BsList color="#fff" size={30}/>
                 ) : (
@@ -55,16 +55,16 @@ const MOHSideNav = ({...props}) => {
                     <b></b>
                     <b></b>
                     <NavLink exact to="/moh/home" className='a' onClick={collapseHandler} >
-                        <span class="icon"><BsFillHouseDoorFill size={18}/></span>
-                        <span class="title">Dashboard</span>
+                        <span className="icon"><BsFillHouseDoorFill size={18}/></span>
+                        <span className="title">Dashboard</span>
                     </NavLink>
                 </li>
                 <li className={`list ${props.from==='cas' && 'active'}`}>
                     <b></b>
                     <b></b>
                     <NavLink to="/moh/register" className='a' onClick={collapseHandler}>
-                        <span class="icon"><HiUserAdd size={18}/></span>
-                        <span class="title">Create User</span>
+                        <span className="icon"><HiUserAdd size={18}/></span>
+                        <span className="title">Create User</span>
                     </NavLink>
                 </li>
                 <li className={`list ${props.from === 'ups' && 'active'}`}>
@@ -77,8 +77,8 @@ const MOHSideNav = ({...props}) => {
                 </li>
                 <li>
                     <NavLink to="#" className="a" onClick={(e) => submitHandler(e)}>
-                        <span class="icon"><BsPower size={18}/></span>
-                        <span class="title">Log Out</span>
+                        <span className="icon"><BsPower size={18}/></span>
+                        <span className="title">Log Out</span>
                     </NavLink>
                 </li>
             </ul>

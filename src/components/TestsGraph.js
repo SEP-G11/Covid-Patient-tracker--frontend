@@ -90,4 +90,4 @@ const TestsGraph = ({...props}) => {
     );
 };
 
-export default TestsGraph;
+export default React.memo(TestsGraph);

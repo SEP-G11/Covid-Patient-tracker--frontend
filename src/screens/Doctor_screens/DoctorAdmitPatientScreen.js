@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Row, Col, FloatingLabel } from "react-bootstrap";
+import { Form, Row, Col,  } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
@@ -22,6 +22,8 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
   const [RATresult, setRATresult] = useState("");
   const [admitDateTime, setAdmitDateTime] = useState("");
   const [medicalHistory, setMedicalHistory] = useState("");
+  const [Num_vaccine, ] = useState("0");
+  const [Type_vaccine, ] = useState(null);
 
 
   const getAge = bday => {
@@ -55,10 +57,10 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
       )
     )
 
-    if (RATresult === "1" && covidFree.length > 0) {
+    if (RATresult == "1" && covidFree.length > 0) {
       return covidFree[0];
     }
-    else if (RATresult === "0" && normalFree.length > 0) {
+    else if (RATresult == "0" && normalFree.length > 0) {
       return normalFree[0];
     }
 
@@ -130,6 +132,8 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
         allocationId,
         admitDateTime,
         bday,
+        Type_vaccine,
+        Num_vaccine
       )
     );
   };
@@ -241,8 +245,11 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
               <Row>
                 <Col>
                   <PhoneInput
-                    containerStyle={{ color: "#007c7a" }}
-                    containerClass="border-6 rounded"
+                     containerStyle={{ color: "#007c7a" }}
+
+
+                     containerClass=""
+                     inputStyle={{ borderRadius: '20px', height: 'calc(1.5em + 1.5rem + 0px)', width: 'inherit' }}
                     country="lk"
                     onlyCountries={["lk"]}
                     fullWidth="true"
@@ -253,8 +260,7 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
                     onChange={phone => setContactnumber(phone)}
                   />
                 </Col>
-                <Col>
-                </Col>
+             
               </Row>
               <br />
 
@@ -274,39 +280,7 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
                 <Col>
 
 
-                  {/* <Form.Group controlId="bedId">
-                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}> Bed Id</Form.Label>
-
-                    <br />
-
-                    <select className="form-control" value={bedId} name="bedId" style={{ borderRadius: "20px", width: "200px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setBedId(e.target.value)}>
-
-                      <option >SELECT</option>
-
-                      <> {Array.from({ length: bedInfo["results"]["CovidBed"].length }).map(
-                        (_, i) => (
-
-                          <>  {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] != 1 ? (<option style={{ color: "#007c7a" }} value={bedInfo["results"]["CovidBed"][`${i}`]["BedID"]}>{bedInfo["results"]["CovidBed"][`${i}`]["BedID"]}  </option>) : (null)}</>
-
-                        )
-                      )}
-                      </>
-                      <> {Array.from({ length: bedInfo["results"]["NormalBed"].length }).map(
-                        (_, i) => (
-
-                          <>  {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] != 1 ? (<option style={{ color: "#007c7a" }} value={bedInfo["results"]["NormalBed"][`${i}`]["BedID"]}>{bedInfo["results"]["NormalBed"][`${i}`]["BedID"]}  </option>) : (null)}</>
-
-                        )
-                      )}
-                      </>
-
-                    </select>
-                  </Form.Group> */}
-
-
-
-
-
+                 
                 </Col>
 
               </Row>

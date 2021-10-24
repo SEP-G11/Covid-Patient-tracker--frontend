@@ -65,9 +65,12 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
 
   return (
     <div>
+          <Row>
+        <Col sm={3}><HospitalAdminSideNav from='home' /></Col>
+      </Row>
  <>  { bedInfo ? (
       <><Row>
-          <Col sm={3}><HospitalAdminSideNav from='home'/></Col>
+          <Col sm={3}></Col>
 
           
           <Col sm={8}>
@@ -220,8 +223,7 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
         <Row>
         <Col sm={3}></Col>
            
-            <Col sm={3}>
-            
+            <Col sm={3}>           
             
               <div >
                 <Card style={{ width: '15rem', borderColor: "#007c7a", borderRadius: "20px", borderWidth: "2px" }}>

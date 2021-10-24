@@ -1,15 +1,13 @@
-import React, { Component } from "react";
-import { Form, Button, Row, Col, Container } from "react-bootstrap";
-import Image from "react-bootstrap/Image";
+import React from "react";
+import {  Row, Col,  } from "react-bootstrap";
+
 import { Link } from "react-router-dom";
 import logo from "../assets/SEP logo.png";
 import { useSpring, animated } from 'react-spring';
-import { useState, useEffect } from "react";
+import {  useEffect } from "react";
 
 
 const HomeScreen = ({ location, history }) => {
-
-
 
 
   const [styles, api] = useSpring(() => ({
@@ -22,7 +20,7 @@ const HomeScreen = ({ location, history }) => {
       opacity: 1,
       loop: { reverse: true },
     })
-  }, [])
+  }, [api])
 
 
   return (

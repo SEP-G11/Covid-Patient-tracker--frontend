@@ -155,7 +155,7 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
               style={{
                 color: "white",
                 backgroundColor: "#007c7a",
-                height: 200,
+                height: 250,
                 width:4
               }} /></Col>
 
@@ -182,7 +182,7 @@ const HospitalAdminHomeScreen = ({ location, history }) => {
               style={{
                 color: "white",
                 backgroundColor: "#007c7a",
-                height: 200,
+                height: 250,
                 width:4
               }} /></Col>
   <Col sm={2}>  <Chart

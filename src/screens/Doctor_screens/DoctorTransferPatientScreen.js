@@ -10,17 +10,17 @@ import DoctorSideNav from "./DoctorSideNav";
 
 const DoctorTransferPatientScreen = ({ match, history }) => {
 
+  
   const [patient_id, setId] = useState(match.params.id ==":id" ? (""):(match.params.id));
-
-  const [origin_bed_id, setOriginBedId] = useState("");
+ 
+  // const [origin_bed_id, setOriginBedId] = useState("");
   const [dest_bed_id, setDestinationBedId] = useState("");
   const [transfer_date, setTransferDateTime] = useState("");
+
 
   const dispatch = useDispatch();
   const patientTransfer = useSelector((state) => state.patientTransfer);
   const { loading, error, response } = patientTransfer;
-  
-
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
@@ -30,7 +30,7 @@ const DoctorTransferPatientScreen = ({ match, history }) => {
       history.push("/login");
     } else if (response) {
       setId("");
-      setOriginBedId("");
+      // setOriginBedId("");
       setDestinationBedId("");
       setTransferDateTime("");
 
@@ -40,8 +40,7 @@ const DoctorTransferPatientScreen = ({ match, history }) => {
     e.preventDefault();
     dispatch(
       transfer(
-        patient_id,
-        origin_bed_id,
+        patient_id,     
         dest_bed_id,
         transfer_date
 
@@ -52,7 +51,7 @@ const DoctorTransferPatientScreen = ({ match, history }) => {
   return (
     <div>
       <Row >
-        <Col sm={3}>    <DoctorSideNav from='transfer' /></Col>
+        <Col sm={3}>    <DoctorSideNav from='transfer'/></Col>
         <Col sm={8} >
           <Row>
             {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
@@ -86,7 +85,6 @@ const DoctorTransferPatientScreen = ({ match, history }) => {
 
 
               <Row>
-
               <Col>
                   {" "}
                   <Form.Group controlId="dest_bed_id">
@@ -103,11 +101,38 @@ const DoctorTransferPatientScreen = ({ match, history }) => {
                 </Col>
                 <Col>
 
-                 
-                  
+
+                  {/* <Form.Group controlId="origin_bed_id">
+                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Origin Bed Id</Form.Label>
+
+                    <br />
+
+                    <select className="form-control" value={origin_bed_id} name="origin_bed_id" style={{ borderRadius: "20px", width: "150px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setOriginBedId(e.target.value)}>
+
+                      <option >SELECT</option>
+
+                      <> {Array.from({ length: bedInfo["results"]["CovidBed"].length }).map(
+                        (_, i) => (
+
+                          <>  {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] = 1 ? (<option style={{ color: "#007c7a" }} value={bedInfo["results"]["CovidBed"][`${i}`]["BedID"]}>{bedInfo["results"]["CovidBed"][`${i}`]["BedID"]}  </option>) : (null)}</>
+
+                        )
+                      )}
+                      </>
+                      <> {Array.from({ length: bedInfo["results"]["NormalBed"].length }).map(
+                        (_, i) => (
+
+                          <>  {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] = 1 ? (<option style={{ color: "#007c7a" }} value={bedInfo["results"]["NormalBed"][`${i}`]["BedID"]}>{bedInfo["results"]["NormalBed"][`${i}`]["BedID"]}  </option>) : (null)}</>
+
+                        )
+                      )}
+                      </>
+
+                    </select>
+                  </Form.Group> */}
                 </Col>
 
-           
+               
               </Row>
 
 
@@ -142,4 +167,5 @@ const DoctorTransferPatientScreen = ({ match, history }) => {
     </div>
   );
 };
+
 export default DoctorTransferPatientScreen;

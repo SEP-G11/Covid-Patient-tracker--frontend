@@ -24,7 +24,7 @@ const HAAdmitPatientScreen = ({ history }) => {
   const [bloodtype, setBloodtype] = useState("");
   const [district, setDistrict] = useState("");
   const [isvaccinated, setIsvaccinated] = useState("");
-  const [Num_vaccine, setNumvaccinated] = useState(null);
+  const [Num_vaccine, setNumvaccinated] = useState("0");
   const [Type_vaccine, setTypevaccinated] = useState(null);
 
   const [RATresult, setRATresult] = useState("");
@@ -115,7 +115,7 @@ const HAAdmitPatientScreen = ({ history }) => {
       setGender("");
       setIsvaccinated("");
       setTypevaccinated(null);
-      setNumvaccinated(null);
+      setNumvaccinated("0");
 
 
     }

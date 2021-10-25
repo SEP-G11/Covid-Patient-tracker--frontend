@@ -86,7 +86,7 @@ const HAViewPatientInfo = ({ match , history }) =>{
                         <strong>District: </strong> {patient.district}
                     </p>
                     <p class="text-dark">
-                        <strong>Vaccination Details: </strong> {patient.is_Vaccinated}
+                        <strong>Vaccination Details: </strong> {patient.is_Vaccinated}{patient.Type_vaccine}{patient.Num_vaccine}
                     </p>
                     <Row>
                         <Col sm={6} align="left">

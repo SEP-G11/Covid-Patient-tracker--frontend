@@ -111,35 +111,35 @@ const HAViewPatientList = ( { history }) => {
                                         <td className="text-center">{patient.patient_id}</td>
                                         <td className="text-center">{patient.name}</td>
                                         <td className="text-center">
-                                            <LinkContainer to={`/doctor/viewPatientInfo/${patient.patient_id}`}>
+                                            <LinkContainer to={`/hospitalAdmin/viewPatientInfo/${patient.patient_id}`}>
                                                 <Button className='btn-sm button button5'>
                                                     View Patient Info
                                                 </Button>
                                             </LinkContainer>
                                         </td>
                                         <td className="text-center">
-                                            <LinkContainer to={`/doctor/viewMedicalReport/${patient.patient_id}`}>
+                                            <LinkContainer to={`/hospitalAdmin/viewMedicalReport/${patient.patient_id}`}>
                                                 <Button className='btn-sm button button5' >
                                                     View Medical Report
                                                 </Button>
                                             </LinkContainer>
                                         </td>
                                         <td className="text-center">
-                                            <LinkContainer to={`/doctor/discharge/${patient.patient_id}`}>
+                                            <LinkContainer to={`/hospitalAdmin/discharge/${patient.patient_id}`}>
                                                 <Button className='btn-sm button button5' >
                                                     Discharge
                                                 </Button>
                                             </LinkContainer>
                                         </td>
                                         <td className="text-center">
-                                            <LinkContainer to={`/doctor/transfer/${patient.patient_id}`}>
+                                            <LinkContainer to={`/hospitalAdmin/transfer/${patient.patient_id}`}>
                                                 <Button className='btn-sm button button5' >
                                                 Transfer
                                                 </Button>
                                             </LinkContainer>
                                         </td>
                                         <td className="text-center">
-                                            <LinkContainer to={`/doctor/enter/${patient.patient_id}`}>
+                                            <LinkContainer to={`/hospitalAdmin/enter/${patient.patient_id}`}>
                                                 <Button className='btn-sm button button5' >
                                                 Enter Result
                                                 </Button>

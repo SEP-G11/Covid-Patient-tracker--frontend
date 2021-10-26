@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Row, Col, FloatingLabel } from "react-bootstrap";
+import { Form,  Row, Col,  } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
-import { admit, transfer } from "../../actions/patientActions";
+import {  transfer } from "../../actions/patientActions";
 import HospitalAdminSideNav from "./HospitalAdminSideNav";
 
 const HATransferPatientScreen = ({match, location, history }) => {
@@ -117,7 +117,7 @@ const HATransferPatientScreen = ({match, location, history }) => {
                       <> {Array.from({ length: bedInfo["results"]["CovidBed"].length }).map(
                         (_, i) => (
 
-                          <>  {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] == 1 ? (<option style={{ color: "#007c7a" }} value={bedInfo["results"]["CovidBed"][`${i}`]["BedID"]}>{bedInfo["results"]["CovidBed"][`${i}`]["BedID"]}  </option>) : (null)}</>
+                          <>  {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] = 1 ? (<option style={{ color: "#007c7a" }} value={bedInfo["results"]["CovidBed"][`${i}`]["BedID"]}>{bedInfo["results"]["CovidBed"][`${i}`]["BedID"]}  </option>) : (null)}</>
 
                         )
                       )}
@@ -125,7 +125,7 @@ const HATransferPatientScreen = ({match, location, history }) => {
                       <> {Array.from({ length: bedInfo["results"]["NormalBed"].length }).map(
                         (_, i) => (
 
-                          <>  {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] == 1 ? (<option style={{ color: "#007c7a" }} value={bedInfo["results"]["NormalBed"][`${i}`]["BedID"]}>{bedInfo["results"]["NormalBed"][`${i}`]["BedID"]}  </option>) : (null)}</>
+                          <>  {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] = 1 ? (<option style={{ color: "#007c7a" }} value={bedInfo["results"]["NormalBed"][`${i}`]["BedID"]}>{bedInfo["results"]["NormalBed"][`${i}`]["BedID"]}  </option>) : (null)}</>
 
                         )
                       )}

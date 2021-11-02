@@ -22,7 +22,6 @@ import {
   PATIENT_UPDATE_SUCCESS,
   PATIENT_UPDATE_FAIL,
 } from "../constants/patientConstants";
-import store from "../store";
 import { logout } from "./userActions";
 
 export const admit = (

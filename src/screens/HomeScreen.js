@@ -36,7 +36,7 @@ const HomeScreen = ({ location, history }) => {
             style={{
               ...styles,
             }}
-          > <img src={logo} width="650" height="350"></img> </animated.div>
+          > <img src={logo} alt="" width="650" height="350"></img> </animated.div>
         </Col>
         <Col>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form,  Row, Col } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
@@ -8,64 +8,52 @@ import { CreateReport } from "../../actions/reportActions";
 import DoctorSideNav from "./DoctorSideNav";
 import PhoneInput from 'react-phone-input-2'
 
-const DoctorCreateReportScreen = ({ location, history }) => {
-
+const DoctorCreateReportScreen = ({ history }) => {
 
 
     const [bday, setBday] = useState("");
     const [contactnumber, setContactnumber] = useState("");
     const [RATresult, setRATresult] = useState("");
-    // const [bedId, setBedId] = useState("");
     const [date, setDate] = useState("");
     const [description, setMedicalHistory] = useState("");
-
-
     const id = contactnumber.toString() + Date.parse(bday);
+
+    //Create IDs for the patients
     const allocationId = id + Date.parse(date) + "A";
     const reportId = id + Date.parse(date) + "R";
     const testId = id + Date.parse(date) + "T";
     const phonenumber = "+" + contactnumber.toString();
 
-    
-  const getBedId = bedInfo => {
-    let covidFree = [];
-    let normalFree = [];
+    //Automatically assgin bed ID for the patient
+    const getBedId = bedInfo => {
+        let covidFree = [];
+        let normalFree = [];
+        Array.from({ length: bedInfo["results"]["CovidBed"].length }).map(
+            (_, i) => (
+                bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] !== true ? (covidFree.push(bedInfo["results"]["CovidBed"][`${i}`]["BedID"])) : (null)
+            )
+        )
 
-
-
-    Array.from({ length: bedInfo["results"]["CovidBed"].length }).map(
-      (_, i) => (
-
-        bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] != 1 ? (covidFree.push(bedInfo["results"]["CovidBed"][`${i}`]["BedID"])) : (null)
-
-      )
-    )
-
-    Array.from({ length: bedInfo["results"]["NormalBed"].length }).map(
-      (_, j) => (
-        bedInfo["results"]["NormalBed"][`${j}`]["IsOccupied"] != 1 ? (normalFree.push(bedInfo["results"]["NormalBed"][`${j}`]["BedID"])) : (null)
-
-      )
-    )
-
-    if (RATresult == "1" && covidFree.length > 0) {
-      return covidFree[0];
-    }
-    else if (RATresult == "0" && normalFree.length > 0) {
-      return normalFree[0];
-    }
-
-    else {
-      return "no"
-    }
-  };
+        Array.from({ length: bedInfo["results"]["NormalBed"].length }).map(
+            (_, j) => (
+                bedInfo["results"]["NormalBed"][`${j}`]["IsOccupied"] !== true ? (normalFree.push(bedInfo["results"]["NormalBed"][`${j}`]["BedID"])) : (null)
+            )
+        )
+        if (RATresult === "1" && covidFree.length > 0) {
+            return covidFree[0];
+        }
+        else if (RATresult === "0" && normalFree.length > 0) {
+            return normalFree[0];
+        }
+        else {
+            return "no"
+        }
+    };
 
 
     const dispatch = useDispatch();
-
     const reportCreate = useSelector((state) => state.reportCreate);
     const { loading, error, response } = reportCreate;
-
 
     const bedLoad = useSelector((state) => state.bedLoad);
     const { bedInfo } = bedLoad;
@@ -76,21 +64,15 @@ const DoctorCreateReportScreen = ({ location, history }) => {
     const { userInfo } = userLogin;
 
     useEffect(() => {
-
-        
         if (!userInfo) {
             history.push("/login");
         } else if (response) {
-
             setBday("");
             setRATresult("");
             setContactnumber("");
             setMedicalHistory("");
-
             setDate("");
             setBday("");
-
-
         }
     }, [history, userInfo, response]);
 
@@ -98,7 +80,6 @@ const DoctorCreateReportScreen = ({ location, history }) => {
         e.preventDefault();
         dispatch(
             CreateReport(
-
                 id,
                 testId,
                 RATresult,
@@ -117,10 +98,9 @@ const DoctorCreateReportScreen = ({ location, history }) => {
     return (
         <div>
             <Row >
-                <Col sm={3}><DoctorSideNav from='createReport'/></Col>
+                <Col sm={3}><DoctorSideNav from='createReport' /></Col>
                 <Col sm={8} >
-                    <Row>
-                        {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
+                    <Row>                        
                         <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px" }}>Create medical Report</h1> </Col>
                     </Row>
                     <hr
@@ -150,7 +130,7 @@ const DoctorCreateReportScreen = ({ location, history }) => {
                                             onChange={(e) => setBday(e.target.value)}
 
                                         ></Form.Control> </Form.Group>
-                                
+
 
                                 </Col>
                             </Row>
@@ -163,9 +143,9 @@ const DoctorCreateReportScreen = ({ location, history }) => {
                             <Row>
                                 <Col>
                                     <PhoneInput
-                                          containerStyle={{ color: "#007c7a" }}
-                                          containerClass=""
-                                          inputStyle={{ borderRadius: '20px', height: 'calc(1.5em + 1.5rem + 0px)', width: 'inherit' }}
+                                        containerStyle={{ color: "#007c7a" }}
+                                        containerClass=""
+                                        inputStyle={{ borderRadius: '20px', height: 'calc(1.5em + 1.5rem + 0px)', width: 'inherit' }}
                                         country="lk"
                                         onlyCountries={["lk"]}
                                         fullWidth="true"
@@ -176,7 +156,7 @@ const DoctorCreateReportScreen = ({ location, history }) => {
                                         onChange={phone => setContactnumber(phone)}
                                     />
                                 </Col>
-                            
+
                             </Row>
                             <br />
 
@@ -210,7 +190,7 @@ const DoctorCreateReportScreen = ({ location, history }) => {
                                 </Col>
                                 <Col>
 
-                                  
+
 
                                 </Col>
 

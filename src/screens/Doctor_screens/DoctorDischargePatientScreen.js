@@ -8,12 +8,9 @@ import { discharge } from "../../actions/patientActions";
 import DoctorSideNav from "./DoctorSideNav";
  
 
-const DoctorDischargePatientScreen = ({ match,location, history }) => {
+const DoctorDischargePatientScreen = ({ match, history }) => {
 
-
- 
-
-  const [patient_id, setId] = useState(match.params.id ==":id" ? (""):(match.params.id));
+  const [patient_id, setId] = useState(match.params.id ===":id" ? (""):(match.params.id));
   const [discharged_at, setDischargeDateTime] = useState("");
   const [description, setMedicalHistory] = useState("");
   const [status, setStatus] = useState("");
@@ -23,10 +20,8 @@ const DoctorDischargePatientScreen = ({ match,location, history }) => {
   const patientDischarge = useSelector((state) => state.patientDischarge);
   const { loading, error, response } = patientDischarge;
 
-
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin;
-
 
   useEffect(() => {
     if (!userInfo) {

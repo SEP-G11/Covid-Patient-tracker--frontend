@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form,  Row, Col } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
@@ -7,35 +7,28 @@ import FormContainer from "../../components/FormContainer";
 import { Enter } from "../../actions/testActions";
 import HospitalAdminSideNav from "./HospitalAdminSideNav";
 
-const HAEnterResultScreen = ({match, location, history }) => {
+const HAEnterResultScreen = ({ match, location, history }) => {
 
 
-    const [RATresult, setRATresult] = useState("");    
+    const [RATresult, setRATresult] = useState("");
     const [date, setDate] = useState("");
     const [testType, setTestType] = useState("");
-    const [id, setId] = useState(match.params.id ==":id" ? (""):(match.params.id));
-    
-    
+    const [id, setId] = useState(match.params.id === ":id" ? ("") : (match.params.id));
     const testId = id + Date.parse(date) + "T";
 
     const dispatch = useDispatch();
-
     const testEnter = useSelector((state) => state.testEnter);
     const { loading, error, response } = testEnter;
-
-
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin;
 
-
     useEffect(() => {
-        
         if (!userInfo) {
             history.push("/login");
         } else if (response) {
             setId("");
             setRATresult("");
-            setDate("");          
+            setDate("");
             setTestType("");
         }
     }, [history, response, userInfo]);
@@ -57,7 +50,7 @@ const HAEnterResultScreen = ({match, location, history }) => {
         <div>
 
             <Row >
-                <Col sm={3}>    <HospitalAdminSideNav from='enter'/></Col>
+                <Col sm={3}>    <HospitalAdminSideNav from='enter' /></Col>
                 <Col sm={8} >
                     <Row>
                         {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
@@ -71,8 +64,6 @@ const HAEnterResultScreen = ({match, location, history }) => {
                         }}
                     />
                     <br />
-
-
                     <FormContainer>
 
                         {error && <Message variant="danger">{error}</Message>}
@@ -96,15 +87,15 @@ const HAEnterResultScreen = ({match, location, history }) => {
 
                             </Row>
                             <Form.Group controlId="dischargeDateTime">
-                                        <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}> Date </Form.Label>
-                                        <Form.Control
-                                            type="datetime-local"
-                                            placeholder="Enter Date"
-                                            value={date}
-                                            onChange={(e) => setDate(e.target.value)}
-                                            style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-                                        ></Form.Control>
-                                    </Form.Group>
+                                <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}> Date </Form.Label>
+                                <Form.Control
+                                    type="datetime-local"
+                                    placeholder="Enter Date"
+                                    value={date}
+                                    onChange={(e) => setDate(e.target.value)}
+                                    style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
+                                ></Form.Control>
+                            </Form.Group>
 
                             <Row>
                                 <Col>
@@ -121,26 +112,21 @@ const HAEnterResultScreen = ({match, location, history }) => {
 
                                 </Col>
                                 <Col>
-                                <Form.Group controlId="RATresult">
-                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Test Result</Form.Label>
-                    <br />
-                    <select className="form-control" value={RATresult} name="RATresult" style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setRATresult(e.target.value)}>
-                      <option >SELECT</option>
-                      <option value="1">POSITIVE </option>
-                      <option value="0">NEGATIVE</option>
-                    </select>
-                  </Form.Group>
-                                    
+                                    <Form.Group controlId="RATresult">
+                                        <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Test Result</Form.Label>
+                                        <br />
+                                        <select className="form-control" value={RATresult} name="RATresult" style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setRATresult(e.target.value)}>
+                                            <option >SELECT</option>
+                                            <option value="1">POSITIVE </option>
+                                            <option value="0">NEGATIVE</option>
+                                        </select>
+                                    </Form.Group>
 
                                 </Col>
                             </Row>
                             <br /><br />
                             <div style={{ paddingLeft: "120px" }}>
-                                <button class="button button1"
-                                    type="submit"
-                                >
-                                    ENTER
-                                </button></div>
+                                <button class="button button1" type="submit" > ENTER </button></div>
                         </Form>
                     </FormContainer></Col>
                 <Col sm={2} ></Col>

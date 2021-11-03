@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Row, Col,  } from "react-bootstrap";
+import { Form, Row, Col, } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
@@ -8,8 +8,7 @@ import { admit } from "../../actions/patientActions";
 import DoctorSideNav from "./DoctorSideNav";
 import PhoneInput from 'react-phone-input-2'
 
-const DoctorAdmitPatientScreen = ({ location, history }) => {
-
+const DoctorAdmitPatientScreen = ({ history }) => {
 
   const [name, setName] = useState("");
   const [bday, setBday] = useState("");
@@ -22,10 +21,10 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
   const [RATresult, setRATresult] = useState("");
   const [admitDateTime, setAdmitDateTime] = useState("");
   const [medicalHistory, setMedicalHistory] = useState("");
-  const [Num_vaccine, ] = useState("0");
-  const [Type_vaccine, ] = useState(null);
+  const [Num_vaccine,] = useState("0");
+  const [Type_vaccine,] = useState(null);
 
-
+//calculate the age of patient
   const getAge = bday => {
     if (Math.floor((new Date() - new Date(bday).getTime()) / 3.15576e+10)) {
       return (Math.floor((new Date() - new Date(bday).getTime()) / 3.15576e+10));
@@ -35,35 +34,29 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
     }
   };
 
-
+  //Automatically assgin bed ID for the patient
   const getBedId = bedInfo => {
     let covidFree = [];
     let normalFree = [];
 
-
-
     Array.from({ length: bedInfo["results"]["CovidBed"].length }).map(
       (_, i) => (
-
-        bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] != 1 ? (covidFree.push(bedInfo["results"]["CovidBed"][`${i}`]["BedID"])) : (null)
-
+        bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] !== true ? (covidFree.push(bedInfo["results"]["CovidBed"][`${i}`]["BedID"])) : (null)
       )
     )
 
     Array.from({ length: bedInfo["results"]["NormalBed"].length }).map(
       (_, j) => (
-        bedInfo["results"]["NormalBed"][`${j}`]["IsOccupied"] != 1 ? (normalFree.push(bedInfo["results"]["NormalBed"][`${j}`]["BedID"])) : (null)
-
+        bedInfo["results"]["NormalBed"][`${j}`]["IsOccupied"] !== true ? (normalFree.push(bedInfo["results"]["NormalBed"][`${j}`]["BedID"])) : (null)
       )
     )
 
-    if (RATresult == "1" && covidFree.length > 0) {
+    if (RATresult === "1" && covidFree.length > 0) {
       return covidFree[0];
     }
-    else if (RATresult == "0" && normalFree.length > 0) {
+    else if (RATresult === "0" && normalFree.length > 0) {
       return normalFree[0];
     }
-
     else {
       return "no"
     }
@@ -71,8 +64,9 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
 
 
   const age = getAge(bday)
-
   const id = contactnumber.toString() + Date.parse(bday);
+  
+  //Create IDs for the patients
   const allocationId = id + Date.parse(admitDateTime) + "A";
   const reportId = id + Date.parse(admitDateTime) + "R";
   const testId = id + Date.parse(admitDateTime) + "T";
@@ -80,7 +74,6 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
 
 
   const dispatch = useDispatch();
-
   const patientAdmit = useSelector((state) => state.patientAdmit);
   const { loading, error, response } = patientAdmit;
 
@@ -94,7 +87,6 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
 
   useEffect(() => {
 
-    console.log(userInfo["results"])
     if (!userInfo) {
       history.push("/login");
     } else if (response) {
@@ -105,9 +97,6 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
       setMedicalHistory("");
       setAdmitDateTime("");
       setBday("");
-
-
-
     }
   }, [history, userInfo, response]);
 
@@ -145,7 +134,6 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
         <Col sm={3}><DoctorSideNav from='admit' /></Col>
         <Col sm={8} >
           <Row>
-            {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
             <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px" }}>Admit New Patient</h1> </Col>
           </Row>
           <hr
@@ -221,10 +209,6 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
                   </Form.Group>
                 </Col>
               </Row>
-
-
-
-
               <Form.Group controlId="medicalHistory">
                 <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Medical History</Form.Label>
                 <Form.Control
@@ -245,11 +229,9 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
               <Row>
                 <Col>
                   <PhoneInput
-                     containerStyle={{ color: "#007c7a" }}
-
-
-                     containerClass=""
-                     inputStyle={{ borderRadius: '20px', height: 'calc(1.5em + 1.5rem + 0px)', width: 'inherit' }}
+                    containerStyle={{ color: "#007c7a" }}
+                    containerClass=""
+                    inputStyle={{ borderRadius: '20px', height: 'calc(1.5em + 1.5rem + 0px)', width: 'inherit' }}
                     country="lk"
                     onlyCountries={["lk"]}
                     fullWidth="true"
@@ -260,11 +242,9 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
                     onChange={phone => setContactnumber(phone)}
                   />
                 </Col>
-             
+
               </Row>
               <br />
-
-
               <Row>
                 <Col>
                   <Form.Group controlId="RATresult">
@@ -278,13 +258,8 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
                   </Form.Group>
                 </Col>
                 <Col>
-
-
-                 
                 </Col>
-
               </Row>
-
 
               <Row>
                 <Col>
@@ -314,8 +289,6 @@ const DoctorAdmitPatientScreen = ({ location, history }) => {
         </Col>
         <Col sm={1}></Col>
       </Row>
-
-
     </div>
   );
 

@@ -9,13 +9,11 @@ import { Search } from "../../actions/bedActions";
 import HospitalAdminSideNav from "./HospitalAdminSideNav";
 
 
-const HASearchBedsScreen = ({ location, history }) => {
+const HASearchBedsScreen = ({  history }) => {
   const [facilityId, setFacilityId] = useState("");
-
   const [show1, setShow1] = useState(false);
   const [show2, setShow2] = useState(false);
 
-  
   const dispatch = useDispatch();
 
   const bedSearch = useSelector((state) => state.bedSearch);
@@ -41,7 +39,6 @@ const HASearchBedsScreen = ({ location, history }) => {
   function handleSubmit1(e) {
     e.preventDefault();
     setShow1(!show1);
-
   }
 
   function handleSubmit2(e) {
@@ -50,15 +47,11 @@ const HASearchBedsScreen = ({ location, history }) => {
   }
   return (
     <div>
-
-
       <Row >
         <Col sm={3}><HospitalAdminSideNav from='search'/></Col>
         <Col sm={8} >
-
           
-          <Row>
-            {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
+          <Row>          
             <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px", paddingTop: "60px" }}>Search Facility beds</h1> </Col>
           </Row>
           <hr
@@ -98,11 +91,8 @@ const HASearchBedsScreen = ({ location, history }) => {
                         )
                       )}
                       </>
-
-
                     </select>
                   </Form.Group>
-
                   <Row>
                     <Col sm={2}></Col>
                     <Col style={{ paddingTop: "22px" }}>
@@ -111,7 +101,6 @@ const HASearchBedsScreen = ({ location, history }) => {
                   </Row>
                 </Form>
               </FormContainer>
-
             </Col>
             <Col></Col>
           </Row>
@@ -119,14 +108,12 @@ const HASearchBedsScreen = ({ location, history }) => {
         </Col>
         <Col sm={1} ></Col>
       </Row>
+
       <>  {response ? (
         <><Row>
           <Col sm={3}></Col>
 
-
-
           <Col sm={8}>
-
             <hr
               style={{
                 color: "white",
@@ -134,27 +121,21 @@ const HASearchBedsScreen = ({ location, history }) => {
                 height: 2,
               }} />
             <Row>
-
               <br />   <br />
-
-
             </Row></Col>
           <Col sm={3}> </Col>
-
-        </Row><Row>
-
+        </Row>
+        
+        <Row>
             <Col sm={3}></Col>
             <Col sm={3}>
-
 
               <div >
                 <Card style={{ width: '15rem', borderColor: "#007c7a", borderRadius: "20px", borderWidth: "2px" }}>
                   <Card.Header style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold", color: "#007c7a", fontSize: "18px" }}>Covid Ward</Card.Header>
                   <Card.Body>
-
                     <Card.Title style={{ color: "black", textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Total Beds : {response["results"]["CovidWardCapacity"]}</Card.Title>
                     <Card.Title style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold" }}>Used  :{response["results"]["CovidBedUsed"]} Free : {response["results"]["CovidBedFree"]}</Card.Title>
-
 
                     <div style={{ paddingLeft: "44px" }}>
                       <form onSubmit={handleSubmit1}>
@@ -166,14 +147,12 @@ const HASearchBedsScreen = ({ location, history }) => {
                       {Array.from({ length: response["results"]["CovidBed"].length }).map(
                         (_, i) => (
 
-                          <>  {response["results"]["CovidBed"][`${i}`]["IsOccupied"] == 1 ? (<ListGroup.Item style={{ color: "red", textAlign: "center" }}>{response["results"]["CovidBed"][`${i}`]["BedID"]}    {response["results"]["CovidBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>) : (<ListGroup.Item style={{ color: "green", textAlign: "center" }}>{response["results"]["CovidBed"][`${i}`]["BedID"]} {response["results"]["CovidBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>)} </>
+                          <>  {response["results"]["CovidBed"][`${i}`]["IsOccupied"] === true ? (<ListGroup.Item style={{ color: "red", textAlign: "center" }}>{response["results"]["CovidBed"][`${i}`]["BedID"]}    {response["results"]["CovidBed"][`${i}`]["IsOccupied"] === true ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>) : (<ListGroup.Item style={{ color: "green", textAlign: "center" }}>{response["results"]["CovidBed"][`${i}`]["BedID"]} {response["results"]["CovidBed"][`${i}`]["IsOccupied"] === true ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>)} </>
 
                         )
                       )}
 
                     </ListGroup>
-
-
                     ) : (null)}</>
                   </Card.Body>
                 </Card></div> </Col>
@@ -181,8 +160,6 @@ const HASearchBedsScreen = ({ location, history }) => {
       
             <Col sm={3}>
               <div >
-
-
                 <Card style={{ width: '15rem', borderColor: "#007c7a", borderRadius: "20px", borderWidth: "2px" }}>
                   <Card.Header style={{ textAlign: "center", fontFamily: "Lato", textTransform: "revert", fontWeight: "bold", color: "#007c7a", fontSize: "18px" }}>Normal Ward</Card.Header>
                   <Card.Body>
@@ -195,21 +172,13 @@ const HASearchBedsScreen = ({ location, history }) => {
                       </form>
                     </div>
                     <> {show2 ? (<ListGroup className="list-group-flush">
-
                       {Array.from({ length: response["results"]["NormalBed"].length }).map(
                         (_, i) => (
-
-
-                          <>  {response["results"]["NormalBed"][`${i}`]["IsOccupied"] == 1 ? (<ListGroup.Item style={{ color: "red", textAlign: "center" }}>{response["results"]["NormalBed"][`${i}`]["BedID"]}    {response["results"]["NormalBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>) : (<ListGroup.Item style={{ color: "green", textAlign: "center" }}>{response["results"]["NormalBed"][`${i}`]["BedID"]} {response["results"]["NormalBed"][`${i}`]["IsOccupied"] == 1 ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>)} </>
-
+                          <>  {response["results"]["NormalBed"][`${i}`]["IsOccupied"] === true ? (<ListGroup.Item style={{ color: "red", textAlign: "center" }}>{response["results"]["NormalBed"][`${i}`]["BedID"]}    {response["results"]["NormalBed"][`${i}`]["IsOccupied"] === true ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>) : (<ListGroup.Item style={{ color: "green", textAlign: "center" }}>{response["results"]["NormalBed"][`${i}`]["BedID"]} {response["results"]["NormalBed"][`${i}`]["IsOccupied"] === true ? ("Occupied") : ("Not Occupied")}</ListGroup.Item>)} </>
                         )
                       )}
 
                     </ListGroup>) : (null)}</>
-
-
-
-
                   </Card.Body>
                 </Card>
               </div>

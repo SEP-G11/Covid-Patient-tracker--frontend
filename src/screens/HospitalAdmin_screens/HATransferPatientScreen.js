@@ -7,23 +7,15 @@ import FormContainer from "../../components/FormContainer";
 import {  transfer } from "../../actions/patientActions";
 import HospitalAdminSideNav from "./HospitalAdminSideNav";
 
-const HATransferPatientScreen = ({match, location, history }) => {
+const HATransferPatientScreen = ({match,  history }) => {
 
-
-  const [patient_id, setId] = useState(match.params.id ==":id" ? (""):(match.params.id));
- 
-  // const [origin_bed_id, setOriginBedId] = useState("");
+  const [patient_id, setId] = useState(match.params.id ===":id" ? (""):(match.params.id)); 
   const [dest_bed_id, setDestinationBedId] = useState("");
   const [transfer_date, setTransferDateTime] = useState("");
-
 
   const dispatch = useDispatch();
   const patientTransfer = useSelector((state) => state.patientTransfer);
   const { loading, error, response } = patientTransfer;
-
-  const bedLoad = useSelector((state) => state.bedLoad);
-  const { bedInfo } = bedLoad;
-
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
@@ -32,8 +24,7 @@ const HATransferPatientScreen = ({match, location, history }) => {
     if (!userInfo) {
       history.push("/login");
     } else if (response) {
-      setId("");
-      // setOriginBedId("");
+      setId("");     
       setDestinationBedId("");
       setTransferDateTime("");
 
@@ -46,7 +37,6 @@ const HATransferPatientScreen = ({match, location, history }) => {
         patient_id,     
         dest_bed_id,
         transfer_date
-
       )
     );
   };
@@ -54,10 +44,9 @@ const HATransferPatientScreen = ({match, location, history }) => {
   return (
     <div>
       <Row >
-        <Col sm={3}>    <HospitalAdminSideNav from='transfer'/></Col>
+        <Col sm={3}>  <HospitalAdminSideNav from='transfer'/></Col>
         <Col sm={8} >
-          <Row>
-            {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
+          <Row>           
             <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px", paddingTop: "60px" }}> Transfer Patient</h1> </Col>
           </Row>
           <hr
@@ -86,7 +75,6 @@ const HATransferPatientScreen = ({match, location, history }) => {
                 ></Form.Control>
               </Form.Group>
 
-
               <Row>
               <Col>
                   {" "}
@@ -102,42 +90,9 @@ const HATransferPatientScreen = ({match, location, history }) => {
                     ></Form.Control>
                   </Form.Group>
                 </Col>
-                <Col>
-
-
-                  {/* <Form.Group controlId="origin_bed_id">
-                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Origin Bed Id</Form.Label>
-
-                    <br />
-
-                    <select className="form-control" value={origin_bed_id} name="origin_bed_id" style={{ borderRadius: "20px", width: "150px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setOriginBedId(e.target.value)}>
-
-                      <option >SELECT</option>
-
-                      <> {Array.from({ length: bedInfo["results"]["CovidBed"].length }).map(
-                        (_, i) => (
-
-                          <>  {bedInfo["results"]["CovidBed"][`${i}`]["IsOccupied"] = 1 ? (<option style={{ color: "#007c7a" }} value={bedInfo["results"]["CovidBed"][`${i}`]["BedID"]}>{bedInfo["results"]["CovidBed"][`${i}`]["BedID"]}  </option>) : (null)}</>
-
-                        )
-                      )}
-                      </>
-                      <> {Array.from({ length: bedInfo["results"]["NormalBed"].length }).map(
-                        (_, i) => (
-
-                          <>  {bedInfo["results"]["NormalBed"][`${i}`]["IsOccupied"] = 1 ? (<option style={{ color: "#007c7a" }} value={bedInfo["results"]["NormalBed"][`${i}`]["BedID"]}>{bedInfo["results"]["NormalBed"][`${i}`]["BedID"]}  </option>) : (null)}</>
-
-                        )
-                      )}
-                      </>
-
-                    </select>
-                  </Form.Group> */}
-                </Col>
-
-               
+                <Col>                
+                </Col>               
               </Row>
-
 
               <Row>
                 <Col>

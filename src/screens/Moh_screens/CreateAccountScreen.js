@@ -40,7 +40,7 @@ const CreateAccountScreen = ({ history }) => {
             dispatch(listFacilities());
 
             if (success){
-                setName('');setId('');setEmail('');setContact('');setPassword('');setConfirmPassword('');setAccountType('');setFacility({})
+                setName('');setId('');setEmail('');setContact('94');setPassword('');setConfirmPassword('');setAccountType('');setFacility({})
             }
         }
         else {

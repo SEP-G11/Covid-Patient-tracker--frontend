@@ -1,10 +1,8 @@
 import React , { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../actions/userActions";
-import { BsFillHouseDoorFill } from "react-icons/bs";
-import { BsList } from "react-icons/bs";
-import { BsX } from "react-icons/bs";
-import { BsPower } from "react-icons/bs";
+import { BsFillHouseDoorFill,BsList,BsX,BsPower } from "react-icons/bs";
+import { FaFilePdf } from 'react-icons/fa';
 import { HiUserAdd, HiUserCircle } from "react-icons/hi";
 
 import { ProSidebar } from "react-pro-sidebar";
@@ -65,6 +63,14 @@ const MOHSideNav = ({...props}) => {
                     <NavLink to="/moh/register" className='a' onClick={collapseHandler}>
                         <span className="icon"><HiUserAdd size={18}/></span>
                         <span className="title">Create User</span>
+                    </NavLink>
+                </li>
+                <li className={`list ${props.from === 'rgs' && 'active'}`}>
+                    <b></b>
+                    <b></b>
+                    <NavLink to="/moh/report" className='a' onClick={collapseHandler}>
+                        <span className="icon"><FaFilePdf size={18}/></span>
+                        <span className="title">Report Generation</span>
                     </NavLink>
                 </li>
                 <li className={`list ${props.from === 'ups' && 'active'}`}>

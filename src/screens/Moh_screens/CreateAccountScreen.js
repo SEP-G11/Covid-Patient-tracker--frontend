@@ -48,7 +48,7 @@ const CreateAccountScreen = ({ history }) => {
         }
 
     }, [user,dispatch,history,userInfo,success]);
-    //
+
     const submitHandler = (e) => {
         e.preventDefault();
         if(password !== confirmPassword){
@@ -68,10 +68,8 @@ const CreateAccountScreen = ({ history }) => {
                 borderColor: "#007c7a",
                 height: "calc(1.5em + 1.5rem + 0px)"
             }),
-        }
-     //let options = [{value: 0, label:'Select facility'}];
+        };
         const options = facilitiesList.results.map(facility =>({ value: facility.facility_id, label: facility.name }));
-        //console.log(options);
         return (
 
             <Form.Group controlId='facilities'>

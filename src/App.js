@@ -35,6 +35,7 @@ import CreateAccountScreen from "./screens/Moh_screens/CreateAccountScreen";
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
 import ResetPasswordScreen from './screens/ResetPasswordScreen';
 import UserProfileScreen from './screens/UserProfileScreen';
+import ReportGenerateScreen from './screens/Moh_screens/ReportGenerateScreen';
 
 const App = () => {
   return (
@@ -68,6 +69,7 @@ const App = () => {
         
         <Route path="/moh/home" component={MOHScreen} />
         <Route path="/moh/register" component={CreateAccountScreen} />
+        <Route path="/moh/report" component={ReportGenerateScreen} />
         <Route path="/dashboard" component={PublicDashboardScreen} exact />
         <Route path="/forgot-password" component={ForgotPasswordScreen} exact/>
         <Route path="/reset-password/:token" component={ResetPasswordScreen}/>

@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-pdf/renderer": "1.6.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -11,6 +12,7 @@
     "chart.js": "^2.9.3",
     "history": "^5.0.1",
     "leaflet": "^1.6.0",
+    "moment": "^2.29.1",
     "node-sass": "^4.14.1",
     "numeral": "^2.0.6",
     "react": "^16.14.0",
@@ -21,7 +23,6 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^4.2.0",
     "react-leaflet": "^2.7.0",
-    "react-paypal-button-v2": "^2.6.2",
     "react-phone-input-2": "^2.14.0",
     "react-phone-number-input": "^3.1.27",
     "react-pro-sidebar": "^0.6.0",

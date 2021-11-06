@@ -128,7 +128,16 @@ const styles = StyleSheet.create({
     },
     tableLabelText: {
         fontSize: 15
-    }
+    },
+    pageNumber: {
+        position: 'absolute',
+        fontSize: 12,
+        bottom: 30,
+        left: 0,
+        right: 0,
+        textAlign: 'center',
+        color: 'grey',
+    },
 });
 
 export const ReportTemplate = ({districtData,countryData,countryDataFromDate,testsData,facilitiesData,date}) => (
@@ -262,6 +271,9 @@ export const ReportTemplate = ({districtData,countryData,countryDataFromDate,tes
                     </View>
                 </View>
             </View>
+            <Text style={styles.pageNumber} render={({ pageNumber, totalPages }) => (
+                `${pageNumber} / ${totalPages}`
+            )} fixed />
         </Page>
         <Page style={styles.body}>
             <Text> </Text>
@@ -300,6 +312,9 @@ export const ReportTemplate = ({districtData,countryData,countryDataFromDate,tes
                     )
                 })}
             </View>
+            <Text style={styles.pageNumber} render={({ pageNumber, totalPages }) => (
+                `${pageNumber} / ${totalPages}`
+            )} fixed />
         </Page>
 
     </Document>

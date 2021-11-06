@@ -54,3 +54,54 @@ export const capitalize = (s) => {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
 };
+
+export const mutateFacilityStats = (facilities,facilitiesActive,facilitiesRecovered,facilitiesDeaths) => {
+    let activeObj=  facilitiesActive.reduce((acc, curr) => {
+        const { facility_id, count } = curr;
+
+
+        if (!acc[facility_id]) {
+            acc[facility_id] = {
+                name: facilities[facility_id+1].name,
+                active: 0,
+                deaths: 0,
+                recovered: 0,
+            };
+        }
+
+        acc[facility_id]['active'] += count;
+        return acc;
+    }, {});
+    let recoveredObj=  facilitiesRecovered.reduce((acc, curr) => {
+        const { facility_id, count } = curr;
+
+
+        if (!acc[facility_id]) {
+            acc[facility_id] = {
+                name: facilities[facility_id+1].name,
+                active: 0,
+                deaths: 0,
+                recovered: 0,
+            };
+        }
+
+        acc[facility_id]['recovered'] += count;
+        return acc;
+    }, activeObj);
+    return facilitiesDeaths.reduce((acc, curr) => {
+        const {facility_id, count} = curr;
+
+
+        if (!acc[facility_id]) {
+            acc[facility_id] = {
+                name: facilities[facility_id + 1].name,
+                active: 0,
+                deaths: 0,
+                recovered: 0,
+            };
+        }
+
+        acc[facility_id]['deaths'] += count;
+        return acc;
+    }, recoveredObj);
+};

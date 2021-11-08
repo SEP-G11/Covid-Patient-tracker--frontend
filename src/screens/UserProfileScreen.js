@@ -4,6 +4,7 @@ import { Form, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
+import Meta from "../components/Meta";
 import {getUserDetails, updateUserProfile} from '../actions/userActions';
 import MOHSideNav from "./Moh_screens/MOHSideNav";
 import HospitalAdminSideNav from "./HospitalAdmin_screens/HospitalAdminSideNav";
@@ -67,6 +68,7 @@ const UserProfileScreen = ({history}) => {
 
     return (
         <React.Fragment>
+            <Meta title={'Profile'}/>
             <Row>
                 {userInfo && userInfo.results.accType==='MOH' && <Col sm={3}> <MOHSideNav from='ups'/> </Col>}
                 {userInfo && userInfo.results.accType==='DOC' && <Col sm={3}> <DoctorSideNav from='ups'/> </Col>}

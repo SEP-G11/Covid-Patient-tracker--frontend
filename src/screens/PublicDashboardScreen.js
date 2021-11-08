@@ -7,6 +7,7 @@ import LineGraph from '../components/LineGraph';
 import TestsGraph from '../components/TestsGraph';
 import BreakdownGraph from '../components/BreakdownGraph';
 import GlobalGraph from  '../components/GlobalGraph';
+import Meta from '../components/Meta';
 import {sortData,prettyPrintStat,capitalize} from '../utils';
 import Zoom from 'react-reveal/Zoom';
 import 'leaflet/dist/leaflet.css';
@@ -87,6 +88,7 @@ const PublicDashboard = () => {
 
     return (
         <React.Fragment>
+            <Meta title={'COVID-19 Live Dashboard - Sri Lanka'} description={'Live dashboard for Covid-19 situational analysis in Sri Lanka'} keywords={'covid19, dashboard, analytics, coronavirus, sri lanka, moh'}/>
             <div className='pd'>
                 <div className='pd__left'>
                     <div className='pd__header'>

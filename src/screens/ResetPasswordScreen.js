@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
+import Meta from '../components/Meta';
 import { resetPassword } from "../actions/userActions";
 import './ResetPasswordScreen.css';
 
@@ -49,6 +49,7 @@ const ResetPasswordScreen = ({ match, history }) => {
     };
     return (
         <React.Fragment>
+            <Meta title={'Reset Password'}/>
             <Row>
                 <Col sm={{ span: 8, offset: 2 }}>
                     <Row>
@@ -94,9 +95,6 @@ const ResetPasswordScreen = ({ match, history }) => {
                                 </Col>
                             </Row>
 
-                            {/*<Button type="submit" variant="info">*/}
-                            {/*    Reset Password*/}
-                            {/*</Button>*/}
                         </Form>
                     </FormContainer>
                 </Col>

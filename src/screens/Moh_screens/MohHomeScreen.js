@@ -9,6 +9,7 @@ import BedsGraph from '../../components/BedsGraph';
 import {prettyPrintStat} from '../../utils';
 import MOHSideNav from './MOHSideNav';
 import LineGraph from "../../components/LineGraph";
+import Meta from '../../components/Meta';
 import {FaHospitalAlt,FaPhoneAlt,FaSearch} from "react-icons/fa";
 import {MdLocationOn} from "react-icons/md";
 
@@ -108,6 +109,7 @@ const MohHomeScreen = ({ history }) => {
 
     return (
         <React.Fragment>
+            <Meta title={'Dashboard | MOH Admin'}/>
             <Row>
                 <Col sm={3}> <MOHSideNav from='home'/> </Col>
             </Row>

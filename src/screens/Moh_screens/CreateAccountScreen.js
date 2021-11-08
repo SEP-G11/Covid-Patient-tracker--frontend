@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import FormContainer from '../../components/FormContainer';
+import Meta from '../../components/Meta';
 import { register } from '../../actions/userActions';
 import { listFacilities } from '../../actions/facilityActions';
 import MOHSideNav from './MOHSideNav';
@@ -89,6 +90,7 @@ const CreateAccountScreen = ({ history }) => {
 
     return (
         <React.Fragment>
+            <Meta title={'Create Account'}/>
             <Row>
                 <Col sm={3}> <MOHSideNav from='cas'/> </Col>
                 <Col sm={8} >

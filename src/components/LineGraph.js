@@ -96,7 +96,7 @@ const LineGraph = ({casesType='cases', ...props}) => {
                 });
         };
         fetchData();
-    },[casesType,props.facilityId,url,config]);
+    },[casesType,props.facilityId,url]);
 
 
     return (

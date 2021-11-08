@@ -21,19 +21,19 @@ const MohHomeScreen = ({ history }) => {
     const [facilityStats, setFacilityStats]=useState({});
 
     const facilityList = useSelector(state => state.facilityList);
-    const {loading:loadingFacilityList, error:errorFacilityList, facilitiesList} = facilityList;
+    const {facilitiesList} = facilityList;
 
     const facilitiesActive = useSelector(state => state.facilitiesActive);
-    const {loading:loadingFacilitiesActive, error:errorFacilitiesActive, facilitiesActiveList} = facilitiesActive;
+    const {facilitiesActiveList} = facilitiesActive;
 
     const facilitiesRecovered = useSelector(state => state.facilitiesRecovered);
-    const {loading:loadingFacilitiesRecovered, error:errorFacilitiesRecovered, facilitiesRecoveredList} = facilitiesRecovered;
+    const {facilitiesRecoveredList} = facilitiesRecovered;
 
     const facilitiesDeaths = useSelector(state => state.facilitiesDeaths);
-    const {loading:loadingFacilitiesDeaths, error:errorFacilitiesDeaths, facilitiesDeathsList} = facilitiesDeaths;
+    const {facilitiesDeathsList} = facilitiesDeaths;
 
     const facilitiesBeds = useSelector(state => state.facilitiesBeds);
-    const {loading:loadingFacilitiesBeds, error:errorFacilitiesBeds, facilitiesBedsList} = facilitiesBeds;
+    const {facilitiesBedsList} = facilitiesBeds;
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
+import Meta from '../../components/Meta';
 import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
 import { Enter } from "../../actions/testActions";
@@ -48,12 +49,11 @@ const HAEnterResultScreen = ({ match, location, history }) => {
 
     return (
         <div>
-
+            <Meta title={'Hospital Admin Enter Results'} />
             <Row >
                 <Col sm={3}>    <HospitalAdminSideNav from='enter' /></Col>
                 <Col sm={8} >
-                    <Row>
-                        {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
+                    <Row>                       
                         <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px", paddingTop: "60px" }}>Enter test Results</h1> </Col>
                     </Row>
                     <hr

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
+import Meta from '../../components/Meta';
 import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
 import { discharge } from "../../actions/patientActions";
@@ -44,6 +45,7 @@ const HADischargePatientScreen = ({ match, history }) => {
 
   return (
     <div>
+       <Meta title={'Hospital Admin Discharge'}/>
       <Row >
         <Col sm={3}>    <HospitalAdminSideNav from='discharge' /></Col>
         <Col sm={8} >

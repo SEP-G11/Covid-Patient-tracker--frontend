@@ -3,6 +3,7 @@ import { Row, Col, Card, ListGroup } from "react-bootstrap";
 import { Chart } from "react-google-charts";
 import { useSpring, animated } from 'react-spring';
 import Warning from "../../components/Warning";
+import Meta from '../../components/Meta';
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/SEP logo.png";
@@ -51,8 +52,11 @@ const DoctorHomeScreen = ({ history }) => {
     setShow2(!show2);
   }
 
+  console.log(bedInfo)
+
   return (
     <div>
+       <Meta title={'Doctor Home'}/>
       <Row>
         <Col sm={3}><DoctorSideNav from='home' /></Col>
       </Row>

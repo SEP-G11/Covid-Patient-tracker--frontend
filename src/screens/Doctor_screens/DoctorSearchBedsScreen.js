@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form,  Row, Col, ListGroup, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
+import Meta from '../../components/Meta';
 import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
 import { Search } from "../../actions/bedActions";
@@ -48,6 +49,7 @@ const DoctorSearchBedsScreen = ({  history }) => {
   }
   return (
     <div>
+       <Meta title={'Doctor Search Beds'}/>
       <Row >
         <Col sm={3}><DoctorSideNav from='search' /></Col>
         <Col sm={8} >          

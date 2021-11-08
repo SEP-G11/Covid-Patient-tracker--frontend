@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
+import Meta from '../../components/Meta';
 import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
 import { Enter } from "../../actions/testActions";
@@ -49,6 +50,7 @@ const DoctorEnterResultScreen = ({ match, history }) => {
 
     return (
         <div>
+             <Meta title={'Doctor Enter Results'}/>
             <Row >
                 <Col sm={3}>    <DoctorSideNav from='enter' /></Col>
                 <Col sm={8} >

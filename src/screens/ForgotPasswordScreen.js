@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
+import Meta from '../components/Meta';
 import { forgotPassword } from "../actions/userActions";
 import './ForgotPasswordScreen.css';
 
-const ForgotPasswordScreen = ({ location, history }) => {
+const ForgotPasswordScreen = ({ history }) => {
     const [email, setEmail] = useState("");
 
     const dispatch = useDispatch();
@@ -45,6 +45,7 @@ const ForgotPasswordScreen = ({ location, history }) => {
 
     return (
         <React.Fragment>
+            <Meta title={'Forgot Password'}/>
             <Row>
                 <Col sm={{ span: 8, offset: 2 }}>
                     <Row>

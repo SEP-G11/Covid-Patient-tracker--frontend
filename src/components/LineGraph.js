@@ -85,7 +85,6 @@ const LineGraph = ({casesType='cases', ...props}) => {
                 Authorization: `Bearer ${userInfo.results.token}`
         }
     }
-    console.log(config);
 
     useEffect(() => {
         const fetchData = async () => {

@@ -8,6 +8,7 @@ import {Col, Form, Row} from "react-bootstrap";
 import MOHSideNav from "./MOHSideNav";
 import './ReportGenerateScreen.css';
 import FormContainer from "../../components/FormContainer";
+import Meta from '../../components/Meta';
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import {API_URL} from '../../config';
@@ -88,6 +89,7 @@ const ReportGenerateScreen = ({history}) => {
 
     return (
         <React.Fragment>
+            <Meta title={'Generate Report'}/>
             <Row>
                 <Col sm={3}> <MOHSideNav from='rgs'/> </Col>
                 <Col sm={8} >

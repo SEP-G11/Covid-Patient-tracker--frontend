@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import { Bar } from 'react-chartjs-2';
 import numeral from 'numeral';
+import {API_URL} from '../config';
 
 const buildChartData = (data) => {
     let labels= [];
@@ -73,7 +74,7 @@ const TestsGraph = ({...props}) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            fetch(`http://localhost:8000/moh/historical/tests?lastdays=30`)
+            fetch(`${API_URL}/moh/historical/tests?lastdays=30`)
                 .then(response => response.json())
                 .then(data => {
                     const chartData = buildChartData(data);

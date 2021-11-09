@@ -12,7 +12,7 @@ import {
 
 } from "../constants/bedConstants";
 import { logout } from "./userActions";
-
+import {API_URL} from '../config';
 
 
 export const Search = (facilityId) => async (dispatch, getState) => {
@@ -34,7 +34,7 @@ export const Search = (facilityId) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/bed/search/${facilityId}`, config);
+    const { data } = await axios.get(`${API_URL}/bed/search/${facilityId}`, config);
 
     dispatch({
       type: BED_SEARCH_SUCCESS,
@@ -75,7 +75,7 @@ export const loadbeds = (facilityId) => async (dispatch, getState) => {
 
     console.log(userInfo["results"]["token"])
 
-    const { data } = await axios.get(`/bed/search/${facilityId}`, config);
+    const { data } = await axios.get(`${API_URL}/bed/search/${facilityId}`, config);
 
     dispatch({
       type: BED_LOAD_SUCCESS,

@@ -29,7 +29,7 @@ const CreateAccountScreen = ({ history }) => {
     const { loading, error,success, user } = userRegister;
 
     const facilityList = useSelector(state => state.facilityList);
-    const {loading:loadingFacilityList, error:errorFacilityList, facilitiesList} = facilityList;
+    const {loading:loadingFacilityList, facilitiesList} = facilityList;
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;

@@ -91,10 +91,8 @@ const LineGraph = ({casesType='cases', ...props}) => {
             fetch(url,config)
                 .then(response => response.json())
                 .then(data => {
-                    //console.log(data);
                     const chartData = buildChartData(data);
                     setData(chartData);
-                    //console.log(chartData)
                 });
         };
         fetchData();

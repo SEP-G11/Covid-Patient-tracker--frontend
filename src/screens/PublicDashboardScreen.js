@@ -94,16 +94,7 @@ const PublicDashboard = () => {
                     <div className='pd__header'>
                         <Image className='float-right' src='/national_emblem.png' />
                         <h1>COVID-19 DASHBOARD</h1>
-                        {/*<Card>*/}
-                        {/*    <Card.Body>*/}
-                        {/*    <Row>*/}
-                        {/*        <Col>*/}
-                        {/*            <h1>COVID-19 DASHBOARD</h1>*/}
-                        {/*        </Col>*/}
-                        {/*    </Row>*/}
-                        {/*    </Card.Body>*/}
 
-                        {/*</Card>*/}
                         <Form onChange={onDistrictChange}>
                             <Form.Group>
                                 <Form.Control size="sm" as="select" defaultValue={district} className='custom-select'>

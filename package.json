@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "Frontend",
   "proxy": "https://rlccovid19tracker.herokuapp.com",
   "version": "0.1.0",
   "private": true,

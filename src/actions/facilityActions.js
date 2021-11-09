@@ -9,7 +9,7 @@ import {
   FACILITY_BEDS_REQUEST,FACILITY_BEDS_SUCCESS,FACILITY_BEDS_FAIL
 } from "../constants/facilityConstants";
 import { logout } from "./userActions";
-
+import {API_URL} from '../config';
 
 
 export const getFacility = () => async (dispatch, getState) => {
@@ -31,7 +31,7 @@ export const getFacility = () => async (dispatch, getState) => {
       },
     };
  
-    const { data } = await axios.get(`/facility/getAllFacility`, config);
+    const { data } = await axios.get(`${API_URL}/facility/getAllFacility`, config);
 
     dispatch({
       type: FACILITY_GET_SUCCESS,
@@ -68,7 +68,7 @@ export const listFacilities = () => async (dispatch,getState) => {
         };
 
 
-        const { data } = await axios.get(`/moh/facilities`,config);
+        const { data } = await axios.get(`${API_URL}/moh/facilities`,config);
 
         dispatch({
             type: FACILITY_LIST_SUCCESS,
@@ -98,7 +98,7 @@ export const listFacilitiesActive = () => async (dispatch,getState) => {
         };
 
 
-        const { data } = await axios.get(`/moh/facilities/active`,config);
+        const { data } = await axios.get(`${API_URL}/moh/facilities/active`,config);
 
         dispatch({
             type: FACILITY_ACTIVE_SUCCESS,
@@ -128,7 +128,7 @@ export const listFacilitiesRecovered = () => async (dispatch,getState) => {
         };
 
 
-        const { data } = await axios.get(`/moh/facilities/recovered`,config);
+        const { data } = await axios.get(`${API_URL}/moh/facilities/recovered`,config);
 
         dispatch({
             type: FACILITY_RECOVERED_SUCCESS,
@@ -158,7 +158,7 @@ export const listFacilitiesDeaths = () => async (dispatch,getState) => {
         };
 
 
-        const { data } = await axios.get(`/moh/facilities/deaths`,config);
+        const { data } = await axios.get(`${API_URL}/moh/facilities/deaths`,config);
 
         dispatch({
             type: FACILITY_DEATHS_SUCCESS,
@@ -188,7 +188,7 @@ export const listFacilitiesBeds = () => async (dispatch,getState) => {
         };
 
 
-        const { data } = await axios.get(`/moh/facilities/beds`,config);
+        const { data } = await axios.get(`${API_URL}/moh/facilities/beds`,config);
 
         dispatch({
             type: FACILITY_BEDS_SUCCESS,

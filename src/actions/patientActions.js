@@ -23,6 +23,7 @@ import {
   PATIENT_UPDATE_FAIL,
 } from "../constants/patientConstants";
 import { logout } from "./userActions";
+import {API_URL} from '../config';
 
 export const admit = (
   name,
@@ -62,7 +63,7 @@ export const admit = (
     };
 
     const { data } = await axios.post(
-      "/patient/admit",
+      `${API_URL}/patient/admit`,
       {
         name,
         id,
@@ -129,7 +130,7 @@ export const discharge = (
     };
 
     const { data } = await axios.post(
-      "/patient/discharge",
+      `${API_URL}/patient/discharge`,
       {
         patient_id,discharged_at,description,status
       },
@@ -181,7 +182,7 @@ export const transfer = (
     };
 
     const { data } = await axios.post(
-      "/patient/transfer",
+      `${API_URL}/patient/transfer`,
       {
         patient_id,    
         dest_bed_id,
@@ -228,7 +229,7 @@ export const listPatients = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/patient/getPatients`, config)
+    const { data } = await axios.get(`${API_URL}/patient/getPatients`, config)
 
     dispatch({
       type: PATIENT_LIST_SUCCESS,
@@ -270,7 +271,7 @@ export const getPatientDetails = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/patient/patientDetails/${id}`, config)
+    const { data } = await axios.get(`${API_URL}/patient/patientDetails/${id}`, config)
 
     dispatch({
       type: PATIENT_DETAILS_SUCCESS,
@@ -311,7 +312,7 @@ export const updatePatient = (patient) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `/patient/updatePatient/${patient.patient_id}`,
+      `${API_URL}/patient/updatePatient/${patient.patient_id}`,
       patient,
       config
     )
@@ -353,7 +354,7 @@ export const filterPatients = (input) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/patient/filterPatients/${input}`, config)
+    const { data } = await axios.get(`${API_URL}/patient/filterPatients/${input}`, config)
 
     dispatch({
       type: PATIENT_FILTER_SUCCESS,

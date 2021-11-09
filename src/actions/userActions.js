@@ -8,6 +8,7 @@ import {
   USER_DETAILS_REQUEST, USER_DETAILS_SUCCESS, USER_DETAILS_FAIL,
   USER_UPDATE_PROFILE_REQUEST,USER_UPDATE_PROFILE_SUCCESS,USER_UPDATE_PROFILE_FAIL
 } from '../constants/userConstants'
+import {API_URL} from '../config';
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -22,7 +23,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/auth/login",
+      `${API_URL}/auth/login`,
       { email, password },
       config
     );
@@ -71,7 +72,7 @@ export const register = (id, name, email, contact, password, accountType, facili
     };
 
     const { data } = await axios.post(
-        '/moh/register',
+        `${API_URL}/moh/register`,
         {id,name,email,contact,password,accountType,facilityId},
         config
     );
@@ -105,7 +106,7 @@ export const forgotPassword = (email) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-        '/auth/forgot-password',
+        `${API_URL}/auth/forgot-password`,
         { email },
         config
     );
@@ -139,7 +140,7 @@ export const resetPassword = (password,token) => async (dispatch) => {
     };
 
     const { data } = await axios.put(
-        '/auth/reset-password',
+        `${API_URL}/auth/reset-password`,
         { password, token },
         config
     );
@@ -175,7 +176,7 @@ export const getUserDetails = () => async (dispatch, getState) => {
       }
     };
 
-    const { data } = await axios.get(`/user/profile`, config);
+    const { data } = await axios.get(`${API_URL}/user/profile`, config);
 
     dispatch({
       type: USER_DETAILS_SUCCESS,
@@ -207,19 +208,13 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       }
     };
 
-    const { data } = await axios.put(`/user/profile`, user, config);
+    const { data } = await axios.put(`${API_URL}/user/profile`, user, config);
 
     dispatch({
       type: USER_UPDATE_PROFILE_SUCCESS,
       payload: data
     });
 
-    // dispatch({
-    //   type: USER_LOGIN_SUCCESS,
-    //   payload: data
-    // });
-
-    //localStorage.setItem('userInfo', JSON.stringify(data));
   }
   catch (error) {
     dispatch({

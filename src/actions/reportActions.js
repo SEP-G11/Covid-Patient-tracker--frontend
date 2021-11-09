@@ -13,7 +13,7 @@ import {
 
 } from "../constants/reportConstants";
 import { logout } from "./userActions";
-
+import {API_URL} from '../config';
 
 
 export const CreateReport= (
@@ -46,7 +46,7 @@ export const CreateReport= (
             };
 
             const { data } = await axios.post(
-                "/report/createReport",
+                `${API_URL}/report/createReport`,
                 {
                     id,
                 testId,
@@ -101,7 +101,7 @@ export const getPatientReportDetails = (id) => async (dispatch, getState) => {
                  },
              };
  
-             const { data } = await axios.get(`/report/patientReportDetails/${id}`, config)
+             const { data } = await axios.get(`${API_URL}/report/patientReportDetails/${id}`, config)
  
              dispatch({
                  type: PATIENT_REPORT_SUCCESS,
@@ -143,7 +143,7 @@ export const updatePatientReport = (report) => async (dispatch, getState) => {
         };
 
         const { data } = await axios.put(
-            `/report/updateReport/${report.patient_id}`,
+            `${API_URL}/report/updateReport/${report.patient_id}`,
             report,
             config
           )

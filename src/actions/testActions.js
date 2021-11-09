@@ -9,7 +9,7 @@ import {
 
 } from "../constants/testConstants";
 import { logout } from "./userActions";
-
+import {API_URL} from '../config';
 
 
 export const Enter = (testId,
@@ -36,7 +36,7 @@ export const Enter = (testId,
             };
 
             const { data } = await axios.post(
-                "/test/enter",
+                `${API_URL}/test/enter`,
                 {
                     testId,
                     id,
@@ -86,7 +86,7 @@ export const getPatientTestDetails = (id) => async (dispatch, getState) => {
                 },
             };
 
-            const { data } = await axios.get(`/test/testDetails/${id}`, config)
+            const { data } = await axios.get(`${API_URL}/test/testDetails/${id}`, config)
 
             dispatch({
                 type: TEST_DETAILS_SUCCESS,

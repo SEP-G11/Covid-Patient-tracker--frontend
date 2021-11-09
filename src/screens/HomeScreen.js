@@ -1,10 +1,10 @@
 import React from "react";
-import {  Row, Col,  } from "react-bootstrap";
-
+import { Row, Col, } from "react-bootstrap";
+import Meta from '../components/Meta';
 import { Link } from "react-router-dom";
 import logo from "../assets/SEP logo.png";
 import { useSpring, animated } from 'react-spring';
-import {  useEffect } from "react";
+import { useEffect } from "react";
 
 
 const HomeScreen = ({ location, history }) => {
@@ -26,12 +26,10 @@ const HomeScreen = ({ location, history }) => {
   return (
 
     <div>
-
+      <Meta title={'Home'} />
       <Row >
         <Col >
           <br /> <br /> <br /> <br /> <br />
-
-
           <animated.div
             style={{
               ...styles,
@@ -39,9 +37,6 @@ const HomeScreen = ({ location, history }) => {
           > <img src={logo} alt="" width="650" height="350"></img> </animated.div>
         </Col>
         <Col>
-
-
-
           <h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "35px", paddingTop: "100px" }}>Covid patient tracker for  </h1>
           <h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "35px", paddingTop: "0px" }}>sri lanka </h1>
           <Row>

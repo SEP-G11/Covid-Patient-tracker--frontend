@@ -1,8 +1,8 @@
-
 import { Row, Col, Card, ListGroup } from "react-bootstrap";
 import { Chart } from "react-google-charts";
 import Warning from "../../components/Warning";
 import React, { useState, useEffect } from "react";
+import Meta from '../../components/Meta';
 import { useDispatch, useSelector } from "react-redux";
 import { loadbeds } from "../../actions/bedActions";
 import { useSpring, animated } from 'react-spring';
@@ -57,6 +57,7 @@ const HospitalAdminHomeScreen = ({ history }) => {
 
   return (
     <div>
+       <Meta title={'Hospital Admin Home'}/>
       <Row>
         <Col sm={3}><HospitalAdminSideNav from='home' /></Col>
       </Row>

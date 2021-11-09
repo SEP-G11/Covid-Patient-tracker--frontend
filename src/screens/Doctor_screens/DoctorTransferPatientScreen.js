@@ -3,6 +3,7 @@ import { Form, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
+import Meta from '../../components/Meta';
 import FormContainer from "../../components/FormContainer";
 import { transfer } from "../../actions/patientActions";
 import DoctorSideNav from "./DoctorSideNav";
@@ -44,6 +45,7 @@ const DoctorTransferPatientScreen = ({ match, history }) => {
 
   return (
     <div>
+       <Meta title={'Doctor Transfer'}/>
       <Row >
         <Col sm={3}>    <DoctorSideNav from='transfer' /></Col>
         <Col sm={8} >

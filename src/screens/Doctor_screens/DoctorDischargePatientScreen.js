@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form,  Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
+import Meta from '../../components/Meta';
 import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
 import { discharge } from "../../actions/patientActions";
@@ -45,12 +46,11 @@ const DoctorDischargePatientScreen = ({ match, history }) => {
 
   return (
     <div>
-
+ <Meta title={'Doctor Discharge'}/>
       <Row >
         <Col sm={3}>    <DoctorSideNav from='discharge'/></Col>
         <Col sm={8} >
-          <Row>
-            {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
+          <Row>        
             <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px", paddingTop: "60px" }}> Discharge Patient</h1> </Col>
           </Row>
           <hr

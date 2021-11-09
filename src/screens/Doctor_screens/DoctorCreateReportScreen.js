@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
+import Meta from '../../components/Meta';
 import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
 import { CreateReport } from "../../actions/reportActions";
@@ -97,6 +98,7 @@ const DoctorCreateReportScreen = ({ history }) => {
 
     return (
         <div>
+             <Meta title={'Doctor Create Medical Report'}/>
             <Row >
                 <Col sm={3}><DoctorSideNav from='createReport' /></Col>
                 <Col sm={8} >

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import Meta from '../../components/Meta';
 import { Form,  Row, Col, ListGroup, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
@@ -47,6 +47,7 @@ const HASearchBedsScreen = ({  history }) => {
   }
   return (
     <div>
+       <Meta title={'Hospital Admin Search Beds'}/>
       <Row >
         <Col sm={3}><HospitalAdminSideNav from='search'/></Col>
         <Col sm={8} >

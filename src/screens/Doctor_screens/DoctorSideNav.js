@@ -13,7 +13,7 @@ import { CgEnter } from "react-icons/cg";
 import { TiDocumentAdd } from "react-icons/ti";
 import { ProSidebar } from "react-pro-sidebar";
 import '../../components/sidenavstyle.css';
-
+import {  HiUserCircle } from "react-icons/hi";
 import { NavLink } from 'react-router-dom';
 
 const DoctorSideNav = ({...props}) => {
@@ -120,6 +120,14 @@ const DoctorSideNav = ({...props}) => {
                     <NavLink to="/doctor/enter/:id" className='a' onClick={collapseHandler}>
                         <span class="icon"><CgEnter size={18}/></span>
                         <span class="title">Enter Test Results</span>
+                    </NavLink>
+                </li>
+                <li className={`list ${props.from === 'ups' && 'active'}`}>
+                    <b></b>
+                    <b></b>
+                    <NavLink to="/profile" className='a' onClick={collapseHandler}>
+                        <span className="icon"><HiUserCircle size={18}/></span>
+                        <span className="title">Profile</span>
                     </NavLink>
                 </li>
 

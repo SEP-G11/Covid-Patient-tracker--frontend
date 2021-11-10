@@ -10,6 +10,7 @@ import { AiOutlineFileSearch } from "react-icons/ai";
 import { BiTransfer } from "react-icons/bi";
 import { HiUserAdd ,HiUserRemove } from "react-icons/hi";
 import { CgEnter } from "react-icons/cg";
+import {  HiUserCircle } from "react-icons/hi";
 import { ProSidebar } from "react-pro-sidebar";
 import '../../components/sidenavstyle.css';
 
@@ -111,6 +112,14 @@ const HospitalAdminSideNav = ({...props})=> {
                     <NavLink to="/hospitalAdmin/enter/:id" className='a' onClick={collapseHandler}>
                         <span class="icon"><CgEnter size={18}/></span>
                         <span class="title">Enter Test Results</span>
+                    </NavLink>
+                </li>
+                <li className={`list ${props.from === 'ups' && 'active'}`}>
+                    <b></b>
+                    <b></b>
+                    <NavLink to="/profile" className='a' onClick={collapseHandler}>
+                        <span className="icon"><HiUserCircle size={18}/></span>
+                        <span className="title">Profile</span>
                     </NavLink>
                 </li>
                 <li>

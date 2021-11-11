@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPatientReportDetails } from '../../actions/reportActions'
 import { getPatientTestDetails } from '../../actions/testActions'
 import DoctorSideNav from "./DoctorSideNav";
+import Meta from "../../components/Meta";
 
 const DoctorViewMedicalReport = ({ match , history }) => {
     const patientId = match.params.id
@@ -76,6 +77,7 @@ const DoctorViewMedicalReport = ({ match , history }) => {
 
     return (
         <div>
+            <Meta title={`View Medical Report`}/>
             <Row >
                 <Col sm={3}><DoctorSideNav from='viewPatientsList'/></Col>
                 <Col sm={8} >
@@ -98,10 +100,10 @@ const DoctorViewMedicalReport = ({ match , history }) => {
                     <Col md={12} align='center'>
                     <Col md={6} align='center'>
                         <p class="text-dark">
-                            <strong>Report Id: </strong> {report.report_id}
+                            <strong>Report ID: </strong> {report.report_id}
                         </p>
                         <p class="text-dark">
-                            <strong>Patient Id: </strong> {report.patient_id}
+                            <strong>Patient ID: </strong> {report.patient_id}
                         </p>
                         <p class="text-dark">
                             <strong>Bed No: </strong> {report.bed_no}

@@ -1,15 +1,15 @@
 import React, { useState, useEffect }  from "react";
-import { Form, Button, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
-import { LinkContainer } from 'react-router-bootstrap'
+import { Form, Button, Row, Col } from "react-bootstrap";
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import FormContainer from '../../components/FormContainer'
 import { getPatientDetails, updatePatient } from '../../actions/patientActions'
 import { PATIENT_UPDATE_RESET } from '../../constants/patientConstants'
 import DoctorSideNav from "./DoctorSideNav";
 import PhoneInput from 'react-phone-input-2'
+import Meta from "../../components/Meta";
+import './DoctorEditPatientInfo.css';
 
 const DoctorEditPatientInfo = ({ match, history }) => {
     const patientId = match.params.id
@@ -74,61 +74,54 @@ const DoctorEditPatientInfo = ({ match, history }) => {
 
     return (
         <div>
+            <Meta title={'Edit Patient Info'}/>
             <Row >
                 <Col sm={3}><DoctorSideNav from='viewPatientsList'/></Col>
                 <Col sm={8} >
                     <Row>
                         {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
-                        <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px" }}>Edit Patient Information</h1> </Col>
+                        <Col sm={12}><h1 className='depi__title'>Edit Patient Information</h1> </Col>
                     </Row>
-                    <hr
-                        style={{
-                            color: "white",
-                            backgroundColor: "#007c7a",
-                            height: 2,
-                        }}
-                    />
+                    <hr className='depi__hr'/>
 
                     <Row>
-                        {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
-                        <Col sm={12}><h6 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "15px", paddingLeft: "-50px",marginBottom: "20px" }}>Patient Id: {patientId}</h6> </Col>
+                        <Col sm={12}><h6 className='depi__patientID'>Patient ID: {patientId}</h6> </Col>
                     </Row>
 
-                    <FormContainer style={{ border: '2px solid #000000' }}>
+                    <FormContainer className='depi__formContainer'>
                         {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
                         {loadingUpdate && <Loader />}
                         <Form onSubmit={submitHandler}>
                             <Form.Group controlId="name">
-                                <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Patient Name</Form.Label>
+                                <Form.Label className='depi__formLabel'>Patient Name</Form.Label>
                                 <Form.Control
                                     type="text"
                                     placeholder="Enter name"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
-                                    style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-                                ></Form.Control>
+                                    className='depi__formControl'>
+                                </Form.Control>
                             </Form.Group>
 
                             <Row>
                                 <Col>
                                     <Form.Group controlId="bday">
-                                        <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Date of Birth</Form.Label>
+                                        <Form.Label className='depi__formLabel'>Date of Birth</Form.Label>
                                         <Form.Control
                                             type="date"
                                             placeholder="Enter Birthday"
                                             value={bday}
-                                            style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-                                            onChange={(e) => setBday(e.target.value)}
-
-
-                                        ></Form.Control> </Form.Group>
+                                            className='depi__formControl'
+                                            onChange={(e) => setBday(e.target.value)}>
+                                        </Form.Control>
+                                    </Form.Group>
                                 </Col>
                                 <Col>
 
                                     <Form.Group controlId="district">
-                                        <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>District</Form.Label>
+                                        <Form.Label className='depi__formLabel'>District</Form.Label>
                                         <br />
-                                        <select className="form-control" value={district} name="district" style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setDistrict(e.target.value)}>
+                                        <select className="form-control depi__formControl" value={district} name="district" onChange={(e) => setDistrict(e.target.value)}>
                                             <option >SELECT</option>
                                             <option value="Ampara">Ampara</option>
                                             <option value="Anuradhapura">Anuradhapura</option>
@@ -163,8 +156,8 @@ const DoctorEditPatientInfo = ({ match, history }) => {
                             <Row>
                                 <Col>
                                     <Form.Group controlId="bloodtype">
-                                        <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Blood Type</Form.Label>
-                                        <select className="form-control" value={blood_type} name="RATresult" style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setBloodType(e.target.value)}>
+                                        <Form.Label className='depi__formLabel'>Blood Type</Form.Label>
+                                        <select className="form-control depi__formControl" value={blood_type} name="RATresult" onChange={(e) => setBloodType(e.target.value)}>
                                             <option >SELECT</option>
                                             <option value='O+'>O+</option>
                                             <option value='O-'>O-</option>
@@ -179,8 +172,8 @@ const DoctorEditPatientInfo = ({ match, history }) => {
                                 </Col>
                                 <Col>
                                     <Form.Group controlId="gender">
-                                        <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Gender</Form.Label>
-                                        <select className="form-control" value={gender} name="RATresult" style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setGender(e.target.value)}>
+                                        <Form.Label className='depi__formLabel'>Gender</Form.Label>
+                                        <select className="form-control depi__formControl" value={gender} name="RATresult" onChange={(e) => setGender(e.target.value)}>
                                             <option >SELECT</option>
                                             <option value="Male">MALE </option>
                                             <option value="Female">FEMALE</option>
@@ -190,7 +183,7 @@ const DoctorEditPatientInfo = ({ match, history }) => {
                             </Row>
                     
                             <Form.Group controlId="address">
-                                <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Address</Form.Label>
+                                <Form.Label className='depi__formLabel'>Address</Form.Label>
                                 <Form.Control
                                     as="textarea"
                                     rows={3}
@@ -198,12 +191,12 @@ const DoctorEditPatientInfo = ({ match, history }) => {
                                     placeholder="Enter address"
                                     value={address}
                                     onChange={(e) => setAddress(e.target.value)}
-                                    style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-                                ></Form.Control>
+                                    className='depi__formControl'>
+                                </Form.Control>
                             </Form.Group>
 
                             <Form.Group controlId="contactnumber">
-                                <Form.Label style={{ color: "#008A77", fontWeight: "bold" }} >Contact Number</Form.Label>
+                                <Form.Label className='depi__formLabel' >Contact Number</Form.Label>
                             </Form.Group>
                             <Row>
                                 <Col>
@@ -228,7 +221,7 @@ const DoctorEditPatientInfo = ({ match, history }) => {
                             <Row>
                                 <Col>
                                     <Form.Group controlId="isvaccinated">
-                                        <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Vaccination Details</Form.Label>
+                                        <Form.Label className='depi__formLabel'>Vaccination Details</Form.Label>
                                         <Row className="px-3 py-2">
                                             <Form.Check
                                                 type="radio"
@@ -259,9 +252,9 @@ const DoctorEditPatientInfo = ({ match, history }) => {
                                     <>
                                         <Col>
                                             <Form.Group controlId="testType">
-                                                <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Vaccine Type</Form.Label>
+                                                <Form.Label className='depi__formLabel'>Vaccine Type</Form.Label>
                                                 <br />
-                                                <select className="form-control" value={Type_vaccine} name="Type_vaccine" style={{ borderRadius: "20px", width: "150px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setTypevaccinated(e.target.value)}>
+                                                <select className="form-control depi__formControl" value={Type_vaccine} name="Type_vaccine" style={{width: "150px"}} onChange={(e) => setTypevaccinated(e.target.value)}>
                                                     <option>SELECT</option>
                                                     <option value="Sputnik V">Sputnik V</option>
                                                     <option value="Sinopharm">Sinopharm </option>
@@ -275,9 +268,9 @@ const DoctorEditPatientInfo = ({ match, history }) => {
                                         </Col>
                                         <Col>
                                             <Form.Group controlId="testType">
-                                                <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>No.Vaccine </Form.Label>
+                                                <Form.Label className='depi__formLabel'>No.Vaccine </Form.Label>
                                                 <br />
-                                                <select className="form-control" value={Num_vaccine} name="Num_vaccine" style={{ borderRadius: "20px", width: "150px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setNumvaccinated(e.target.value)}>
+                                                <select className="form-control depi__formControl" value={Num_vaccine} name="Num_vaccine" style={{width: "150px"}} onChange={(e) => setNumvaccinated(e.target.value)}>
                                                     <option >SELECT</option>
                                                     <option value="1">1  </option>
                                                     <option value="2">2 </option>

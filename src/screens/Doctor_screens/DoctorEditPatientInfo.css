@@ -1,0 +1,46 @@
+.depi__hr{
+    color: white;
+    background-color: #007c7a;
+    height: 2px;
+}
+
+.depi__title{
+    font-family: "Arial";
+    text-align: center;
+    color: #007c7a;
+    font-size: 40px;
+    padding-left: -50px;
+}
+
+.depi__patientID{
+    font-family: "Arial";
+    text-align: center;
+    color: #007c7a;
+    font-size: 15px;
+    padding-left: -50px;
+    margin-bottom: 20px;
+}
+
+.depi__formContainer{
+    border: 2px solid #000000;
+}
+
+.depi__formLabel{
+    color: #008A77;
+    font-weight: bold;
+}
+
+.depi__formControl{
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: #007c7a;
+    border-style: solid;
+    color: black;
+    outline: #913163;
+    background-color: white;
+}
+
+.depi__formControl:focus{
+    background-color: white;
+    color: black;
+}

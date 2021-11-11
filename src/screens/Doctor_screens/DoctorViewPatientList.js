@@ -8,6 +8,7 @@ import { listPatients , filterPatients } from '../../actions/patientActions'
 import Pagination from '../../components/Pagination';
 import DoctorSideNav from "./DoctorSideNav";
 import './DoctorViewPatientList.css';
+import Meta from '../../components/Meta';
 
 const DoctorViewPatientList = ( { history }) => {
     const dispatch = useDispatch()
@@ -50,20 +51,15 @@ const DoctorViewPatientList = ( { history }) => {
 
     return (
         <div>
+            <Meta title={'Patient List'}/>
             <Row >
                 <Col sm={3}><DoctorSideNav from='viewPatientsList'/></Col>
                 <Col sm={8} >
                 <Row>
                     {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
-                    <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px" }}>Patients List</h1> </Col>
+                    <Col sm={12}><h1 className='dvpl__title'>Patients List</h1> </Col>
                 </Row>
-                <hr
-                    style={{
-                    color: "white",
-                    backgroundColor: "#007c7a",
-                    height: 2,
-                    }}
-                />
+                <hr className='dvpl__hr'/>
 
                 {loading ? (
                     <Loader />
@@ -74,23 +70,24 @@ const DoctorViewPatientList = ( { history }) => {
                         <Row>
                         <Col md={5} align='left'>
                                 <Form.Group controlId="searchname">
-                                    <Form.Label style={{ color: "#008A77", fontWeight: "bold"}}>Search</Form.Label>
+                                    <Form.Label className='dvpl__formLabel'>Search</Form.Label>
                                         <Form.Control
                                         id="myInput"
                                         type="text"
                                         placeholder="Search for patients.."
                                         onKeyUp={myFunction}
-                                        style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
+                                        className='dvpl__formControl'
+                                        style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", outline: "#913163" }}
                                         ></Form.Control>
                                 </Form.Group>
                             </Col>
                             <Col md={2} align="left">
                                 <Form.Group controlId='pageSize'>
-                                    <Form.Label style={{ color: "#008A77", fontWeight: "bold"}}>Rows Per Page</Form.Label>
-                                        <select className="form-control" as='select'
+                                    <Form.Label className='dvpl__formLabel'>Rows Per Page</Form.Label>
+                                        <select className="form-control dvpl__formControl" as='select'
                                         value={PageSize}
                                         onChange={(e) => setPageSize(e.target.value)}
-                                        style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163"}}>
+                                        >
                                             <option value="10">10</option>
                                             <option value="20">20</option>
                                             <option value="30">30</option>

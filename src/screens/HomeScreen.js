@@ -8,7 +8,6 @@ import pcMobile from "../assets/mobile Pc.png";
 import home from "../assets/home.png";
 import { useSpring, animated } from 'react-spring';
 import { useEffect } from "react";
-import {API_URL} from '../config';
 
 const HomeScreen = () => {
 
@@ -19,7 +18,7 @@ const HomeScreen = () => {
 
   function goDashboard(e) {
     e.preventDefault();
-    window.open(`${API_URL}/dashboard`, "_blank")
+    window.open(`/dashboard`, "_blank")
 
   }
 

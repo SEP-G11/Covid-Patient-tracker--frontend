@@ -8,6 +8,7 @@ import FormContainer from "../../components/FormContainer";
 import { CreateReport } from "../../actions/reportActions";
 import DoctorSideNav from "./DoctorSideNav";
 import PhoneInput from 'react-phone-input-2'
+import './DoctorCreateReportScreen.css';
 
 const DoctorCreateReportScreen = ({ history }) => {
 
@@ -98,22 +99,16 @@ const DoctorCreateReportScreen = ({ history }) => {
 
     return (
         <div>
-             <Meta title={'Doctor Create Medical Report'}/>
+            <Meta title={'Doctor Create Medical Report'}/>
             <Row >
                 <Col sm={3}><DoctorSideNav from='createReport' /></Col>
                 <Col sm={8} >
-                    <Row>                        
-                        <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px" }}>Create medical Report</h1> </Col>
+                    <Row>
+                        <Col sm={12}><h1 className='dcrs__title'>Create medical Report</h1> </Col>
                     </Row>
-                    <hr
-                        style={{
-                            color: "white",
-                            backgroundColor: "#007c7a",
-                            height: 2,
-                        }}
-                    />
+                    <hr className='dcrs__hr'/>
 
-                    <FormContainer style={{ border: '2px solid #000000' }}>
+                    <FormContainer className='dcrs__formContainer'>
                         {error && <Message variant="danger">{error}</Message>}
                         {response && <Message variant="success">{response["message"]}</Message>}
                         {loading && <Loader />}
@@ -123,15 +118,15 @@ const DoctorCreateReportScreen = ({ history }) => {
                             <Row>
                                 <Col>
                                     <Form.Group controlId="bday">
-                                        <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Date of Birth</Form.Label>
+                                        <Form.Label className='dcrs__formLabel'>Date of Birth</Form.Label>
                                         <Form.Control
                                             type="date"
                                             placeholder="Enter Birthday"
                                             value={bday}
-                                            style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-                                            onChange={(e) => setBday(e.target.value)}
-
-                                        ></Form.Control> </Form.Group>
+                                            className='dcrs__formControl'
+                                            onChange={(e) => setBday(e.target.value)}>
+                                        </Form.Control>
+                                    </Form.Group>
 
 
                                 </Col>
@@ -140,7 +135,7 @@ const DoctorCreateReportScreen = ({ history }) => {
 
 
                             <Form.Group controlId="contactnumber">
-                                <Form.Label style={{ color: "#008A77", fontWeight: "bold" }} >Contact Number</Form.Label>
+                                <Form.Label className='dcrs__formLabel' >Contact Number</Form.Label>
                             </Form.Group>
                             <Row>
                                 <Col>
@@ -163,7 +158,7 @@ const DoctorCreateReportScreen = ({ history }) => {
                             <br />
 
                             <Form.Group controlId="description">
-                                <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Medical History</Form.Label>
+                                <Form.Label className='dcrs__formLabel'>Medical History</Form.Label>
                                 <Form.Control
                                     as="textarea"
                                     rows={3}
@@ -171,9 +166,8 @@ const DoctorCreateReportScreen = ({ history }) => {
                                     placeholder="Enter Any Medical History"
                                     value={description}
                                     onChange={(e) => setMedicalHistory(e.target.value)}
-                                    style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-
-                                ></Form.Control>
+                                    className='dcrs__formControl'>
+                                </Form.Control>
                             </Form.Group>
 
 
@@ -181,9 +175,9 @@ const DoctorCreateReportScreen = ({ history }) => {
                             <Row>
                                 <Col>
                                     <Form.Group controlId="RATresult">
-                                        <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>RAT Result</Form.Label>
+                                        <Form.Label className='dcrs__formLabel'>RAT Result</Form.Label>
                                         <br />
-                                        <select className="form-control" value={RATresult} name="RATresult" style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setRATresult(e.target.value)}>
+                                        <select className="form-control dcrs__formControl" value={RATresult} name="RATresult" onChange={(e) => setRATresult(e.target.value)}>
                                             <option >SELECT</option>
                                             <option value="1">POSITIVE </option>
                                             <option value="0">NEGATIVE</option>
@@ -202,15 +196,15 @@ const DoctorCreateReportScreen = ({ history }) => {
                             <Row>
                                 <Col>
                                     <Form.Group controlId="date">
-                                        <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}> Date </Form.Label>
+                                        <Form.Label className='dcrs__formLabel'> Date </Form.Label>
                                         <Form.Control
                                             type="datetime-local"
                                             placeholder="Enter Date"
                                             value={date}
                                             onChange={(e) => setDate(e.target.value)
                                             }
-                                            style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-                                        ></Form.Control>
+                                            className='dcrs__formControl'>
+                                        </Form.Control>
                                     </Form.Group>
                                 </Col>
 

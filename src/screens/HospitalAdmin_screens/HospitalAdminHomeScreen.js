@@ -92,7 +92,7 @@ const HospitalAdminHomeScreen = ({ history }) => {
                 <div style={{ paddingLeft: "180px" }}>
                   <br />
                   <Link to={"/hospitalAdmin/admit"}>
-                    <button class="button button3" type="submit">GET START </button> </Link> </div>
+                    <button class="button button3" type="submit">GET STARTED </button> </Link> </div>
               </Col>
               <Col> <img src={logo} alt="" width="550" height="275"></img></Col>
 

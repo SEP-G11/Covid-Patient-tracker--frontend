@@ -8,6 +8,7 @@ import FormContainer from "../../components/FormContainer";
 import { admit } from "../../actions/patientActions";
 import DoctorSideNav from "./DoctorSideNav";
 import PhoneInput from 'react-phone-input-2'
+import './DoctorAdmitPatientScreen.css';
 
 const DoctorAdmitPatientScreen = ({ history }) => {
 
@@ -136,50 +137,44 @@ const DoctorAdmitPatientScreen = ({ history }) => {
         <Col sm={3}><DoctorSideNav from='admit' /></Col>
         <Col sm={8} >
           <Row>
-            <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px" }}>Admit New Patient</h1> </Col>
+            <Col sm={12}><h1 className='daps__title'>Admit New Patient</h1> </Col>
           </Row>
-          <hr
-            style={{
-              color: "white",
-              backgroundColor: "#007c7a",
-              height: 2,
-            }}
-          />
+          <hr className='daps__hr'/>
 
-          <FormContainer style={{ border: '2px solid #000000' }}>
+          <FormContainer className='daps__formContainer'>
             {error && <Message variant="danger">{error}</Message>}
             {response && <Message variant="success">{response["message"]}</Message>}
             {loading && <Loader />}
             <Form onSubmit={submitHandler}>
               <Form.Group controlId="name">
-                <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Patient Name</Form.Label>
+                <Form.Label className='daps__formLabel'>Patient Name</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-                ></Form.Control>
+                  className='daps__formControl'>
+                </Form.Control>
               </Form.Group>
 
               <Row>
                 <Col>
                   <Form.Group controlId="bday">
-                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Date of Birth</Form.Label>
+                    <Form.Label className='daps__formLabel'>Date of Birth</Form.Label>
                     <Form.Control
                       type="date"
                       placeholder="Enter Birthday"
                       value={bday}
-                      style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-                      onChange={(e) => setBday(e.target.value)}
-
-                    ></Form.Control> </Form.Group>
-                </Col>        <Col>
-
+                      className='daps__formControl'
+                      onChange={(e) => setBday(e.target.value)}>
+                    </Form.Control>
+                  </Form.Group>
+                </Col>
+                <Col>
                   <Form.Group controlId="district">
-                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>District</Form.Label>
+                    <Form.Label className='daps__formLabel'>District</Form.Label>
                     <br />
-                    <select className="form-control" value={district} name="district" style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setDistrict(e.target.value)}>
+                    <select className="form-control daps__formControl" value={district} name="district" onChange={(e) => setDistrict(e.target.value)}>
                       <option >SELECT</option>
                       <option value="Ampara">Ampara</option>
                       <option value="Anuradhapura">Anuradhapura</option>
@@ -212,7 +207,7 @@ const DoctorAdmitPatientScreen = ({ history }) => {
                 </Col>
               </Row>
               <Form.Group controlId="medicalHistory">
-                <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Medical History</Form.Label>
+                <Form.Label className='daps__formLabel'>Medical History</Form.Label>
                 <Form.Control
                   as="textarea"
                   rows={3}
@@ -220,13 +215,12 @@ const DoctorAdmitPatientScreen = ({ history }) => {
                   placeholder="Enter Any Medical History"
                   value={medicalHistory}
                   onChange={(e) => setMedicalHistory(e.target.value)}
-                  style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-
-                ></Form.Control>
+                  className='daps__formControl'>
+                </Form.Control>
               </Form.Group>
 
               <Form.Group controlId="contactnumber">
-                <Form.Label style={{ color: "#008A77", fontWeight: "bold" }} >Contact Number</Form.Label>
+                <Form.Label className='daps__formLabel' >Contact Number</Form.Label>
               </Form.Group>
               <Row>
                 <Col>
@@ -250,9 +244,9 @@ const DoctorAdmitPatientScreen = ({ history }) => {
               <Row>
                 <Col>
                   <Form.Group controlId="RATresult">
-                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>RAT Result</Form.Label>
+                    <Form.Label className='daps__formLabel'>RAT Result</Form.Label>
                     <br />
-                    <select className="form-control" value={RATresult} name="RATresult" style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setRATresult(e.target.value)}>
+                    <select className="form-control daps__formControl" value={RATresult} name="RATresult" onChange={(e) => setRATresult(e.target.value)}>
                       <option >SELECT</option>
                       <option value="1">POSITIVE </option>
                       <option value="0">NEGATIVE</option>
@@ -266,15 +260,15 @@ const DoctorAdmitPatientScreen = ({ history }) => {
               <Row>
                 <Col>
                   <Form.Group controlId="admitDateTime">
-                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Admit Date Time</Form.Label>
+                    <Form.Label className='daps__formLabel'>Admit Date Time</Form.Label>
                     <Form.Control
                       type="datetime-local"
                       placeholder="Enter Date Time"
                       value={admitDateTime}
                       onChange={(e) => setAdmitDateTime(e.target.value)
                       }
-                      style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-                    ></Form.Control>
+                      className='daps__formControl'>
+                    </Form.Control>
                   </Form.Group>
                 </Col>
 

@@ -190,6 +190,19 @@ const HAEditPatientInfo = ({ match, history }) => {
                                 </Col>
                             </Row>
 
+                            <Form.Group controlId="address">
+                                <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Address</Form.Label>
+                                <Form.Control
+                                    as="textarea"
+                                    rows={3}
+                                    type="text"
+                                    placeholder="Enter address"
+                                    value={address}
+                                    onChange={(e) => setAddress(e.target.value)}
+                                    style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
+                                ></Form.Control>
+                            </Form.Group>
+
                             <Form.Group controlId="contactnumber">
                                 <Form.Label style={{ color: "#008A77", fontWeight: "bold" }} >Contact Number</Form.Label>
                             </Form.Group>

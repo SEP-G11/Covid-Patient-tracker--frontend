@@ -7,6 +7,7 @@ import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
 import { Enter } from "../../actions/testActions";
 import DoctorSideNav from "./DoctorSideNav";
+import './DoctorEnterResultScreen.css';
 
 const DoctorEnterResultScreen = ({ match, history }) => {
 
@@ -55,15 +56,9 @@ const DoctorEnterResultScreen = ({ match, history }) => {
                 <Col sm={3}>    <DoctorSideNav from='enter' /></Col>
                 <Col sm={8} >
                     <Row>                        
-                        <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px", paddingTop: "60px" }}>Enter test Results</h1> </Col>
+                        <Col sm={12}><h1 className='ders__title'>Enter test Results</h1> </Col>
                     </Row>
-                    <hr
-                        style={{
-                            color: "white",
-                            backgroundColor: "#007c7a",
-                            height: 2,
-                        }}
-                    />
+                    <hr className='ders__hr'/>
                     <br />
                     <FormContainer>
 
@@ -75,35 +70,35 @@ const DoctorEnterResultScreen = ({ match, history }) => {
                             <Row>
                                 <Col>
                                     <Form.Group controlId="id">
-                                        <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Patient Id</Form.Label>
+                                        <Form.Label className='ders__formLabel'>Patient ID</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Enter PatientId"
+                                            placeholder="Enter Patient ID"
                                             value={id}
                                             onChange={(e) => setId(e.target.value)}
-                                            style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-                                        ></Form.Control>
+                                            className='ders__formControl'>
+                                        </Form.Control>
                                     </Form.Group>
                                 </Col>
 
                             </Row>
                             <Form.Group controlId="dischargeDateTime">
-                                <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}> Date </Form.Label>
+                                <Form.Label className='ders__formLabel'> Date </Form.Label>
                                 <Form.Control
                                     type="datetime-local"
                                     placeholder="Enter Date"
                                     value={date}
                                     onChange={(e) => setDate(e.target.value)}
-                                    style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-                                ></Form.Control>
+                                    className='ders__formControl'>
+                                </Form.Control>
                             </Form.Group>
 
                             <Row>
                                 <Col>
                                     <Form.Group controlId="testType">
-                                        <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Test Type</Form.Label>
+                                        <Form.Label className='ders__formLabel'>Test Type</Form.Label>
                                         <br />
-                                        <select className="form-control" value={testType} name="testType" style={{ borderRadius: "20px", width: "150px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setTestType(e.target.value)}>
+                                        <select className="form-control ders__formControl" value={testType} name="testType" onChange={(e) => setTestType(e.target.value)}>
                                             <option >SELECT</option>
                                             <option value="PCR">PCR</option>
                                             <option value="RAT">RAT</option>
@@ -114,9 +109,9 @@ const DoctorEnterResultScreen = ({ match, history }) => {
                                 </Col>
                                 <Col>
                                     <Form.Group controlId="RATresult">
-                                        <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Test Result</Form.Label>
+                                        <Form.Label className='ders__formLabel'>Test Result</Form.Label>
                                         <br />
-                                        <select className="form-control" value={RATresult} name="RATresult" style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} onChange={(e) => setRATresult(e.target.value)}>
+                                        <select className="form-control ders__formControl" value={RATresult} name="RATresult" onChange={(e) => setRATresult(e.target.value)}>
                                             <option >SELECT</option>
                                             <option value="1">POSITIVE </option>
                                             <option value="0">NEGATIVE</option>

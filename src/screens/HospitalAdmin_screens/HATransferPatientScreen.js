@@ -7,10 +7,11 @@ import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
 import {  transfer } from "../../actions/patientActions";
 import HospitalAdminSideNav from "./HospitalAdminSideNav";
+import './HATransferPatientScreen.css';
 
 const HATransferPatientScreen = ({match,  history }) => {
 
-  const [patient_id, setId] = useState(match.params.id ===":id" ? (""):(match.params.id)); 
+  const [patient_id, setId] = useState(match.params.id ===":id" ? (""):(match.params.id));
   const [dest_bed_id, setDestinationBedId] = useState("");
   const [transfer_date, setTransferDateTime] = useState("");
 
@@ -25,7 +26,7 @@ const HATransferPatientScreen = ({match,  history }) => {
     if (!userInfo) {
       history.push("/login");
     } else if (response) {
-      setId("");     
+      setId("");
       setDestinationBedId("");
       setTransferDateTime("");
 
@@ -34,97 +35,88 @@ const HATransferPatientScreen = ({match,  history }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      transfer(
-        patient_id,     
-        dest_bed_id,
-        transfer_date
-      )
+        transfer(
+            patient_id,
+            dest_bed_id,
+            transfer_date
+        )
     );
   };
 
   return (
-    <div>
-       <Meta title={'Hospital Admin Transfer'}/>
-      <Row >
-        <Col sm={3}>  <HospitalAdminSideNav from='transfer'/></Col>
-        <Col sm={8} >
-          <Row>           
-            <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px", paddingTop: "60px" }}> Transfer Patient</h1> </Col>
-          </Row>
-          <hr
-            style={{
-              color: "white",
-              backgroundColor: "#007c7a",
-              height: 2,
-            }}
-          />
-          <br />
-          <FormContainer>
+      <div>
+        <Meta title={'Hospital Admin Transfer'}/>
+        <Row >
+          <Col sm={3}>  <HospitalAdminSideNav from='transfer'/></Col>
+          <Col sm={8} >
+            <Row>
+              <Col sm={12}><h1 className='hatps__title'> Transfer Patient</h1> </Col>
+            </Row>
+            <hr className='hatps__hr'/>
+            <br />
+            <FormContainer>
 
-            {error && <Message variant="danger">{error}</Message>}
-            {response && <Message variant="success">{response["message"]}</Message>}
-            {loading && <Loader />}
-            <Form onSubmit={submitHandler}>
-              <Form.Group controlId="id">
-                <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Patient Id</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter Id"
-                  value={patient_id}
-                  onChange={(e) => setId(e.target.value)}
-                  style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-
-                ></Form.Control>
-              </Form.Group>
-
-              <Row>
-              <Col>
-                  {" "}
-                  <Form.Group controlId="dest_bed_id">
-                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Destination Bed Id</Form.Label>
-                    <Form.Control
+              {error && <Message variant="danger">{error}</Message>}
+              {response && <Message variant="success">{response["message"]}</Message>}
+              {loading && <Loader />}
+              <Form onSubmit={submitHandler}>
+                <Form.Group controlId="id">
+                  <Form.Label className='hatps__formLabel'>Patient ID</Form.Label>
+                  <Form.Control
                       type="text"
-                      placeholder="Enter Dest: Bed Id"
-                      value={dest_bed_id}
-                      onChange={(e) => setDestinationBedId(e.target.value)}
-                      style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
+                      placeholder="Enter ID"
+                      value={patient_id}
+                      onChange={(e) => setId(e.target.value)}
+                      className='hatps__formControl'>
+                  </Form.Control>
+                </Form.Group>
 
-                    ></Form.Control>
-                  </Form.Group>
-                </Col>
-                <Col>                
-                </Col>               
-              </Row>
+                <Row>
+                  <Col>
+                    {" "}
+                    <Form.Group controlId="dest_bed_id">
+                      <Form.Label className='hatps__formLabel'>Destination Bed ID</Form.Label>
+                      <Form.Control
+                          type="text"
+                          placeholder="Enter Dest: Bed ID"
+                          value={dest_bed_id}
+                          onChange={(e) => setDestinationBedId(e.target.value)}
+                          className='hatps__formControl'>
+                      </Form.Control>
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                  </Col>
+                </Row>
 
-              <Row>
-                <Col>
-                  <Form.Group controlId="transferDateTime">
-                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Transfer Date Time</Form.Label>
-                    <Form.Control
-                      type="datetime-local"
-                      placeholder="Enter Date Time"
-                      value={transfer_date}
-                      onChange={(e) => setTransferDateTime(e.target.value)}
-                      style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
+                <Row>
+                  <Col>
+                    <Form.Group controlId="transferDateTime">
+                      <Form.Label className='hatps__formLabel'>Transfer Date Time</Form.Label>
+                      <Form.Control
+                          type="datetime-local"
+                          placeholder="Enter Date Time"
+                          value={transfer_date}
+                          onChange={(e) => setTransferDateTime(e.target.value)}
+                          className='hatps__formControl'>
+                      </Form.Control>
+                    </Form.Group>
+                  </Col>
 
-                    ></Form.Control>
-                  </Form.Group>
-                </Col>
+                </Row>
 
-              </Row>
-
-              <br /><br />
-              <div style={{ paddingLeft: "110px" }}>
-                <button class="button button1"
-                  type="submit"
-                >
-                  TRANSFER
-                </button></div>
-            </Form>
-          </FormContainer></Col>
-        <Col sm={3}></Col>
-      </Row>
-    </div>
+                <br /><br />
+                <div style={{ paddingLeft: "110px" }}>
+                  <button class="button button1"
+                          type="submit"
+                  >
+                    TRANSFER
+                  </button></div>
+              </Form>
+            </FormContainer></Col>
+          <Col sm={3}></Col>
+        </Row>
+      </div>
   );
 };
 

@@ -13,6 +13,10 @@ body{
 }
 
 .pd__dropdown{
+    border: 1px solid black;
+}
+
+.custom-select:focus{
     background-color: white;
 }
 

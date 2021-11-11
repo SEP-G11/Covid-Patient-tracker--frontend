@@ -97,7 +97,7 @@ const PublicDashboard = () => {
 
                         <Form onChange={onDistrictChange}>
                             <Form.Group>
-                                <Form.Control size="sm" as="select" defaultValue={district} className='custom-select'>
+                                <Form.Control size="sm" as="select" defaultValue={district} className='custom-select pd__dropdown'>
                                     <option value='islandwide'>Islandwide</option>
                                     {
                                         districts.map(district => (

@@ -9,8 +9,7 @@ import home from "../assets/home.png";
 import { useSpring, animated } from 'react-spring';
 import { useEffect } from "react";
 
-
-const HomeScreen = ({ location, history }) => {
+const HomeScreen = () => {
 
 
   const [styles, api] = useSpring(() => ({
@@ -19,7 +18,7 @@ const HomeScreen = ({ location, history }) => {
 
   function goDashboard(e) {
     e.preventDefault();
-    window.open("https://rlc-covid19tracker.vercel.app/dashboard", "_blank")
+    window.open(`/dashboard`, "_blank")
 
   }
 

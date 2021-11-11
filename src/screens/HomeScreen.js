@@ -90,24 +90,26 @@ const HomeScreen = ({ location, history }) => {
       </Row>
       <br /><br /><br /><br /><br /><br /><br /><br />
       <Row><Col sm={1}></Col>
-        <Col sm={4}> <br /> <br /> <br /> <br />
+        <Col sm={3}> <br /> <br /> <br /> <br />
           <h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "35px", paddingTop: "30px", textTransform: "revert" }} >Realtime Analytics of Covid Situation In SriLanka  </h1>
           <br />
 
           <br />
           <form onSubmit={goDashboard}>
-            <button class="button button2" type="submit" style={{ marginLeft: 160, }}>Click for Live Dashboard</button>
+            <button class="button button2" type="submit" style={{ marginLeft: 120, }}>Click for Live Dashboard</button>
           </form>
         </Col>
         <Col sm={1}></Col>
-        <Col sm={6}>
-          <img src={dash} alt="" width="800" height="450"></img>
-
+        <Col sm={5}>
+         
+          <img src={dash} alt="" width="800" height="450" ></img>
+        
         </Col>
+        <Col sm={1}></Col>
       </Row>
 
       <br /><br /> <br /><br />
-      <Row> <Col sm={4}></Col>
+      <Row> <Col sm={3}></Col>
       </Row>
       <br /><br /><br /><br />
       <Row>

@@ -1,0 +1,34 @@
+.dsbs__hr{
+    color: white;
+    background-color: #007c7a;
+    height: 2px;
+}
+
+.dsbs__title{
+    font-family: "Arial";
+    text-align: center;
+    color: #007c7a;
+    font-size: 40px;
+    padding-left: -50px;
+    padding-top: 60px;
+}
+
+.dsbs__formLabel{
+    color: #008A77;
+    font-weight: bold;
+}
+
+.dsbs__formControl{
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: #007c7a;
+    border-style: solid;
+    color: black;
+    outline: #913163;
+    background-color: white;
+}
+
+.dsbs__formControl:focus{
+    background-color: white;
+    color: black;
+}

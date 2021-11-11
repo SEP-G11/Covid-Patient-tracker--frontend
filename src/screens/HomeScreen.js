@@ -8,9 +8,9 @@ import pcMobile from "../assets/mobile Pc.png";
 import home from "../assets/home.png";
 import { useSpring, animated } from 'react-spring';
 import { useEffect } from "react";
+import {API_URL} from '../config';
 
-
-const HomeScreen = ({ location, history }) => {
+const HomeScreen = () => {
 
 
   const [styles, api] = useSpring(() => ({
@@ -19,7 +19,7 @@ const HomeScreen = ({ location, history }) => {
 
   function goDashboard(e) {
     e.preventDefault();
-    window.open("https://rlc-covid19tracker.vercel.app/dashboard", "_blank")
+    window.open(`${API_URL}/dashboard`, "_blank")
 
   }
 

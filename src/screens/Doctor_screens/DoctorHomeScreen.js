@@ -89,7 +89,7 @@ const DoctorHomeScreen = ({ history }) => {
                 <br />   <br />
                 <h2 style={{ textAlign: "center", color: "#007c7a", fontSize: "40px" }}>WELCOME</h2>
                 <h4 st style={{ fontFamily: "Lato", textAlign: "center", padding: "10px", textTransform: "revert", letterSpacing: "1.5px" }}>Your are a Doctor of {bedInfo["results"]["FacilityName"]}.Try to work with  your best.</h4>
-                <div style={{ paddingLeft: "75px" }}>
+                <div style={{ paddingLeft: "180px" }}>
                   <br />
                   <Link to={"/doctor/admit"}>
                     <button class="button button3" type="submit">GET START </button> </Link> </div>

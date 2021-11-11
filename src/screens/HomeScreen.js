@@ -91,7 +91,7 @@ const HomeScreen = ({ location, history }) => {
       <br /><br /><br /><br /><br /><br /><br /><br />
       <Row><Col sm={1}></Col>
         <Col sm={3}> <br /> <br /> <br /> <br />
-          <h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "35px", paddingTop: "30px", textTransform: "revert" }} >Realtime Analytics of Covid Situation In SriLanka  </h1>
+          <h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "30px", paddingTop: "30px", textTransform: "revert" }} >Realtime Analytics of Covid Situation In SriLanka  </h1>
           <br />
 
           <br />

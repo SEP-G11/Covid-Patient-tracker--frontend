@@ -61,7 +61,7 @@ const HAViewPatientInfo = ({ match , history }) =>{
                 ) : (
                 <Col md={12} align='center'>
                     <p class="text-dark">
-                        <strong>Id: </strong> {patient.patient_id}
+                        <strong>ID: </strong> {patient.patient_id}
                     </p>
                     <p class="text-dark">
                         <strong>Name: </strong> {patient.name}

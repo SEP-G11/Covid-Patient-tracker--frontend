@@ -1,0 +1,40 @@
+.login__hr{
+    color: white;
+    background-color: #007c7a;
+    height: 2px;
+}
+
+.login__title{
+    font-family: "Arial";
+    text-align: center;
+    color: #007c7a;
+    font-size: 40px;
+    padding-left: -50px;
+    padding-top: 60px;
+}
+
+.login__formLabel{
+    color: #008A77;
+    font-weight: bold;
+}
+
+.login__formControl{
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: #007c7a;
+    border-style: solid;
+    color: black;
+    outline: #913163;
+    background-color: white;
+}
+
+.login__formControl:focus{
+    background-color: white;
+    color: black;
+}
+
+.login__fpLink{
+    color: gray;
+    font-size: 12px;
+    font-weight: bold;
+}

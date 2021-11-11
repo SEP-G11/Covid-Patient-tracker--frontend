@@ -336,7 +336,7 @@ const HAAdmitPatientScreen = ({ history }) => {
               <Row>
                 <Col>
                   <Form.Group controlId="isvaccinated">
-                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Isvaccinated</Form.Label>
+                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Is Vaccinated</Form.Label>
                     <Row className="px-3 py-2">
                       <Form.Check
                         type="radio"

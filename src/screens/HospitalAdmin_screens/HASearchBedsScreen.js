@@ -7,7 +7,7 @@ import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
 import { Search } from "../../actions/bedActions";
 import HospitalAdminSideNav from "./HospitalAdminSideNav";
-
+import './HASearchBedsScreen.css';
 
 const HASearchBedsScreen = ({  history }) => {
   const [facilityId, setFacilityId] = useState("");
@@ -53,15 +53,9 @@ const HASearchBedsScreen = ({  history }) => {
         <Col sm={8} >
           
           <Row>          
-            <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px", paddingTop: "60px" }}>Search Facility beds</h1> </Col>
+            <Col sm={12}><h1 className='hasbs__title'>Search Facility beds</h1> </Col>
           </Row>
-          <hr
-            style={{
-              color: "white",
-              backgroundColor: "#007c7a",
-              height: 2,
-            }}
-          />
+          <hr className='hasbs__hr'/>
           <br />
           <Row><Col sm={3} ></Col>
             <Col sm={5} >  {error && <Message variant="danger">{error}</Message>}
@@ -78,9 +72,9 @@ const HASearchBedsScreen = ({  history }) => {
                 <Form onSubmit={submitHandler}>
 
                   <Form.Group controlId="facilityId">
-                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}></Form.Label>
+                    <Form.Label className='hasbs__formLabel'></Form.Label>
                     <br />
-                    <select className="form-control" value={facilityId} style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }} name="facilityId" onChange={(e) => setFacilityId(e.target.value)}>
+                    <select className="form-control hasbs__formControl" value={facilityId} name="facilityId" onChange={(e) => setFacilityId(e.target.value)}>
                       <option >SELECT</option>
 
 

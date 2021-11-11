@@ -3,10 +3,12 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button, Row, Col, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message';
+import Meta from '../../components/Meta';
 import Loader from '../../components/Loader';
 import { listPatients , filterPatients } from '../../actions/patientActions'
 import Pagination from '../../components/Pagination';
 import HospitalAdminSideNav from "./HospitalAdminSideNav";
+import './HAViewPatientList.css';
 
 const HAViewPatientList = ( { history }) => {
     const dispatch = useDispatch()
@@ -49,20 +51,15 @@ const HAViewPatientList = ( { history }) => {
 
     return (
         <div>
+            <Meta title={'Patient List'}/>
             <Row >
                 <Col sm={3}><HospitalAdminSideNav from='viewPatientsList'/></Col>
                 <Col sm={8} >
                 <Row>
                     {/* <Col sm={1}> <img src={logo} width="200" height="90" ></img></Col> */}
-                    <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px" }}>Patients List</h1> </Col>
+                    <Col sm={12}><h1 className='havpl__title'>Patients List</h1> </Col>
                 </Row>
-                <hr
-                    style={{
-                    color: "white",
-                    backgroundColor: "#007c7a",
-                    height: 2,
-                    }}
-                />
+                <hr className='havpl__hr'/>
 
                 {loading ? (
                     <Loader />
@@ -73,23 +70,23 @@ const HAViewPatientList = ( { history }) => {
                         <Row>
                         <Col md={5} align='left'>
                                 <Form.Group controlId="searchname">
-                                    <Form.Label style={{ color: "#008A77", fontWeight: "bold"}}>Search</Form.Label>
+                                    <Form.Label className='havpl__formLabel'>Search</Form.Label>
                                         <Form.Control
                                         id="myInput"
                                         type="text"
                                         placeholder="Search for patients.."
                                         onKeyUp={myFunction}
-                                        style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
+                                        className='havpl__formControl'
+                                        style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", outline: "#913163" }}
                                         ></Form.Control>
                                 </Form.Group>
                             </Col>
                             <Col md={2} align="left">
                                 <Form.Group controlId='pageSize'>
-                                    <Form.Label style={{ color: "#008A77", fontWeight: "bold"}}>Rows Per Page</Form.Label>
-                                        <select className="form-control" as='select'
+                                    <Form.Label className='havpl__formLabel'>Rows Per Page</Form.Label>
+                                        <select className="form-control havpl__formControl" as='select'
                                         value={PageSize}
-                                        onChange={(e) => setPageSize(e.target.value)}
-                                        style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163"}}>
+                                        onChange={(e) => setPageSize(e.target.value)}>
                                             <option value="10">10</option>
                                             <option value="20">20</option>
                                             <option value="30">30</option>
@@ -145,7 +142,7 @@ const HAViewPatientList = ( { history }) => {
                                                 </Button>
                                             </LinkContainer>
                                         </td>
-                                     
+
                                     </tr>
                                 ))}
                             </tbody>
@@ -196,7 +193,7 @@ const HAViewPatientList = ( { history }) => {
                                                 </Button>
                                             </LinkContainer>
                                         </td>
-                                     
+
                                     </tr>
                                 ))}
                             </tbody>
@@ -209,10 +206,10 @@ const HAViewPatientList = ( { history }) => {
                             onPageChange={page => setCurrentPage(page)}
                         />
                     </Col>
-                )}   
+                )}
             </Col>
             <Col sm={1}></Col>
-        </Row>        
+        </Row>
     </div>
     );
 }

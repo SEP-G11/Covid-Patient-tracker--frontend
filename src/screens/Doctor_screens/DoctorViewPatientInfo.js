@@ -6,6 +6,7 @@ import Loader from '../../components/Loader';
 import { useDispatch, useSelector } from 'react-redux'
 import { getPatientDetails } from '../../actions/patientActions'
 import DoctorSideNav from "./DoctorSideNav";
+import Meta from "../../components/Meta";
 
 const DoctorViewPatientInfo = ({ match , history }) =>{
     const patientId = match.params.id
@@ -37,6 +38,7 @@ const DoctorViewPatientInfo = ({ match , history }) =>{
 
     return (
         <div>
+            <Meta title={`Patient Info - ${patientId}`}/>
             <Row >
                 <Col sm={3}><DoctorSideNav from='viewPatientsList'/></Col>
                 <Col sm={8} >

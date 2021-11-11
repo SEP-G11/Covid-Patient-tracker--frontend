@@ -64,7 +64,7 @@ const HADischargePatientScreen = ({ match, history }) => {
               <Row>
                 <Col>
                   <Form.Group controlId="id">
-                    <Form.Label className='hadps__formLabel'>Patient Id</Form.Label>
+                    <Form.Label className='hadps__formLabel'>Patient ID</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Enter Patient ID"

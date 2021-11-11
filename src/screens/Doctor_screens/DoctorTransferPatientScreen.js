@@ -7,7 +7,7 @@ import Meta from '../../components/Meta';
 import FormContainer from "../../components/FormContainer";
 import { transfer } from "../../actions/patientActions";
 import DoctorSideNav from "./DoctorSideNav";
-
+import './DoctorTransferPatientScreen.css';
 
 const DoctorTransferPatientScreen = ({ match, history }) => {
 
@@ -50,15 +50,9 @@ const DoctorTransferPatientScreen = ({ match, history }) => {
         <Col sm={3}>    <DoctorSideNav from='transfer' /></Col>
         <Col sm={8} >
           <Row>
-            <Col sm={12}><h1 style={{ fontFamily: "arial", textAlign: "center", color: "#007c7a", fontSize: "40px", paddingLeft: "-50px", paddingTop: "60px" }}> Transfer Patient</h1> </Col>
+            <Col sm={12}><h1 className='dtps__title'> Transfer Patient</h1> </Col>
           </Row>
-          <hr
-            style={{
-              color: "white",
-              backgroundColor: "#007c7a",
-              height: 2,
-            }}
-          />
+          <hr className='dtps__hr'/>
           <br />
           <FormContainer>
 
@@ -67,30 +61,28 @@ const DoctorTransferPatientScreen = ({ match, history }) => {
             {loading && <Loader />}
             <Form onSubmit={submitHandler}>
               <Form.Group controlId="id">
-                <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Patient Id</Form.Label>
+                <Form.Label className='dtps__formLabel'>Patient ID</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter Id"
+                  placeholder="Enter ID"
                   value={patient_id}
                   onChange={(e) => setId(e.target.value)}
-                  style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-
-                ></Form.Control>
+                  className='dtps__formControl'>
+                </Form.Control>
               </Form.Group>
 
               <Row>
                 <Col>
                   {" "}
                   <Form.Group controlId="dest_bed_id">
-                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Destination Bed Id</Form.Label>
+                    <Form.Label className='dtps__formLabel'>Destination Bed ID</Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="Enter Dest: Bed Id"
+                      placeholder="Enter Dest: Bed ID"
                       value={dest_bed_id}
                       onChange={(e) => setDestinationBedId(e.target.value)}
-                      style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-
-                    ></Form.Control>
+                      className='dtps__formControl'>
+                    </Form.Control>
                   </Form.Group>
                 </Col>
                 <Col>
@@ -100,15 +92,14 @@ const DoctorTransferPatientScreen = ({ match, history }) => {
               <Row>
                 <Col>
                   <Form.Group controlId="transferDateTime">
-                    <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Transfer Date Time</Form.Label>
+                    <Form.Label className='dtps__formLabel'>Transfer Date Time</Form.Label>
                     <Form.Control
                       type="datetime-local"
                       placeholder="Enter Date Time"
                       value={transfer_date}
                       onChange={(e) => setTransferDateTime(e.target.value)}
-                      style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-
-                    ></Form.Control>
+                      className='dtps__formControl'>
+                    </Form.Control>
                   </Form.Group>
                 </Col>
               </Row>

@@ -17,7 +17,6 @@ const DoctorEditMedicalReport = ({ match, history }) => {
     const [symptoms, setSymptoms] = useState('')
     const [description, setDescription] = useState('')
     const [admitted_at, setAdmittedAt] = useState('')
-    const [discharged_at, setDischargedAt] = useState('')
     
     const dispatch = useDispatch()
 
@@ -47,7 +46,6 @@ const DoctorEditMedicalReport = ({ match, history }) => {
           } else {
             setSymptoms(report.symptoms)
             setAdmittedAt(report.admitted_at)
-            setDischargedAt(report.discharged_at)
             setDescription(report.description)
             setStatus(report.status)
           }
@@ -57,7 +55,7 @@ const DoctorEditMedicalReport = ({ match, history }) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(updatePatientReport({ report_id:report.report_id , patient_id:patientId, symptoms, admitted_at, discharged_at, description, status }))
+        dispatch(updatePatientReport({ report_id:report.report_id , patient_id:patientId, symptoms, admitted_at, description, status }))
     }
 
     return (
@@ -148,19 +146,6 @@ const DoctorEditMedicalReport = ({ match, history }) => {
                             style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
                         ></Form.Control>
                       </Form.Group>
-                    </Col>
-                    <Col>
-                    <Form.Group controlId="date">
-                      <Form.Label style={{ color: "#008A77", fontWeight: "bold" }}>Discharged Date</Form.Label>
-                      <Form.Control
-                          type="datetime-local"
-                          placeholder="Enter Date"
-                          value={discharged_at}
-                          onChange={(e) => setDischargedAt(e.target.value)
-                          }
-                          style={{ borderRadius: "20px", borderWidth: "1px", borderColor: "#007c7a", borderStyle: "solid", color: "#007c7a", outline: "#913163" }}
-                      ></Form.Control>
-                    </Form.Group>
                     </Col>
                   </Row>
 

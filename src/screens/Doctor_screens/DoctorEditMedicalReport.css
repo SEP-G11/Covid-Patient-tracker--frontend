@@ -1,28 +1,10 @@
-#myInput {
-    font-size: 13px;
-    padding: 6px 13px 6px 13px;
-    border: 1px solid #ddd;
-}
-
-.table-head {
-    font-size: 12px;
-}
-
-.list-group {
-    margin-bottom: 20px;
-}
-
-#myTable {
-    margin-bottom: 30px;
-}
-
-.dvpl__hr{
+.demr__hr{
     color: white;
     background-color: #007c7a;
     height: 2px;
 }
 
-.dvpl__title{
+.demr__title{
     font-family: "Arial";
     text-align: center;
     color: #007c7a;
@@ -30,12 +12,25 @@
     padding-left: -50px;
 }
 
-.dvpl__formLabel{
+.demr__IDValues{
+    font-family: "Arial";
+    text-align: center;
+    color: #007c7a;
+    font-size: 15px;
+    padding-left: -50px;
+    margin-bottom: 20px;
+}
+
+.demr__formContainer{
+    border: 2px solid #000000;
+}
+
+.demr__formLabel{
     color: #008A77;
     font-weight: bold;
 }
 
-.dvpl__formControl{
+.demr__formControl{
     border-radius: 20px;
     border-width: 1px;
     border-color: #007c7a;
@@ -45,7 +40,7 @@
     background-color: white;
 }
 
-.dvpl__formControl:focus{
+.demr__formControl:focus{
     background-color: white;
     color: black;
 }

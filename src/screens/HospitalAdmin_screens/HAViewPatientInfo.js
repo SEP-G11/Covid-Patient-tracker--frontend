@@ -3,6 +3,7 @@ import { Form, Button, Row, Col, ListGroup } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap'
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
+import Meta from '../../components/Meta';
 import { useDispatch, useSelector } from 'react-redux'
 import { getPatientDetails } from '../../actions/patientActions'
 import HospitalAdminSideNav from "./HospitalAdminSideNav";
@@ -37,6 +38,7 @@ const HAViewPatientInfo = ({ match , history }) =>{
 
     return (
         <div>
+            <Meta title={`Patient Info - ${patientId}`}/>
             <Row >
                 <Col sm={3}><HospitalAdminSideNav from='viewPatientsList'/></Col>
                 <Col sm={8} >

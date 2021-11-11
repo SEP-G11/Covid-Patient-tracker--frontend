@@ -1,0 +1,34 @@
+.haers__hr{
+    color: white;
+    background-color: #007c7a;
+    height: 2px;
+}
+
+.haers__title{
+    font-family: "Arial";
+    text-align: center;
+    color: #007c7a;
+    font-size: 40px;
+    padding-left: -50px;
+    padding-top: 60px;
+}
+
+.haers__formLabel{
+    color: #008A77;
+    font-weight: bold;
+}
+
+.haers__formControl{
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: #007c7a;
+    border-style: solid;
+    color: black;
+    outline: #913163;
+    background-color: white;
+}
+
+.haers__formControl:focus{
+    background-color: white;
+    color: black;
+}

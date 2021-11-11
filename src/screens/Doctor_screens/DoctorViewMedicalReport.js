@@ -121,9 +121,6 @@ const DoctorViewMedicalReport = ({ match , history }) => {
                         <p class="text-dark">
                             <strong>Admitted At: </strong> {getdate(report.admitted_at)}
                         </p>
-                        <p class="text-dark">
-                            <strong>Discharged At: </strong> {getdate(report.discharged_at)}
-                        </p>
                     </Col>
                     {loading_ ? (
                     <Loader />

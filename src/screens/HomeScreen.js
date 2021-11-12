@@ -21,6 +21,11 @@ const HomeScreen = () => {
     window.open(`/dashboard`, "_blank")
 
   }
+  function downloadApk(e) {
+    e.preventDefault();
+    window.open("https://dms.uom.lk/s/L5zg4XSqXajPQfo", "_blank")
+  }
+
 
   useEffect(() => {
     api({
@@ -124,6 +129,10 @@ const HomeScreen = () => {
             The software is optimised for usage on smartphones increasing
             adoption and flexibility for field health force.
           </h4>
+          <br />
+          <form onSubmit={downloadApk}>
+            <button class="button button2" type="submit" style={{ marginLeft: 180, }}>Download APK</button>
+          </form>
         </Col>
       </Row>
       <br /><br />
